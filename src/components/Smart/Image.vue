@@ -60,7 +60,7 @@ export default Vue.extend({
      * Optimizes images and returns optimized image URL.
      */
     getBackgroundUrl(): string {
-      if (this.error === true || !this.src) return ""
+      if (this.error === true || !this.src) return "/icon.png"
       else if (this.optimize === false)
         return this.getProxifiedImageUrl(this.src)
 
