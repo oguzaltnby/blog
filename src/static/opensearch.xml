@@ -3,6 +3,6 @@
     <ShortName>Nortonox's Blog</ShortName>
     <Description>Nortonox'un Blog'unda ara!</Description>
     <InputEncoding>UTF-8</InputEncoding>
-    <Image height="16" width="16" type="image/x-icon">/assets/images/memoji.png</Image>
+    <Image style="z-index: 9999;" height="16" width="16" type="image/x-icon">/assets/images/memoji.png</Image>
     <Url type="text/html" method="get" template="https://localhost:3000/blog/?q={searchTerms}" />
 </OpenSearchDescription>
