@@ -36,7 +36,7 @@ export default Vue.extend({
       experiences: {
         education: [
         {
-            title: " High School",
+            title: "Borusan Asım Kocabıyık Vocational and Technical Anatolian High School",
             url: "https://borusan.meb.k12.tr",
             position: "Information Technologies",
             date: "2020-",
