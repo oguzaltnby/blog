@@ -23,7 +23,7 @@ export default Vue.extend({
     <div class="mx-auto w-11/12 sm:w-9/12 md:w-7/12">
       <div class="space-y-4 text-center sm:(space-y-0 space-x-6 text-left)">
         <SmartLink
-          href="https://github.com/nortonox/blog"
+          href="https://github.com/oguzaltnby/blog"
           class="text-center border-b border-transparent hover:border-black/10 dark:hover:border-white/10 transition-colors"
           blank
         >
