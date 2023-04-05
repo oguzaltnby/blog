@@ -13,7 +13,7 @@ export default Vue.extend({
   fetchOnServer: false,
   async fetch() {
     const filter = [
-      "Nortonox",
+      "oguz",
       "DBM",
       "nortonox.netlify.app",
       "bu-saatte-cekilir-mi",
@@ -21,7 +21,7 @@ export default Vue.extend({
 
     const repos: Repository[] = (
       await this.$axios.get(
-        "https://api.github.com/users/nortonox/repos?per_page=100"
+        "https://api.github.com/users/oguzaltnby/repos?per_page=100"
       )
     ).data
 

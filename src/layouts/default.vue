@@ -21,8 +21,8 @@ export default Vue.extend({
     this.posts = posts
   },
   head() {
-    let string = "Nortonox"
-    if (this.routeIsBlog) string = "Nortonox - blog"
+    let string = "Oguz"
+    if (this.routeIsBlog) string = "Oguz - blog"
 
     return {
       titleTemplate: `%s - ${string}`,
