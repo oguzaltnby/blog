@@ -126,7 +126,7 @@ export default Vue.extend({
             class="flex items-center justify-center md:justify-start gap-x-3 gap-y-2 flex-wrap"
           >
             <Button
-              v-for="item in ['HTML5', 'Vue.js', 'Sass']"
+              v-for="item in ['Javascript', 'Python', 'Sass']"
               :key="item"
               class="inline-block"
             >
