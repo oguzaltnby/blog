@@ -1,8 +1,8 @@
 export default {
   social: {
-    github: "https://github.com/nortonox/",
-    instagram: "https://instagram.com/nortonox._/",
-    email: "nortonox@protonmail.com",
+    github: "https://github.com/oguzaltnby/",
+    instagram: "https://instagram.com/oguzaltnby/",
+    email: "oguzaltnby@protonmail.com",
   },
 
 }
