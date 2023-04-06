@@ -55,7 +55,7 @@ export default Vue.extend({
         <h3
           class="text-black/90 dark:text-white/90 items-center truncate space-x-1"
         >
-          <span class="text-black/50 dark:text-white/30">nortonox/</span
+          <span class="text-black/50 dark:text-white/30">oguz/</span
           ><span>{{ name }}</span>
         </h3>
 
