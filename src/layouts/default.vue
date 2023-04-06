@@ -91,12 +91,12 @@ export default Vue.extend({
             this.$router.push("/me/contact")
           },
         },
-                {
-          section: "Navigation",
-          text: "Daily Song",
-          icon: "IconMusicNote",
+        {
+          section: "Me",
+          text: "Donate",
+          icon: "IconDollar",
           action: () => {
-            this.$router.push("/daily")
+            this.$router.push("/donate")
           },
         },
 

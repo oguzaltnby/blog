@@ -66,6 +66,18 @@ export default Vue.extend({
               "Will update soon",
             href: "/blog",
           },
+          {
+            title: "Daily Songs",
+            description:
+              "Fresh, cool and great song recommendations from me each day!",
+            href: "/daily",
+          },
+          {
+            title: "Donate",
+            description:
+              "Want to support me and my projects so that I can create better stuff in the future?",
+            href: "/donate",
+          },
         ],
       },
       skills: [
