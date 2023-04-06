@@ -91,6 +91,14 @@ export default Vue.extend({
             this.$router.push("/me/contact")
           },
         },
+                {
+          section: "Navigation",
+          text: "Daily Song",
+          icon: "IconMusicNote",
+          action: () => {
+            this.$router.push("/daily")
+          },
+        },
 
         /* Quick Links */
         {
