@@ -32,13 +32,13 @@ const Head: NuxtOptionsHead = {
     {
       rel: "icon",
       type: "image/x-icon",
-      href: "static/assets/icons/icon.ico",
+      href: "static/assets/icon.png",
     },
     {
       rel: "search",
       type: "application/opensearchdescription+xml",
-      title: "Nortonox's Blog",
-      href: "https://nortonox.netlify.app/opensearch.xml",
+      title: "Oguz's Blog",
+      href: "https://oguzaltnby.netlify.app/opensearch.xml",
     },
   ],
 }
