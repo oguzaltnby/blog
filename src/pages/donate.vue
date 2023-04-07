@@ -46,7 +46,7 @@ export default Vue.extend({
   fetchOnServer: false,
   async fetch() {
     const { data } = await this.$axios.get(
-      "https://raw.githubusercontent.com/eggsy/.github/main/sponsors.json"
+      "https://raw.githubusercontent.com/oguzaltnby/.github/main/sponsors.json"
     )
 
     this.sponsors = data
