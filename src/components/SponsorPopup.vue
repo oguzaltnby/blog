@@ -27,7 +27,7 @@ export default Vue.extend({
     >
       <div class="flex items-center justify-between gap-2">
         <SmartLink
-          href="https://github.com/sponsors/nortonox"
+          href="https://github.com/sponsors/oguzaltnby"
           blank
           @click.native="dismissMessage"
         >

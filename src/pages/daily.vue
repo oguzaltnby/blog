@@ -128,7 +128,7 @@ export default Vue.extend({
             type="iframe"
             :iframe-url="
               $fetchState.pending === false &&
-              `https://www.youtube.com/embed/${getSelectedSong.youtube}`
+              `https://youtu.be/oakWgLqCwUc`
             "
             class="h-[30vh] w-full md:h-full"
           />
