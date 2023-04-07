@@ -62,12 +62,12 @@ export default Vue.extend({
         title,
         description,
         keywords: "donate",
-        url: "https://eggsy.xyz/donate",
+        url: "https://oguzaltnby.netlify.app/donate",
       }),
       link: [
         {
           rel: "canonical",
-          href: "https://eggsy.xyz/donate",
+          href: "https://oguzaltnby.netlify.app/donate",
         },
       ],
     }
@@ -105,7 +105,7 @@ export default Vue.extend({
     title="Donate"
     :description="[
       'If you like my projects and/or what I do and you want to contribute, make me happy, you can donate to me with the information on this page! Thank you ♥',
-      `P.S. Use 'Abdulbaki Dursun' as the name of your transactions.`,
+      `P.S. Use 'Oguz ALTUNBEY' as the name of your transactions.`,
     ]"
     class="space-y-12"
   >
