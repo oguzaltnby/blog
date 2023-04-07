@@ -31,7 +31,7 @@ export default Vue.extend({
         if (!el) {
           el = document.createElement("input")
 
-          el.value = this.path ? `https://nortonox.netlify.app${this.path}` : location.href
+          el.value = this.path ? `https://oguzaltnby.netlify.app${this.path}` : location.href
           document.body.appendChild(el)
 
           el.select()
@@ -90,7 +90,7 @@ export default Vue.extend({
     <input
       ref="share-url"
       readonly
-      :value="`https://nortonox.netlify.app${path}`"
+      :value="`https://oguzaltnby.netlify.app${path}`"
       class="hidden"
     />
   </div>

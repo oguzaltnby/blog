@@ -8,7 +8,7 @@ export default async function () {
   }
 
   return {
-    hostname: "https://nortonox.netlify.app",
+    hostname: "https://oguzaltnby.netlify.app",
     gzip: true,
     routes,
   }

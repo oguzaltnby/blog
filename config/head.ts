@@ -6,7 +6,7 @@ const description =
   "Young information technologies student from Turkey, interested in languages, gaming, skating and programming"
 
 const Head: NuxtOptionsHead = {
-  title: "Nortonox",
+  title: "Oguz",
   meta: [
     { charset: "utf-8" },
     { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -32,13 +32,13 @@ const Head: NuxtOptionsHead = {
     {
       rel: "icon",
       type: "image/x-icon",
-      href: "static/assets/icons/icon.ico",
+      href: "static/assets/icon.png",
     },
     {
       rel: "search",
       type: "application/opensearchdescription+xml",
-      title: "Nortonox's Blog",
-      href: "https://nortonox.netlify.app/opensearch.xml",
+      title: "Oguz's Blog",
+      href: "https://oguzaltnby.netlify.app/opensearch.xml",
     },
   ],
 }
