@@ -1,5 +1,5 @@
 const Feed = () => {
-  const baseUrlArticles = "nortonox.netlify.app/blog"
+  const baseUrlArticles = "oguzaltnby.netlify.app/blog"
 
   const feedFormats = {
     rss: { type: "rss2", file: "rss.xml" },
@@ -10,7 +10,7 @@ const Feed = () => {
 
   const createFeedArticles = async function (feed: any) {
     feed.options = {
-      title: "Nortonox's Blog",
+      title: "Oguz's Blog",
       link: baseUrlArticles,
     }
 
@@ -21,7 +21,7 @@ const Feed = () => {
 
       const hostName =
         process.env.NODE_ENV === "production"
-          ? "https://nortonox.netlify.app"
+          ? "https://oguzaltnby.netlify.app"
           : "http://localhost:3000"
 
       const postImagesPath = `${hostName}/assets/images/posts`

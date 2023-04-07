@@ -1,7 +1,7 @@
 export default {
   manifest: {
-    name: "Nortonox",
-    short_name: "Nortonox",
+    name: "Oguzhan",
+    short_name: "Oguz",
     theme_color: "#f56565",
     lang: "en",
   },

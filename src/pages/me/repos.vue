@@ -15,7 +15,7 @@ export default Vue.extend({
     const filter = [
       "oguz",
       "DBM",
-      "nortonox.netlify.app",
+      "oguzaltnby.netlify.app",
       "bu-saatte-cekilir-mi",
     ]
 

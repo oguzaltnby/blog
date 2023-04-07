@@ -27,7 +27,7 @@ export default Vue.extend({
     >
       <div class="flex items-center justify-between gap-2">
         <SmartLink
-          href="https://github.com/sponsors/nortonox"
+          href="https://github.com/sponsors/oguzaltnby"
           blank
           @click.native="dismissMessage"
         >
@@ -47,7 +47,7 @@ export default Vue.extend({
       <p class="text-sm light:opacity-50 dark:text-white/50">
         Sponsoring me and my work just got easier with GitHub Sponsors.
         <SmartLink
-          href="https://github.com/sponsors/nortonox"
+          href="https://github.com/sponsors/oguzaltnby"
           blank
           class="transition-colors border-b border-black/20 hover:border-black/40 dark:hover:border-white/40 dark:border-white/20"
           @click.native="dismissMessage"
