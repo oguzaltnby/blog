@@ -1,7 +1,7 @@
 import { NuxtOptionsHead } from "@nuxt/types/config/head"
 
 /* Define constants */
-const image = "https://i.pinimg.com/474x/37/35/c7/3735c7781f76b04bf5187ad103e1c1ce.jpg"
+const image = "https://eggsy.xyz/icon.png"
 const description =
   "Young information technologies student from Turkey, interested in languages, gaming, skating and programming"
 
@@ -32,7 +32,7 @@ const Head: NuxtOptionsHead = {
     {
       rel: "icon",
       type: "image/x-icon",
-      href: "https://i.pinimg.com/474x/37/35/c7/3735c7781f76b04bf5187ad103e1c1ce.jpg",
+      href: "https://eggsy.xyz/assets/icons/icon.ico",
     },
     {
       rel: "search",
