@@ -157,7 +157,7 @@ export default Vue.extend({
 
       <div class="rounded-full mx-auto mb-4 md:mb-0">
         <SmartImage
-          src="static/assets/icon.png"
+          src="/assets/images/memoji.png"
           class="rounded-full h-40 w-40"
         />
       </div>
