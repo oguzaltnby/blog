@@ -32,7 +32,7 @@ const Head: NuxtOptionsHead = {
     {
       rel: "icon",
       type: "image/x-icon",
-      href: "https://eggsy.xyz/assets/icons/icon.ico",
+      href: "static/assets/icons/icon.ico",
     },
     {
       rel: "search",
