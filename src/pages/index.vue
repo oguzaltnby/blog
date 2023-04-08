@@ -84,9 +84,9 @@ export default Vue.extend({
         {
           title: "Development",
           items: [
-            "Vue.js",
             "Javascript",
             "PHP",
+            "Vue.js",
             "HTML5",
             "Node.js",
             "Sass",
@@ -99,6 +99,9 @@ export default Vue.extend({
               title: "VS Code",
               iconPack: "IconBrand",
             },
+            {
+              title: "Figma",
+            },
           ],
         },
         {
@@ -106,6 +109,10 @@ export default Vue.extend({
           items: [
             {
               title: "GitHub",
+              iconPack: "IconBrand",
+            },
+            {
+              title: "Netlify",
               iconPack: "IconBrand",
             },
           ],
@@ -131,7 +138,7 @@ export default Vue.extend({
           <h1
             class="font-semibold text-center text-4xl md:(text-6xl text-left) text-black/90 leading-normal dark:text-white/90"
           >
-            11. Sınıf Bilişim Teknolojileri Öğrencisi
+            Oğuz
           </h1>
 
           <div
@@ -157,7 +164,7 @@ export default Vue.extend({
 
       <div class="rounded-full mx-auto mb-4 md:mb-0">
         <SmartImage
-          src="https://eggsy.xyz/icon.png"
+          src="/assets/images/memoji.png"
           class="rounded-full h-40 w-40"
         />
       </div>
