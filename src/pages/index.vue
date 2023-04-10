@@ -105,6 +105,9 @@ export default Vue.extend({
             {
               title: "Illustrator",
             },
+            {
+              title: "Photoshop",
+            },
           ],
         },
         {
