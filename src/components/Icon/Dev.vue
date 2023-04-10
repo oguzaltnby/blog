@@ -156,7 +156,7 @@
   <!-- Illustrator -->
 
   <svg v-else-if="isSame('Illustrator')" xmlns="http://www.w3.org/2000/svg" width="256" height="256" data-name="Layer 1"
-    viewBox="0 0 20 20" id="adobe-illustrator">
+    viewBox="0 0 256 256" id="adobe-illustrator">
     <g data-name="Photo Surface">
       <rect width="240" height="232" x="8" y="12" fill="#300" data-name="Outline no shadow" rx="42"></rect>
     </g>
@@ -168,7 +168,7 @@
   <!-- Photoshop -->
 
 
-  <svg v-else-if="isSame('Photoshop')" xmlns="http://www.w3.org/2000/svg" width="256" height="256" data-name="Layer 1" viewBox="0 0 20 20"
+  <svg v-else-if="isSame('Photoshop')" xmlns="http://www.w3.org/2000/svg" width="256" height="256" data-name="Layer 1" viewBox="0 0 256 256"
     id="adobe-photoshop">
     <g data-name="Photo Surface">
       <rect width="240" height="232" x="8" y="12" fill="#001e36" data-name="Outline no shadow" rx="42"></rect>
