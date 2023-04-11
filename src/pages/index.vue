@@ -85,6 +85,7 @@ export default Vue.extend({
           title: "Development",
           items: [
             "Javascript",
+            "Python",
             "PHP",
             "Vue.js",
             "HTML5",
@@ -151,7 +152,7 @@ export default Vue.extend({
             class="flex items-center justify-center md:justify-start gap-x-3 gap-y-2 flex-wrap"
           >
             <Button
-              v-for="item in ['Javascript', 'PHP', 'Sass']"
+              v-for="item in ['Javascript', 'Python', 'PHP']"
               :key="item"
               class="inline-block"
             >
