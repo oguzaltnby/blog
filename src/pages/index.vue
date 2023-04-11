@@ -146,7 +146,7 @@ export default Vue.extend({
             Oğuz
           </h1>
 
-          <div class="flex items-center justify-center md:justify-start gap-x-3 gap-y-2 flex-wrap">
+          <div class="flex items-center justify-center md:justify-start gap-x-4 gap-y-2 flex-wrap">
             <Button v-for="item in ['Javascript', 'Python', 'PHP', " Dart"]" :key="item" class="inline-block">
               <IconDev :brand="item" class="h-5 w-5" />
             </Button>
