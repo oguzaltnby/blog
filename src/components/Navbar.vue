@@ -28,7 +28,7 @@ export default Vue.extend({
         >
           <img
             src="/assets/icons/icon.ico"
-            class="rounded-md bg-gray-100 ring-black transition-transform ring-2 ring-opacity-5 sm:transform hover:-rotate-6 flex-shrink-0 h-10 w-10"
+            class="rounded-md  ring-black transition-transform ring-2 ring-opacity-5 sm:transform hover:-rotate-6 flex-shrink-0 h-10 w-10"
           >
 
           <Transition name="fade" mode="out-in">
