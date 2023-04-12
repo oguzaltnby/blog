@@ -35,6 +35,7 @@ export default Vue.extend({
       const titles = {
         github: "Follow me on GitHub!",
         instagram: "Follow me on Instagram!",
+        reddit: "Follow me on Reddit!",
       }
 
       const array: Link[] = []

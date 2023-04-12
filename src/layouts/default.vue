@@ -117,6 +117,14 @@ export default Vue.extend({
             window.open(this.$config.social.instagram, "_blank")?.focus()
           },
         },
+        {
+          section: "Quick Links",
+          text: "Reddit",
+          icon: "IconBrand:reddit",
+          action: () => {
+            window.open(this.$config.social.reddit, "_blank")?.focus()
+          },
+        },
 
         /* Controls */
         {
