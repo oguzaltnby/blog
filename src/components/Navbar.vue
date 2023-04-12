@@ -27,7 +27,7 @@ export default Vue.extend({
           class="flex-shrink-0 h-10 w-10 flex items-center space-x-4"
         >
           <SmartImage
-            src="/assets/icons/icon.ico"
+            src="https://eggsy.xyz/assets/icons/icon.ico"
             class="rounded-md bg-gray-100 ring-black transition-transform ring-2 ring-opacity-5 sm:transform hover:-rotate-6 flex-shrink-0 h-10 w-10"
           />
 
