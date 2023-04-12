@@ -138,7 +138,7 @@ export default Vue.extend({
 
           <h1
             class="font-semibold text-center text-4xl md:(text-6xl text-left) text-black/90 leading-normal dark:text-white/90">
-            Oğuz
+            Web Developer
           </h1>
 
           <div class="flex items-center justify-center md:justify-start gap-x-3 gap-y-2 flex-wrap">
