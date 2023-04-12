@@ -1,7 +1,7 @@
 import { NuxtOptionsHead } from "@nuxt/types/config/head"
 
 /* Define constants */
-const image = "https://oguzaltnby.netlify.app/v.png"
+const image = "https://oguzaltnby.netlify.app/logo.png"
 const description =
   "Young information technologies student from Turkey, interested in languages, gaming, skating and programming"
 
