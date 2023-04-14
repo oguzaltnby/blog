@@ -39,20 +39,12 @@ export default Vue.extend({
               Blog
             </span>
           </Transition>
-
-          <Transition name="fade" mode="out-in">
-            <span
-              v-if="routeIsBlog"
-              class="text-black/90 text-sm uppercase font-medium dark:text-white/90"
-            >
-              Blog
-            </span>
-          </Transition>
         </SmartLink>
 
         <div class="flex space-x-2 items-center">
           <OmnibarButton />
           <ColorSwitcher />
+          <OmnibarButton />
         </div>
       </div>
     </div>

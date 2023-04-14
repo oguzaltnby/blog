@@ -21,14 +21,4 @@ export default Vue.extend({
     elevated
     @click.native="togglePalette"
   />
-  <Button
-    v-tippy="{
-      content: '⌘/Ctrl + K',
-    }"
-    icon="Menu"
-    class="focus:outline-none"
-    rounded
-    elevated
-    @click.native="togglePalette"
-  />
 </template>
