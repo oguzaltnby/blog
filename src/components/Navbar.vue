@@ -44,7 +44,7 @@ export default Vue.extend({
         <div class="flex space-x-2 items-center">
           <OmnibarButton />
           <ColorSwitcher />
-          <Button href="https://www.svgviewer.dev/s/473070/hand" />
+          <Button href="https://www.svgviewer.dev/s/473070/hand" value="sad" />
         </div>
       </div>
     </div>
