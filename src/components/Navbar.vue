@@ -44,7 +44,7 @@ export default Vue.extend({
         <div class="flex space-x-2 items-center">
           <OmnibarButton />
           <ColorSwitcher />
-          <Button href="https://www.svgviewer.dev/s/473070/hand">sada</Button>
+          <Button href="https://www.svgviewer.dev/s/473070/hand"><svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#BFBFBF" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter"><path d="M9,3H8A3,3,0,0,0,5,6V9a3,3,0,0,1-3,3H2a3,3,0,0,1,3,3v4a3,3,0,0,0,3,3H9"></path><path d="M15,3h1a3,3,0,0,1,3,3V9a3,3,0,0,0,3,3h0a3,3,0,0,0-3,3v4a3,3,0,0,1-3,3H15" ></path></svg></Button>
         </div>
       </div>
     </div>
