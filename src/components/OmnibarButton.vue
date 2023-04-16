@@ -12,10 +12,11 @@ export default Vue.extend({
 
 <template>
   <Button
+    href=""
     v-tippy="{
       content: '⌘/Ctrl + K',
     }"
-    icon="Menu"
+    icon="List"
     class="focus:outline-none"
     rounded
     elevated
