@@ -12,7 +12,6 @@ export default Vue.extend({
 
 <template>
   <Button
-    href=""
     v-tippy="{
       content: '⌘/Ctrl + K',
     }"
