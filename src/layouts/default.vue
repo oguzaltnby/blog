@@ -73,14 +73,7 @@ export default Vue.extend({
             })),
           ],
         },
-        {
-          section: "Navigation",
-          text: "Daily Song",
-          icon: "IconMusicNote",
-          action: () => {
-            this.$router.push("/daily")
-          },
-        },
+
 
         /* Me */
         {
