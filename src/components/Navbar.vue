@@ -36,9 +36,6 @@ export default Vue.extend({
         <div class="flex space-x-2 items-center">
           <OmnibarButton />
           <ColorSwitcher />
-          <!--<Button v-tippy="{
-            content: '⌘/Ctrl + K',
-          }" icon="Code" class="focus:outline-none" rounded elevated @click.native="togglePalette" />-->
         </div>
       </div>
     </div>
