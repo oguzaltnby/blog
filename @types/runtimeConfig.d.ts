@@ -8,6 +8,7 @@ export interface Social {
   twitter: string
   github: string
   instagram: string
+  reddit: string
   trello: string
   email: string
 }
