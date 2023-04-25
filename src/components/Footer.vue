@@ -1,7 +1,7 @@
 
 <template>
   <div
-    class="bg-gray-100 text-sm w-full py-4 text-black/50 dark:(bg-white/5 text-white/30)"
+    class="bg-gray-700 text-sm w-full py-4 text-black/50 dark:(bg-white/5 text-white/30)"
   >
     <div class="mx-auto w-11/12 sm:w-9/12 md:w-7/12">
       <div class="space-y-4 text-center sm:(space-y-0 space-x-6 text-left)">
