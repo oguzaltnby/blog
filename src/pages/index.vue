@@ -83,9 +83,9 @@ export default Vue.extend({
             "Python",
             "PHP",
             "Dart",
-            "Vue.js",
+            //"Vue.js",
             "Node.js",
-            "Sass",
+            //"Sass",
           ],
         },
         {
