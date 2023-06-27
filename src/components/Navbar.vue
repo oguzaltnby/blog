@@ -1,7 +1,7 @@
 <script lang="ts">
 import Vue from "vue"
 
-import CodeIdle from "./CodeIdle.vue"
+
 export default Vue.extend({
   computed: {
     routeIsBlog() {
@@ -17,7 +17,7 @@ export default Vue.extend({
         return "/";
     },
   },
-  components: { CodeIdle }
+
 })
 </script>
 
@@ -39,7 +39,7 @@ export default Vue.extend({
         <div class="flex space-x-2 items-center">
           <OmnibarButton />
           <ColorSwitcher />
-          <CodeIdle />
+          <CodeIdle/>
         </div>
       </div>
     </div>
