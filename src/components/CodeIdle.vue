@@ -16,7 +16,7 @@ export default Vue.extend({
     v-tippy="{
       content: '⌘/Ctrl + K',
     }"
-    icon = "IconHome"
+    icon = "IconCode"
     class="focus:outline-none"
     rounded
     elevated
