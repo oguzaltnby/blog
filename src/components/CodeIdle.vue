@@ -1,6 +1,6 @@
 <script lang="ts">
 import Vue from "vue"
-import 'primeicons/primeicons.css';
+
 
 export default Vue.extend({
   methods: {
@@ -15,6 +15,6 @@ export default Vue.extend({
   <Button v-tippy="{
     content: '⌘/Ctrl + K',
   }" class="focus:outline-none" rounded elevated @click.native="togglePalette"> <template #icon>
-      <i class="pi pi-code"></i>
+      <IconChevron up class="h-4 w-4" />
     </template> </Button>
 </template>
