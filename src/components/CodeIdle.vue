@@ -12,14 +12,7 @@ export default Vue.extend({
 </script>
 
 <template>
-  <Button
-    v-tippy="{
-      content: '⌘/Ctrl + K',
-    }"
-    v-text="{}"
-    class="focus:outline-none"
-    rounded
-    elevated
-    @click.native="togglePalette"
-  />
+  <Button v-tippy="{
+    content: '⌘/Ctrl + K',
+  }" v-text="{ㅤ}" class="focus:outline-none" rounded elevated @click.native="togglePalette" />
 </template>
