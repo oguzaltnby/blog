@@ -1,6 +1,7 @@
 <script lang="ts">
 import Vue from "vue"
 
+
 export default Vue.extend({
   methods: {
     togglePalette() {
@@ -15,7 +16,7 @@ export default Vue.extend({
     v-tippy="{
       content: '⌘/Ctrl + K',
     }"
-    icon="Menu"
+    icon="Code"
     class="focus:outline-none"
     rounded
     elevated
