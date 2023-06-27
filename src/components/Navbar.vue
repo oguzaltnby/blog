@@ -1,20 +1,23 @@
 <script lang="ts">
 import Vue from "vue"
 
+import CodeIdle from "./CodeIdle.vue"
 export default Vue.extend({
-  computed: {
-    routeIsBlog() {
-      return this.$route.name?.includes("blog")
+    computed: {
+        routeIsBlog() {
+            return this.$route.name?.includes("blog");
+        },
+        getTargetLink() {
+            const path = this.$route.path;
+            if (path !== "/projects/premid" && path.startsWith("/projects/premid"))
+                return "/projects/premid";
+            else if (this.routeIsBlog && this.$route.params?.slug)
+                return "/blog";
+            else
+                return "/";
+        },
     },
-    getTargetLink() {
-      const path = this.$route.path
-
-      if (path !== "/projects/premid" && path.startsWith("/projects/premid"))
-        return "/projects/premid"
-      else if (this.routeIsBlog && this.$route.params?.slug) return "/blog"
-      else return "/"
-    },
-  },
+    components: { CodeIdle }
 })
 </script>
 
@@ -44,6 +47,7 @@ export default Vue.extend({
         <div class="flex space-x-2 items-center">
           <OmnibarButton />
           <ColorSwitcher />
+          <CodeIdle />
         </div>
       </div>
     </div>
