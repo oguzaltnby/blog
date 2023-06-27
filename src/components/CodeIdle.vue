@@ -12,11 +12,12 @@ export default Vue.extend({
 </script>
 
 <template>
+  <IconChevron up class="h-4 w-4" />
   <Button
     v-tippy="{
       content: '⌘/Ctrl + K',
     }"
-    icon="Python"
+
     class="focus:outline-none"
     rounded
     elevated
