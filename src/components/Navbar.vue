@@ -39,6 +39,7 @@ export default Vue.extend({
         <div class="flex space-x-2 items-center">
           <OmnibarButton />
           <ColorSwitcher />
+          <CodeIde />
 
         </div>
       </div>
