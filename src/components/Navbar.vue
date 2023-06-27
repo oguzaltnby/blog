@@ -39,7 +39,7 @@ export default Vue.extend({
         <div class="flex space-x-2 items-center">
           <OmnibarButton />
           <ColorSwitcher />
-          <CodeIdle />
+          <CodeIdle> <IconChevron up class="h-4 w-4" /> </CodeIdle>
         </div>
       </div>
     </div>
