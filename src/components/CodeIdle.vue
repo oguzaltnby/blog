@@ -16,9 +16,7 @@ export default Vue.extend({
     v-tippy="{
       content: '⌘/Ctrl + K',
     }"
-    v-text="{
-      content: 'dfsfs'
-    }"
+    v-text="{}"
     class="focus:outline-none"
     rounded
     elevated
