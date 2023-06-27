@@ -32,7 +32,7 @@ const Head: NuxtOptionsHead = {
     {
       rel: "icon",
       type: "image/x-icon",
-      href: "https://oguzaltnby.netlify.app/assets/icons/icon.ico",
+      href: "https://oguzaltnby.netlify.app/logo.png",
     },
     {
       rel: "search",
