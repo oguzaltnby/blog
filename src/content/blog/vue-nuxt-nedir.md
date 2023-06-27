@@ -1,6 +1,6 @@
 ---
 title: Vue ve Nuxt Nedir? Ne İşe Yarar?
-description: Kendi internet sitemin ve katkıda bulunduğum tüm projelerinde kullandığı Nuxt'un temeli Vue nedir, ikisi arasındaki farklılıklar nelerdir, bunlarla ne tür şeyler yapılır?
+description: Kendi internet sitemde kullandığım Nuxt'un temeli Vue nedir, ikisi arasındaki farklılıklar nelerdir, bunlarla ne tür şeyler yapılır?
 tags:
   - vue
   - nuxt
@@ -8,11 +8,11 @@ tags:
 createdAt: 2020-05-04T21:37:39.798Z
 ---
 
-Başlıktan ve açıklamadan da anlayabileceğiniz üzere bu yazıda, bulunduğunuz sitenin yazıldığı dil olan Nuxt'dan, ve onun temelini baz aldığı Vue'dan bahsedeceğim. Oldukça uzun bir yazı olacak. Bu yüzden bağlayın kemerleri!
+Başlıktan ve açıklamadan da anlayabileceğiniz üzere bu yazıda, bulunduğunuz sitenin yazıldığı dil olan Nuxt'dan, ve onun temelini baz aldığı Vue'dan bahsedeceğim.
 
 ### Vue'nun çıkış hikâyesi nedir?
 
-Vue, Facebook'un popüler kullanıcı arayüzü olan React'i, Google'ın ise Angular'ı gibi kendi başına bir geliştirici tarafından başlangıcında _hobi_ olarak geliştirilmiş, daha sonrasındaysa Vue kullanılarak kurulan internet siteleriyle, internette paylaşılan gönderiler ve Tweetlerle yavaş yavaş popülerlik kazanmaya başlayıp, PHP'nin en popüler kullanıcı arayüzlerinden birisi olan Laravel'in yaratıcısı Taylor Otwell'in attığı tweet sonrasında geliştiricinin bu proje üzerine odaklanmasına sebep olmasına, (Google/Meteor'daki) asıl işini bırakmasına ve insanların Vue'yu tanımasına neden olmuştur. Bu yazının yazılma tarihi itibarıyla 1 milyondan fazla sitede kullanılan Laravel gibi büyük bir projenin geliştiricisinin başka bir "hobi projesi" hakkında böyle bir tweet atması, her ne kadar tarih eski olsa bile projenin gelişmesinde ve hobiden çıkıp, tam zamanlı bir iş anlamına gelmesine neden olmuştur.
+Vue, Facebook'un popüler kullanıcı arayüzü olan React'i, Google'ın ise Angular'ı gibi kendi başına bir geliştirici tarafından başlangıcında **_hobi_** olarak geliştirilmiş, daha sonrasınday ise Vue kullanılarak kurulan internet siteleriyle, internette paylaşılan gönderiler ve Tweetlerle yavaş yavaş popülerlik kazanmaya başlayıp, PHP'nin en popüler kullanıcı arayüzlerinden birisi olan Laravel'in yaratıcısı Taylor Otwell'in attığı tweet sonrasında geliştiricinin bu proje üzerine odaklanmasına sebep olmasına, (Google/Meteor'daki) asıl işini bırakmasına ve insanların Vue'yu tanımasına neden olmuştur. Bu yazının yazılma tarihi itibarıyla 1 milyondan fazla sitede kullanılan Laravel gibi büyük bir projenin geliştiricisinin başka bir "hobi projesi" hakkında böyle bir tweet atması, her ne kadar tarih eski olsa bile projenin gelişmesinde ve hobiden çıkıp, tam zamanlı bir iş anlamına gelmesine neden olmuştur.
 
 Vue (ilk olarak View.js, isim çakışması dolayısıyla Vue), adını Fransızca'daki "View"ın karşılığından almaktadır. İlk düşünülen isim View.js'nin başka bir projede kullanıldığını öğrendikten sonra projenin geliştirici Evan You, başladığı projenin ismini değiştirip yayımlamak zorunda olduğunu anlayınca Google Çeviri'ye İngilizce "View" yazıp Fransızca karşılığına baktığında bu sonucu alması ve kulağa hoş gelmesinden dolayı bu ismi tercih etmiştir. O günden beri bu proje, bu isimle çağrılmaktadır.
 
@@ -20,7 +20,7 @@ Geliştirici Evan You, Google'da bir mühendis olarak çalışmış, daha sonra 
 
 Vue, geliştikçe topluluğu da gelişmeye, kullanım sayısı artmaya, artı yorumlar gelmeye ve Vue için geliştirilen birçok eklenti çıkmaya başlamış; 2018'in sonlarına doğru da Vue.js, GitHub'da **en çok yıldızlanan** JavaScript arayüzü (framework'u) olmuş. Bu başarının devamı da kesilmemiş. Kullanıcılarından gelen, sürekli pozitif yorumlar, Evan'ın hevesini iyice arttırmış.
 
-<img style="border-radius: 10px; width: 120%;" src="https://i.imgur.com/DQ0Arid.png"></img>
+<img style="border-radius: 10px; width: 90%;" src="https://i.imgur.com/DQ0Arid.png"></img>
 
 Bu hikâye, YouTube üzerinde Honeypot kanalı tarafından yapılan "Vue.js Documentary" adlı muhteşem videodan alınmıştır. Siz de Evan You'nun kendi röportajını, Honeypot'un geniş bütçesiyle hazırlanmış bir videoda izlemek istiyorsanız videoya [buradaki](https://www.youtube.com/watch?v=OrxmtDw4pVI) linkten ulaşabilirsiniz.
 
