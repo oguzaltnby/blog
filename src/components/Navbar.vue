@@ -47,7 +47,7 @@ export default Vue.extend({
         <div class="flex space-x-2 items-center">
           <OmnibarButton />
           <ColorSwitcher />
-          <CodeIdle> <b-icon icon="three-dots" animation="cylon" font-scale="4"></b-icon> </CodeIdle>
+          <CodeIdle/>
         </div>
       </div>
     </div>
