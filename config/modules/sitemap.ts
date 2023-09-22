@@ -8,7 +8,7 @@ export default async function () {
   }
 
   return {
-    hostname: "https://oguzaltnby.netlify.app",
+    hostname: "https://schwefel.netlify.app",
     gzip: true,
     routes,
   }

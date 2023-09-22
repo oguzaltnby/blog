@@ -13,15 +13,15 @@ export default Vue.extend({
   fetchOnServer: false,
   async fetch() {
     const filter = [
-      "oguz",
+      "schwefel",
       "DBM",
-      "oguzaltnby.netlify.app",
+      "schwefel.netlify.app",
       "bu-saatte-cekilir-mi",
     ]
 
     const repos: Repository[] = (
       await this.$axios.get(
-        "https://api.github.com/users/oguzaltnby/repos?per_page=100"
+        "https://api.github.com/users/schvefel/repos?per_page=100"
       )
     ).data
 

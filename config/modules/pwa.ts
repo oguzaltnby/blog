@@ -1,7 +1,7 @@
 export default {
   manifest: {
-    name: "Oguzhan",
-    short_name: "Oguz",
+    name: "Schwefel",
+    short_name: "Schwe",
     theme_color: "#f56565",
     lang: "en",
   },

@@ -46,7 +46,7 @@ export default Vue.extend({
   fetchOnServer: false,
   async fetch() {
     const { data } = await this.$axios.get(
-      "https://raw.githubusercontent.com/oguzaltnby/.github/main/sponsors.json"
+      "https://raw.githubusercontent.com/schvefel/.github/main/sponsors.json"
     )
 
     this.sponsors = data
@@ -62,12 +62,12 @@ export default Vue.extend({
         title,
         description,
         keywords: "donate",
-        url: "https://oguzaltnby.netlify.app/donate",
+        url: "https://schwefel.netlify.app/donate",
       }),
       link: [
         {
           rel: "canonical",
-          href: "https://oguzaltnby.netlify.app/donate",
+          href: "https://schwefel.netlify.app/donate",
         },
       ],
     }
@@ -105,7 +105,7 @@ export default Vue.extend({
     title="Donate"
     :description="[
       'If you like my projects and/or what I do and you want to contribute, make me happy, you can donate to me with the information on this page! Thank you ♥',
-      `P.S. Use 'Oguz ALTUNBEY' as the name of your transactions.`,
+      `P.S. Use 'Schwefel' as the name of your transactions.`,
     ]"
     class="space-y-12"
   >

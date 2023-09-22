@@ -55,7 +55,7 @@ export default Vue.extend({
     getUtmLink(): string {
       try {
         const url = new URL(this.href)
-        url.searchParams.append("utm_source", "oguzaltnby.netlify.app")
+        url.searchParams.append("utm_source", "schwefel.netlify.app")
 
         return url.href
       } catch (err) {

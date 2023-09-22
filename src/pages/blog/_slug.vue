@@ -54,7 +54,7 @@ export default Vue.extend({
 
     const title = post.title
     const description =
-      post.description || "Oguz'un blogunda bu yazıyı okumaya davet edildin."
+      post.description || "Schwefel'ın blogunda bu yazıyı okumaya davet edildin."
 
     const tags = getTags?.join(", ") || title
     const href = `https://localhost:3000${this.$route?.path}`
@@ -76,7 +76,7 @@ export default Vue.extend({
           title,
           description,
           image,
-          keywords: `${tags}, oguz blog, blog, teknoloji, vue, yazılım, discord, oguz`,
+          keywords: `${tags}, schwefel blog, blog, teknoloji, vue, yazılım, discord, schwefel`,
           url: href,
         },
         [
