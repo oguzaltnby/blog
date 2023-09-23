@@ -12,8 +12,8 @@ export default Vue.extend({
       accounts: [
         {
           image: "/assets/icons/garanti.png",
-          name: "Papara",
-          iban: "8664721806",
+          name: "Garanti",
+          iban: "TR12 0006 2001 1510 0006 8787 43",
           revealed: false,
         },
 
