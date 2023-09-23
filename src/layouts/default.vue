@@ -97,7 +97,7 @@ export default Vue.extend({
           text: "Donate",
           icon: "IconDollar",
           action: () => {
-            this.$router.push("/donate")
+            this.$router.push("/me/donate")
           },
         },
 
