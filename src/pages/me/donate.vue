@@ -66,31 +66,7 @@ export default Vue.extend({
       ],
     }
   },
-  computed: {
-    /**
-     * Returns the Sponsor object in runtime config.
-     * @returns {SponsorLinks}
-     */
-    getSponsorLinks(): SponsorLinks {
-      return this.$config.sponsor as SponsorLinks
-    },
 
-    getSortedSponsors(): { oneTime: ISponsor[]; monthly: ISponsor[] } {
-      const sponsors = this.sponsors
-
-      const sortByPrice = (a: ISponsor, b: ISponsor) =>
-        b.monthlyDollars - a.monthlyDollars
-
-      return {
-        oneTime: sponsors
-          .filter((sponsor) => sponsor.isOneTime)
-          .sort(sortByPrice),
-        monthly: sponsors
-          .filter((sponsor) => !sponsor.isOneTime)
-          .sort(sortByPrice),
-      }
-    },
-  },
 })
 </script>
 
