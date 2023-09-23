@@ -44,13 +44,7 @@ export default Vue.extend({
     }
   },
   fetchOnServer: false,
-  async fetch() {
-    const { data } = await this.$axios.get(
-      "https://raw.githubusercontent.com/schvefel/.github/main/sponsors.json"
-    )
 
-    this.sponsors = data
-  },
   head() {
     const title = "Donate"
     const description =
@@ -163,6 +157,39 @@ export default Vue.extend({
       </div>
     </section>
 
+    <section class="space-y-4">
+      <Title>Bank Accounts</Title>
 
+      <div class="grid gap-4">
+        <div
+          v-for="(account, index) in accounts"
+          :key="`account-${index}`"
+          class="flex h-full space-x-4 items-center rounded-lg card-base"
+        >
+          <div class="rounded-lg">
+            <SmartImage :src="account.image" class="rounded-lg h-12 w-12" />
+          </div>
+
+          <div class="rounded-tr rounded-br flex h-full">
+            <div>
+              <h3 class="font-medium text-lg">
+                {{ account.name }}
+              </h3>
+
+              <span
+                class="text-black/30 dark:text-white/30"
+                :class="
+                  !account.revealed &&
+                  'hover:underline cursor-pointer select-none'
+                "
+                @click="account.revealed = true"
+              >
+                {{ account.revealed ? account.iban : "Click to Reveal" }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </PageLayout>
 </template>
