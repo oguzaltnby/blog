@@ -76,11 +76,11 @@ export default Vue.extend({
           },
         ],
         pages: [
-          {
-            title: "Blog",
+        {
+            title: "Donate",
             description:
-              "Will update soon",
-            href: "/blog",
+              "Want to support me and my projects so that I can create better stuff in the future?",
+            href: "/donate",
           },
 
         ],
