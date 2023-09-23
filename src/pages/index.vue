@@ -245,7 +245,31 @@ export default Vue.extend({
     </section>
 
     <section id="experiences" class="grid gap-x-8 gap-y-24 md:grid-cols-2">
+      <div>
+        <div class="flex items-center gap-4 justify-between">
+          <Title>Experience</Title>
+          <button
+            type="button"
+            class="text-black/50 text-sm hover:underline dark:text-white/30"
+            @click="showExtra.jobs = !showExtra.jobs"
+          >
+            {{ showExtra.jobs ? "show less" : "show more" }}
+          </button>
+        </div>
 
+        <div class="mt-4 grid gap-2">
+          <CardExperience
+            v-for="(experience, index) in experiences.jobs"
+            v-show="experience.isHidden ? showExtra.jobs : true"
+            :key="`experience-job-${index}`"
+            :title="experience.title"
+            :url="experience.url"
+            :hidden-badge="experience.isHidden"
+            :date="experience.date"
+            :position="experience.position"
+          />
+        </div>
+      </div>
 
       <div>
         <div class="flex items-center gap-4 justify-between">
