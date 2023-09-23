@@ -32,7 +32,7 @@ const Head: NuxtOptionsHead = {
     {
       rel: "icon",
       type: "image/x-icon",
-      href: "https://schwefel.netlify.app/logo.png",
+      href: "https://schwefel.tech/assets/icons/icon.ico",
     },
     {
       rel: "search",
