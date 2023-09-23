@@ -143,7 +143,7 @@ export default Vue.extend({
           class="flex h-full space-x-4 items-center rounded-lg card-base"
         >
           <div class="rounded-lg">
-            <SmartImage :src="account.image" class="rounded-lg h-12 w-12" />
+            <img :src="account.image" class="rounded-lg h-12 w-12" />
           </div>
 
           <div class="rounded-tr rounded-br flex h-full">
