@@ -79,7 +79,7 @@ export default Vue.extend({
     ]"
     class="space-y-12"
   >
-    <section class="space-y-4">
+    <!-- <section class="space-y-4">
       <Title>Support Me On</Title>
 
       <div class="flex flex-wrap gap-x-4 gap-y-2">
@@ -131,7 +131,7 @@ export default Vue.extend({
           </div>
         </transition>
       </div>
-    </section>
+    </section> -->
 
     <section class="space-y-4">
       <Title>Bank Accounts</Title>
