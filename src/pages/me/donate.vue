@@ -56,12 +56,12 @@ export default Vue.extend({
         title,
         description,
         keywords: "donate",
-        url: "https://schwefel.tech/donate",
+        url: "https://schwefel.tech/me/donate",
       }),
       link: [
         {
           rel: "canonical",
-          href: "https://schwefel.tech/donate",
+          href: "https://schwefel.tech/me/donate",
         },
       ],
     }
