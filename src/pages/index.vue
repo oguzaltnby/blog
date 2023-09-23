@@ -21,6 +21,7 @@ interface Experience {
 }
 
 interface ExperienceObject {
+  jobs: Experience[]
   education: Experience[]
 }
 
