@@ -83,7 +83,7 @@ export default Vue.extend({
       <Title>Support Me On</Title>
 
       <div class="flex flex-wrap gap-x-4 gap-y-2">
-        <Button :href="getSponsorLinks.github" blank>
+        <Button  blank>
           <template #icon>
             <IconBrand brand="github" class="h-5 w-5" />
           </template>
