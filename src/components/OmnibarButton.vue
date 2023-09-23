@@ -2,17 +2,20 @@
 import Vue from "vue"
 
 export default Vue.extend({
-
+  methods: {
+    togglePalette() {
+      this.$root.$emit("openCommandMenu")
+    },
+  },
 })
 </script>
 
 <template>
   <Button
-  href = "Button.vue"
     v-tippy="{
       content: '⌘/Ctrl + K',
     }"
-    icon="Code"
+    icon="Menu"
     class="focus:outline-none"
     rounded
     elevated
