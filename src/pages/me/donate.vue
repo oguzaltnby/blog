@@ -62,12 +62,12 @@ export default Vue.extend({
         title,
         description,
         keywords: "donate",
-        url: "https://schwefel.netlify.app/donate",
+        url: "https://schwefel.tech/donate",
       }),
       link: [
         {
           rel: "canonical",
-          href: "https://schwefel.netlify.app/donate",
+          href: "https://schwefel.tech/donate",
         },
       ],
     }
