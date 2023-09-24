@@ -12,7 +12,7 @@ const handler: Handler = async () => {
     }
 
   try {
-    const lastFm = new LastFMTyped(LASTFM_API_KEY)
+    const lastFm = new LastFMTyped("98d417cbfde99958c8075fdb417543c2")
 
     const [info, topTracks, topArtists, recentTracks] = [
       await lastFm.user.getInfo(username),
