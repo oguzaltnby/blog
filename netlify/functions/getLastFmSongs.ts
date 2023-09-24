@@ -3,7 +3,7 @@ import LastFMTyped from "lastfm-typed"
 
 // Can also be set through Netlify environment variables
 const LASTFM_API_KEY = process.env.LASTFM_API_KEY
-const username = "schwefel"
+const username = "oguzaltnby"
 
 const handler: Handler = async () => {
   if (!LASTFM_API_KEY)
@@ -24,7 +24,7 @@ const handler: Handler = async () => {
     // Origin for CORS
     const origin =
       process.env.NODE_ENV === "production"
-        ? "schwefel.netlify.app"
+        ? "schwefel.tech"
         : "http://localhost:3000"
 
     // Map track function
