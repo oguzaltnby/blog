@@ -100,6 +100,14 @@ export default Vue.extend({
             this.$router.push("/me/donate")
           },
         },
+        {
+          section: "Me",
+          text: "Daily Song",
+          icon: "IconMusicNote",
+          action: () => {
+            this.$router.push("/daily")
+          },
+        },
 
         /* Quick Links */
         {
