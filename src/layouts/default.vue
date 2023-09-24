@@ -86,6 +86,14 @@ export default Vue.extend({
         },
         {
           section: "Me",
+          text: "Songs",
+          icon: "IconStar",
+          action: () => {
+            this.$router.push("/me/songs")
+          },
+        },
+        {
+          section: "Me",
           text: "Contact",
           icon: "IconInbox",
           action: () => {
@@ -100,14 +108,7 @@ export default Vue.extend({
             this.$router.push("/me/donate")
           },
         },
-        {
-          section: "Me",
-          text: "Daily Song",
-          icon: "IconMusicNote",
-          action: () => {
-            this.$router.push("/daily")
-          },
-        },
+
 
         /* Quick Links */
         {

@@ -44,7 +44,7 @@ export default Vue.extend({
   async fetch() {
     const url =
       process.env.NODE_ENV === "production"
-        ? "https://schwefel.netlify.app/.netlify/functions/getLastFmSongs"
+        ? "https://schwefel.tech/.netlify/functions/getLastFmSongs"
         : "http://localhost:9999/.netlify/functions/getLastFmSongs"
 
     const { data: songs }: { data: LastFmResponse } = await this.$axios(url)
@@ -88,7 +88,7 @@ export default Vue.extend({
 
             <div class="flex space-x-2 items-center">
               <SmartLink
-                href="https://last.fm/user/eggsywashere"
+                href="https://last.fm/user/oguzaltnby"
                 class="flex-shrink-0"
                 blank
                 >@{{ lastFm.user.name }}</SmartLink
