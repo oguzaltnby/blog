@@ -51,7 +51,6 @@ export default Vue.extend({
   <PageLayout
     title="Donate"
     :description="[
-      'If you like my projects and/or what I do and you want to contribute, make me happy, you can donate to me with the information on this page! Thank you ♥',
       `P.S. Use 'Schwefel' as the name of your transactions.`,
     ]"
     class="space-y-12"

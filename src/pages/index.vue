@@ -115,9 +115,7 @@ export default Vue.extend({
             {
               title: "Figma",
             },
-            {
-              title: "Discord"
-            },
+
             {
               title: "Illustrator",
             },
@@ -132,6 +130,9 @@ export default Vue.extend({
             {
               title: "GitHub",
               iconPack: "IconBrand",
+            },
+            {
+              title: "Discord"
             },
             {
               title: "Netlify",
