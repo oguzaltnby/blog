@@ -116,6 +116,9 @@ export default Vue.extend({
               title: "Figma",
             },
             {
+              title: "Discord"
+            },
+            {
               title: "Illustrator",
             },
             {
