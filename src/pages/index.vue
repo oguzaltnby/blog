@@ -59,19 +59,19 @@ export default Vue.extend({
           {
             title: "Repositories",
             description:
-              "Want to see and/or contribute to my code and public repositories?",
+            "you won't steal my projects, will you? we're friends.",
             href: "/me/repos",
           },
           {
             title: "Songs",
             description:
-              "Trust your taste? Compare your favourite songs and artists with mine!",
+              "please don't listen to phonk, it's really bad",
             href: "/me/songs",
           },
           {
             title: "Contact",
             description:
-              "Need help with anything? Want to get in touch? Send me a message!",
+              "Do you have any questions bro?",
             href: "/me/contact",
           },
         ],
@@ -79,14 +79,14 @@ export default Vue.extend({
           {
             title: "Blog",
             description:
-              "Will update soon",
+              "sleep tight. i'm under your bed!",
             href: "/blog",
           },
 
           {
             title: "Donate",
             description:
-              "Want to support me and my projects so that I can create better stuff in the future?",
+              "Do you have money bro? I don't.",
             href: "/me/donate",
           },
 
