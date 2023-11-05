@@ -192,7 +192,7 @@ html.dark ::-webkit-scrollbar-track {
   color: rgb(17, 24, 39);
 }
 #disqus_thread a:hover {
-  color: rgb(55, 65, 81);
+  color: rgb(51, 51, 51);
 }
 
 .dark #disqus_thread a {
