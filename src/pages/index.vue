@@ -86,7 +86,7 @@ export default Vue.extend({
           {
             title: "Donate",
             description:
-              "do you have money bro? I don't.",
+              "do you have money bro? i don't.",
             href: "/me/donate",
           },
 
