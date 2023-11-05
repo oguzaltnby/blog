@@ -33,7 +33,7 @@ export default Vue.extend({
         {
           hid: "og:site_name",
           name: "og:site_name",
-          content: string,
+          content: "string",
         },
       ],
     }
