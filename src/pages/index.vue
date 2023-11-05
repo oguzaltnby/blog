@@ -39,7 +39,7 @@ export default Vue.extend({
           {
             title: "Kumport Port Services Inc.",
             url: "https://kumport.com.tr",
-            position: "Software Developer",
+            position: "Intern",
             date: "2023-",
           },
 
