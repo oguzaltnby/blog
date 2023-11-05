@@ -26,9 +26,9 @@ export default Vue.extend({
 
     return {
       titleTemplate: `%s - ${string}`,
-      /* htmlAttrs: {
+      htmlAttrs: {
         class: `min-h-screen ${this.$colorMode.value}`,
-      }, */
+      },
       meta: [
         {
           hid: "og:site_name",
