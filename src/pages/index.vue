@@ -71,7 +71,7 @@ export default Vue.extend({
           {
             title: "Contact",
             description:
-              "Do you have any questions bro?",
+              "do you have any questions bro?",
             href: "/me/contact",
           },
         ],
@@ -86,7 +86,7 @@ export default Vue.extend({
           {
             title: "Donate",
             description:
-              "Do you have money bro? I don't.",
+              "do you have money bro? I don't.",
             href: "/me/donate",
           },
 
