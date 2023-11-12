@@ -1,12 +1,12 @@
 ---
+<img style="border-radius: 10px; width: 100%;" src="https://www.worldatlas.com/r/w1200/upload/dd/25/df/shutterstock-1199825740.jpg"></img>
 title: Turritopsis dohrnii
-description: Kendi internet sitemde kullandığım Nuxt'un temeli Vue nedir, ikisi arasındaki farklılıklar nelerdir, bunlarla ne tür şeyler yapılır?
+description: Turritopsis dohrnii'lerin ne oldukları, nasıl ölümsüz oldukları hakkında.
 tags:
   - science
 createdAt: 2023-29-09T22:28:39.798Z
 ---
 
-<img style="border-radius: 10px; width: 100%;" src="https://www.worldatlas.com/r/w1200/upload/dd/25/df/shutterstock-1199825740.jpg"></img>
 
 "Ölümsüz denizanası" olarak da bilinen **_Turritopsis dohrnii_**, dünya çapında ılıman ve tropik sularda bulunan, küçük ve biyolojik olarak ölümsüz bir denizanası türüdür. Bu tür, "biyolojik olarak ölümsüz canlılar" kategorisinde yer almaktadır. Bu kategorideki canlılar, fiziksel bir şiddete maruz kalmadıkları müddetçe asla ölmezler ve teknik olarak soylarını sonsuza kadar sürdürebilirler.
 
