@@ -3,7 +3,7 @@ title: Turritopsis dohrnii
 description: Turritopsis dohrnii'lerin ne oldukları, nasıl ölümsüz oldukları hakkında.
 tags:
   - science
-createdAt: 2023-29-09T22:28:39.798Z
+createdAt: 2023-11-09T22:28:39.798Z
 ---
 
 <img style="border-radius: 10px; width: 100%;" src="https://www.worldatlas.com/r/w1200/upload/dd/25/df/shutterstock-1199825740.jpg"></img>
