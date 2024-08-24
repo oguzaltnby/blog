@@ -26,7 +26,7 @@ const Config: NuxtConfig = {
   // Constant options
   rootDir: "./",
   srcDir: "src",
-  target: "serverless",
+  target: "static",
 
   /*
     Disabling server-side rendering on development mode because
