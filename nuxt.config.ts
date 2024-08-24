@@ -49,6 +49,9 @@ const Config: NuxtConfig = {
 
   hooks: {
     generate: {
+      fallback: true,
+      interval: 2000,
+      concurrency: 1,
       async done(generator) {
         await generateDone(generator)
       },
