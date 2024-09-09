@@ -3,7 +3,7 @@ import consola from "consola"
 import { join } from "path"
 
 // Scripts
-import { generateImage } from "../../scripts/generateOgImage"
+
 
 // Functions
 import getReadingTime from "../../src/plugins/Utils/getReadingTime"
