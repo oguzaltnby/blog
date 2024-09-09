@@ -27,7 +27,7 @@ Website features many custom built systems, integrations and pages!
 
 You need to install [Node.js](https://nodejs.org/) and [Git](https://git-scm.com/downloads) to your machine. Node.js comes with its own package manager called `npm`, you can either use that or you can use [`pnpm`](https://pnpm.io/installation) since it's faster and caches downloaded dependencies properly.
 
-- Clone the repository with `git clone https://github.com/schvefel/blog`
+- Clone the repository with `git clone https://github.com/oguzaltnby/blog`
 - Install dependencies with your preffered package manager.
   - With pnpm: `pnpm install`
   - With NPM: `npm install`
