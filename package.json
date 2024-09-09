@@ -67,21 +67,23 @@
     "vue-tippy": "^4.16.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.25.2",
-    "@nuxt/image": "^0.7.2",
-    "@nuxt/types": "^2.18.1",
-    "@nuxt/typescript-build": "^2.1.0",
-    "@nuxtjs/color-mode": "2.1.1",
-    "@nuxtjs/google-analytics": "^2.4.0",
-    "@nuxtjs/moment": "^1.6.1",
-    "@types/react": "^18.3.5",
-    "@types/sharp": "^0.31.1",
-    "dotenv": "^16.4.5",
-    "isomorphic-unfetch": "^3.1.0",
-    "nuxt-windicss": "^2.6.1",
-    "postcss-preset-env": "^7.8.3",
-    "prettier": "^2.8.8",
-    "sass-loader": "10.1.1",
-    "vite": "^3.2.10"
-  }
+  "@babel/core": "^7.25.2",
+  "@nuxt/image": "^0.7.2",
+  "@nuxt/types": "^2.18.1",
+  "@nuxt/typescript-build": "^2.1.0",
+  "@nuxtjs/color-mode": "2.1.1",
+  "@nuxtjs/google-analytics": "^2.4.0",
+  "@nuxtjs/moment": "^1.6.1",
+  "@types/react": "^18.3.5",
+  "@types/sharp": "^0.31.1",
+  "dotenv": "^16.4.5",
+  "isomorphic-unfetch": "^3.1.0",
+  "nuxt-windicss": "^2.6.1",
+  "postcss-preset-env": "^7.8.3",
+  "prettier": "^2.8.8",
+  "sass": "^1.78.0",
+  "sass-loader": "^10.4.1",
+  "vite": "^3.2.10",
+  "webpack": "^4.46.0"
+}
 }
