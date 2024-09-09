@@ -17,7 +17,7 @@ import vite from "./config/modules/vite"
 import feed from "./config/modules/feed"
 
 // Hooks
-import { generateDone } from "./hooks/generate/done"
+// import { generateDone } from "./hooks/generate/done"
 
 // Constants
 const isDev = process.env.NODE_ENV === "development"
@@ -45,16 +45,16 @@ const Config: NuxtConfig = {
   css,
   modules,
   plugins,
-
+  publicRuntimeConfig,
 
   hooks: {
     generate: {
       fallback: true,
       interval: 2000,
       concurrency: 1,
-      async done(generator) {
-        await generateDone(generator)
-      },
+      // async done(generator) {
+      //   await generateDone(generator)
+      // },
     },
   },
 
