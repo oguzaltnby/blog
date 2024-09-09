@@ -175,7 +175,7 @@ export default Vue.extend({
       </div>
 
       <div class="rounded-full mx-auto mb-4 md:mb-0">
-        <img src="/assets/icons/memoji.png" class="rounded-full h-40 w-40" />
+        <!-- <img src="/assets/icons/memoji.png" class="rounded-full h-40 w-40" /> -->
       </div>
     </header>
 
