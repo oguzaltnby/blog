@@ -45,7 +45,7 @@ const Config: NuxtConfig = {
   css,
   modules,
   plugins,
-  publicRuntimeConfig,
+
 
   hooks: {
     generate: {
