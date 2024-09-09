@@ -61,7 +61,9 @@
     "sass": "^1.58.3",
     "vue-cmd-menu": "^0.1.9",
     "vue-disqus": "^4.0.1",
-    "vue-tippy": "^4.16.0"
+    "vue-tippy": "^4.16.0",
+    "vue": "2.7.16",
+  "vue-server-renderer": "2.7.16"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
