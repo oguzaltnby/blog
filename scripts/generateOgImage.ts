@@ -27,7 +27,6 @@ const emojis = [
   "https://twemoji.maxcdn.com/v/latest/72x72/1f4a5.png",
   "https://twemoji.maxcdn.com/v/latest/72x72/1f525.png",
   "https://twemoji.maxcdn.com/v/latest/72x72/1f929.png",
-  "https://twemoji.maxcdn.com/v/latest/72x72/26a1.png",
   "https://twemoji.maxcdn.com/v/latest/72x72/231b.png",
   "https://twemoji.maxcdn.com/v/latest/72x72/2b50.png",
   "https://twemoji.maxcdn.com/v/latest/72x72/1f4eb.png",
