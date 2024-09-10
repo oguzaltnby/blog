@@ -205,7 +205,7 @@ export default Vue.extend({
             class="flex items-center justify-center md:justify-start gap-x-3 gap-y-2 flex-wrap"
           >
             <Button
-              v-for="item in ['TypeScript', 'Vue.js', 'React.js']"
+              v-for="item in ['TypeScript', 'Javascript', 'Python']"
               :key="item"
               class="inline-block"
             >
