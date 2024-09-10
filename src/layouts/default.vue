@@ -154,11 +154,11 @@ export default Vue.extend({
 
 <template>
   <div class="min-h-screen bg-gray-50 dark:bg-neutral-900">
-    <Navbar class="pt-10" />
+    <Navbar class="pt-10 md:w-6/12" />
 
     <!-- Nuxt component -->
     <main class="responsive-screen min-h-screen pb-8">
-      <Nuxt class="container mx-auto min-h-screen pb-8 w-11/12 sm:(pb-10 w-9/12) md:w-5/12" />
+      <Nuxt class="container mx-auto min-h-screen pb-8 w-11/12 sm:(pb-10 w-9/12) md:w-6/12" />
     </main>
 
     <!-- Footer -->
