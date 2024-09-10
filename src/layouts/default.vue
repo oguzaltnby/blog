@@ -21,8 +21,8 @@ export default Vue.extend({
     this.posts = posts
   },
   head() {
-    let string = "oguzaltnby.com"
-    if (this.routeIsBlog) string = "oguzaltnby.com - blog"
+    let string = "Oguzhan"
+    if (this.routeIsBlog) string = "Oguzhan - blog"
 
     return {
       titleTemplate: `%s - ${string}`,
@@ -73,30 +73,7 @@ export default Vue.extend({
             })),
           ],
         },
-        {
-          section: "Navigation",
-          text: "Projects",
-          icon: "IconCog",
-          action: () => {
-            this.$router.push("/projects")
-          },
-        },
-        {
-          section: "Navigation",
-          text: "Donate",
-          icon: "IconDollar",
-          action: () => {
-            this.$router.push("/donate")
-          },
-        },
-        {
-          section: "Navigation",
-          text: "Daily Song",
-          icon: "IconMusicNote",
-          action: () => {
-            this.$router.push("/daily")
-          },
-        },
+
 
         /* Me */
         {
@@ -123,6 +100,15 @@ export default Vue.extend({
             this.$router.push("/me/contact")
           },
         },
+        {
+          section: "Me",
+          text: "Donate",
+          icon: "IconDollar",
+          action: () => {
+            this.$router.push("/me/donate")
+          },
+        },
+
 
         /* Quick Links */
         {
@@ -135,10 +121,18 @@ export default Vue.extend({
         },
         {
           section: "Quick Links",
-          text: "Twitter",
-          icon: "IconBrand:twitter",
+          text: "Instagram",
+          icon: "IconBrand:instagram",
           action: () => {
-            window.open(this.$config.social.twitter, "_blank")?.focus()
+            window.open(this.$config.social.instagram, "_blank")?.focus()
+          },
+        },
+        {
+          section: "Quick Links",
+          text: "Reddit",
+          icon: "IconBrand:reddit",
+          action: () => {
+            window.open(this.$config.social.reddit, "_blank")?.focus()
           },
         },
 
@@ -163,9 +157,9 @@ export default Vue.extend({
     <Navbar class="pt-10" />
 
     <!-- Nuxt component -->
-    <main class="responsive-screen min-h-screen pb-8">
-      <Nuxt />
-    </main>
+    <Nuxt
+      class="container mx-auto min-h-screen pb-8 w-11/12 sm:(pb-10 w-9/12) md:w-7/12"
+    />
 
     <!-- Footer -->
     <Footer />
