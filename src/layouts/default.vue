@@ -158,10 +158,8 @@ export default Vue.extend({
 
     <!-- Nuxt component -->
     <main class="responsive-screen min-h-screen pb-8">
-    <Nuxt
-      class="container mx-auto min-h-screen pb-8 w-11/12 sm:(pb-10 w-9/12) md:w-7/12"
-    />
-  </main>
+      <Nuxt class="container mx-auto min-h-screen pb-8 w-11/12 sm:(pb-10 w-9/12) md:w-5/12" />
+    </main>
 
     <!-- Footer -->
     <Footer />
@@ -169,11 +167,7 @@ export default Vue.extend({
     <!-- Command Palette -->
     <CommandMenu :actions="menuActions" :theme="$colorMode.value">
       <template v-slot:icon="{ icon }">
-        <component
-          :is="icon.split(':')[0]"
-          :brand="icon.split(':')[1]"
-          class="w-4 h-4"
-        />
+        <component :is="icon.split(':')[0]" :brand="icon.split(':')[1]" class="w-4 h-4" />
       </template>
     </CommandMenu>
 
