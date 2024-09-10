@@ -21,8 +21,8 @@ export default Vue.extend({
     this.posts = posts
   },
   head() {
-    let string = "Schwefel"
-    if (this.routeIsBlog) string = "Schwefel - blog"
+    let string = "oguzaltnby.com"
+    if (this.routeIsBlog) string = "oguzaltnby.com - blog"
 
     return {
       titleTemplate: `%s - ${string}`,
@@ -73,7 +73,30 @@ export default Vue.extend({
             })),
           ],
         },
-
+        {
+          section: "Navigation",
+          text: "Projects",
+          icon: "IconCog",
+          action: () => {
+            this.$router.push("/projects")
+          },
+        },
+        {
+          section: "Navigation",
+          text: "Donate",
+          icon: "IconDollar",
+          action: () => {
+            this.$router.push("/donate")
+          },
+        },
+        {
+          section: "Navigation",
+          text: "Daily Song",
+          icon: "IconMusicNote",
+          action: () => {
+            this.$router.push("/daily")
+          },
+        },
 
         /* Me */
         {
@@ -100,15 +123,6 @@ export default Vue.extend({
             this.$router.push("/me/contact")
           },
         },
-        {
-          section: "Me",
-          text: "Donate",
-          icon: "IconDollar",
-          action: () => {
-            this.$router.push("/me/donate")
-          },
-        },
-
 
         /* Quick Links */
         {
@@ -121,18 +135,10 @@ export default Vue.extend({
         },
         {
           section: "Quick Links",
-          text: "Instagram",
-          icon: "IconBrand:instagram",
+          text: "Twitter",
+          icon: "IconBrand:twitter",
           action: () => {
-            window.open(this.$config.social.instagram, "_blank")?.focus()
-          },
-        },
-        {
-          section: "Quick Links",
-          text: "Reddit",
-          icon: "IconBrand:reddit",
-          action: () => {
-            window.open(this.$config.social.reddit, "_blank")?.focus()
+            window.open(this.$config.social.twitter, "_blank")?.focus()
           },
         },
 
