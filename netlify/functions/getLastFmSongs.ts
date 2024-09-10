@@ -1,71 +1,54 @@
 import { Handler } from "@netlify/functions"
-import LastFMTyped from "lastfm-typed"
+import SpotifyWebApi from "spotify-web-api-node"
 
-// Can also be set through Netlify environment variables
-const LASTFM_API_KEY = process.env.LASTFM_API_KEY
-const username = "oguzaltnby"
+// Set through Netlify environment variables
+const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID
+const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET
+const SPOTIFY_REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN
+
+const spotifyApi = new SpotifyWebApi({
+  clientId: SPOTIFY_CLIENT_ID,
+  clientSecret: SPOTIFY_CLIENT_SECRET,
+  refreshToken: SPOTIFY_REFRESH_TOKEN,
+})
 
 const handler: Handler = async () => {
-  if (!LASTFM_API_KEY)
-    return {
-      statusCode: 401,
-    }
-
   try {
-    const lastFm = new LastFMTyped(LASTFM_API_KEY)
+    // Refresh access token
+    const data = await spotifyApi.refreshAccessToken()
+    spotifyApi.setAccessToken(data.body['access_token'])
 
-    const [info, topTracks, topArtists, recentTracks] = [
-      await lastFm.user.getInfo(username),
-      await lastFm.user.getTopTracks(username, { limit: 6, period: "7day" }),
-      await lastFm.user.getTopArtists(username, { limit: 4, period: "7day" }),
-      await lastFm.user.getRecentTracks(username, { limit: 15 }),
-    ]
+    // Fetch user info, top tracks, and recent tracks
+    const [userInfo, topTracks, recentTracks] = await Promise.all([
+      spotifyApi.getMe(),
+      spotifyApi.getMyTopTracks({ limit: 6, time_range: 'short_term' }),
+      spotifyApi.getMyRecentlyPlayedTracks({ limit: 15 }),
+    ])
 
     // Origin for CORS
     const origin =
       process.env.NODE_ENV === "production"
-        ? "schwefel.tech"
+        ? "oguzaltnby.com"
         : "http://localhost:3000"
 
     // Map track function
     const mapTrack = (track: any) => {
-      const artist =
-        typeof track.artist === "string" ? track.artist : track.artist.name
-
       const object: any = {
-        artist,
+        artist: track.artists.map((artist: any) => artist.name).join(", "),
         name: track.name,
-        image: track.image.find((image: any) => image.size === "large")?.url,
-        url: track.url,
-        date: track.date?.uts,
-        nowPlaying: track.nowplaying,
+        image: track.album.images.find((image: any) => image.width === 300)?.url,
+        url: track.external_urls.spotify,
+        date: track.added_at,
       }
-
-      if (track.playcount) object.plays = track.playcount
-
-      return object
-    }
-
-    // Map artist function
-    const mapArtist = (artist: any) => {
-      const object: any = {
-        name: artist.name,
-        image: artist.image.find((image: any) => image.size === "large")?.url,
-        url: artist.url,
-      }
-
-      if (artist.playcount) object.plays = artist.playcount
 
       return object
     }
 
     // Formatted user info
     const formattedUserInfo = {
-      name: info.name,
-      image: info.image.find((image) => image.size === "large")?.url,
-      url: info.url,
-      totalPlays: info.playcount,
-      registered: info.registered,
+      name: userInfo.body.display_name,
+      image: userInfo.body.images?.find((image: any) => image.width === 300)?.url,
+      url: userInfo.body.external_urls.spotify,
     }
 
     // Return
@@ -79,9 +62,8 @@ const handler: Handler = async () => {
       },
       body: JSON.stringify({
         user: formattedUserInfo,
-        recentTracks: recentTracks?.tracks?.map(mapTrack) || [],
-        topTracks: topTracks?.tracks?.map(mapTrack) || [],
-        topArtists: topArtists?.artists?.map(mapArtist) || [],
+        recentTracks: recentTracks.body.items.map((item: any) => mapTrack(item.track)) || [],
+        topTracks: topTracks.body.items.map(mapTrack) || [],
       }),
     }
   } catch (error: any) {

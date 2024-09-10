@@ -1,12 +1,12 @@
 import { NuxtOptionsHead } from "@nuxt/types/config/head"
 
 /* Define constants */
-const image = "https://schwefel.netlify.app/logo.png"
+const image = "https://oguzaltnby.com/logo.png"
 const description =
-  "Young information technologies student from Turkey, interested in languages, gaming, skating and programming"
+  "Young information technologies student from Turkey, interested in languages, gaming and programming"
 
 const Head: NuxtOptionsHead = {
-  title: "Schwefel",
+  title: "Oğuzhan",
   meta: [
     { charset: "utf-8" },
     { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -32,13 +32,13 @@ const Head: NuxtOptionsHead = {
     {
       rel: "icon",
       type: "image/x-icon",
-      href: "https://schwefel.tech/assets/icons/icon.ico",
+      href: "https://oguzaltnby.com/assets/icons/icon.ico",
     },
     {
       rel: "search",
       type: "application/opensearchdescription+xml",
-      title: "Schwefel's Blog",
-      href: "https://schwefel.netlify.app/opensearch.xml",
+      title: "Oguzhan's Blog",
+      href: "https://oguzaltnby.com/opensearch.xml",
     },
   ],
 }
