@@ -65,19 +65,19 @@ export default Vue.extend({
           {
             title: "Repositories",
             description:
-            "you won't steal my projects, will you? we're friends.",
+            "Want to see and/or contribute to my code and public repositories?",
             href: "/me/repos",
           },
           {
             title: "Songs",
             description:
-              "please don't listen to phonk, it's really bad",
+              "Trust your taste? Compare your favourite songs and artists with mine!",
             href: "/me/songs",
           },
           {
             title: "Contact",
             description:
-              "do you have any questions bro?",
+              "Need help with anything? Want to get in touch? Send me a message!",
             href: "/me/contact",
           },
         ],
@@ -88,13 +88,18 @@ export default Vue.extend({
               "sleep tight. i'm under your bed!",
             href: "/blog",
           },
-
           {
-            title: "Donate",
+            title: "Projects",
             description:
-              "do you have money bro? i don't.",
-            href: "/me/donate",
+              "My projects and contributions to the open-source community.",
+            href: "/projects",
           },
+          // {
+          //   title: "Donate",
+          //   description:
+          //     "do you have money bro? i don't.",
+          //   href: "/me/donate",
+          // },
 
         ],
       },
@@ -102,6 +107,7 @@ export default Vue.extend({
         {
           title: "Development",
           items: [
+            "TypeScript",
             "Javascript",
             "Python",
             "PHP",
@@ -141,6 +147,9 @@ export default Vue.extend({
               title: "Discord"
             },
             {
+              title: "Firebase",
+            },
+            {
               title: "Netlify",
               iconPack: "IconBrand",
             },
@@ -151,6 +160,18 @@ export default Vue.extend({
   },
   head: {
     title: "Home",
+  },
+  methods: {
+    async scrollToSection(id: string) {
+      if (this.$route.hash === id)
+        await this.$router.replace({
+          hash: "",
+        })
+
+      await this.$router.replace({
+        hash: id,
+      })
+    },
   },
 })
 </script>
