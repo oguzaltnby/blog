@@ -97,9 +97,9 @@ export default {
   },
   async created() {
     const spotifyApi = new SpotifyWebApi({
-      clientId: process.env.SPOTIFY_CLIENT_ID,
-      clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-      redirectUri: 'YOUR_REDIRECT_URI'
+      clientId: process.env.VUE_APP_SPOTIFY_CLIENT_ID,
+      clientSecret: process.env.VUE_APP_SPOTIFY_CLIENT_SECRET,
+      redirectUri: process.env.VUE_APP_REDIRECT_URI
     })
 
     const urlParams = new URLSearchParams(window.location.search)
@@ -113,7 +113,7 @@ export default {
         'user-top-read',
         'user-read-recently-played'
       ]
-      const authUrl = `https://accounts.spotify.com/authorize?response_type=code&client_id=${process.env.SPOTIFY_CLIENT_ID}&scope=${scopes.join('%20')}&redirect_uri=${encodeURIComponent(spotifyApi.getRedirectURI())}`
+      const authUrl = `https://accounts.spotify.com/authorize?response_type=code&client_id=${process.env.VUE_APP_SPOTIFY_CLIENT_ID}&scope=${scopes.join('%20')}&redirect_uri=${encodeURIComponent(spotifyApi.getRedirectURI())}`
       window.location.href = authUrl
     } else {
       try {
@@ -122,7 +122,7 @@ export default {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Basic ' + btoa(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`)
+            'Authorization': 'Basic ' + btoa(`${process.env.VUE_APP_SPOTIFY_CLIENT_ID}:${process.env.VUE_APP_SPOTIFY_CLIENT_SECRET}`)
           },
           body: `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURIComponent(spotifyApi.getRedirectURI())}`
         })
