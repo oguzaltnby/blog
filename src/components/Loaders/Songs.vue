@@ -99,26 +99,41 @@ export default {
     const spotifyApi = new SpotifyWebApi({
       clientId: process.env.SPOTIFY_CLIENT_ID,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-      refreshToken: process.env.SPOTIFY_REFRESH_TOKEN,
     })
 
     try {
-      const data = await spotifyApi.refreshAccessToken()
-      spotifyApi.setAccessToken(data.body['access_token'])
+      // Get access token using client credentials flow
+      const tokenResponse = await fetch('https://accounts.spotify.com/api/token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': 'Basic ' + btoa(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`)
+        },
+        body: 'grant_type=client_credentials'
+      })
+      const tokenData = await tokenResponse.json()
+      spotifyApi.setAccessToken(tokenData.access_token)
 
-      const [userInfo, topTracks, recentTracks] = await Promise.all([
+      const [userInfo, topTracks, topArtists, recentTracks] = await Promise.all([
         spotifyApi.getMe(),
         spotifyApi.getMyTopTracks({ limit: 6, time_range: 'short_term' }),
+        spotifyApi.getMyTopArtists({ limit: 4, time_range: 'short_term' }),
         spotifyApi.getMyRecentlyPlayedTracks({ limit: 15 }),
       ])
+
+      console.log('User Info:', userInfo.body)
+      console.log('Top Tracks:', topTracks.body.items)
+      console.log('Top Artists:', topArtists.body.items)
+      console.log('Recent Tracks:', recentTracks.body.items)
 
       this.user = userInfo.body
       this.totalPlays = userInfo.body.followers.total
       this.accountAge = new Date().getFullYear() - new Date(userInfo.body.birthdate).getFullYear()
       this.topTracks = topTracks.body.items
+      this.topArtists = topArtists.body.items
       this.recentTracks = recentTracks.body.items.map(item => item.track)
     } catch (error) {
-      console.error(error)
+      console.error('Error fetching data from Spotify API:', error)
     }
   },
 }
