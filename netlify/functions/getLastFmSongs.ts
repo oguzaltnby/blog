@@ -47,7 +47,7 @@ const handler: Handler = async () => {
     // Formatted user info
     const formattedUserInfo = {
       name: userInfo.body.display_name,
-      image: userInfo.body.images?.find((image: any) => image.width === 300)?.url,
+      image: userInfo.body.images?.find((image: any) => image.width === 300)?.url ?? '',
       url: userInfo.body.external_urls.spotify,
     }
 
