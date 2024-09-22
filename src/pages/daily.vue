@@ -77,6 +77,7 @@ export default Vue.extend({
           this.spotifyTracks = tracksResponse.body.tracks
         } catch (error) {
           console.error('Error fetching data from Spotify API:', error)
+          this.$fetchState.error = true // Hata durumunu ayarla
         }
       }
     }
@@ -212,7 +213,7 @@ export default Vue.extend({
           </Card>
 
           <Card>
-            <Title :padding="false"> Date </Title>
+            <Title :padding="false"> Date </ Title>
 
             <SkeletonLoader
               v-if="$fetchState.pending || $fetchState.error"
