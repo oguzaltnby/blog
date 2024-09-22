@@ -179,7 +179,7 @@ export default Vue.extend({
             type="iframe"
             :iframe-url="
               $fetchState.pending === false &&
-              `https://youtu.be/oakWgLqCwUc`
+              `https://www.youtube.com/embed/oakWgLqCwUc`
             "
             class="h-[30vh] w-full md:h-full"
           />
