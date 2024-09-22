@@ -1,5 +1,6 @@
 <script lang="ts">
 import Vue from "vue"
+import SpotifyWebApi from 'spotify-web-api-node'
 
 /* Import types */
 import type { Song, SongMetadata } from "../plugins/Firebase"
@@ -22,6 +23,7 @@ export default Vue.extend({
       today: new Date(),
       selected,
       songs: [] as Song[],
+      spotifyTracks: [] as any[], // Spotify'dan çekilen şarkılar için
     }
   },
   fetchOnServer: false,
@@ -30,6 +32,54 @@ export default Vue.extend({
 
     this.selected = songs[0]
     this.songs = songs || []
+
+    // Spotify API'den şarkı verilerini çekme
+    await this.fetchSpotifyTracks()
+  },
+  methods: {
+    async fetchSpotifyTracks() {
+      const spotifyApi = new SpotifyWebApi({
+        clientId: process.env.VUE_APP_SPOTIFY_CLIENT_ID,
+        clientSecret: process.env.VUE_APP_SPOTIFY_CLIENT_SECRET,
+        redirectUri: process.env.VUE_APP_REDIRECT_URI
+      })
+
+      const urlParams = new URLSearchParams(window.location.search)
+      const code = urlParams.get('code')
+
+      if (!code) {
+        // Redirect to Spotify authorization URL
+        const scopes = [
+          'user-read-private',
+          'user-read-email',
+          'user-top-read',
+          'user-read-recently-played'
+        ]
+        const authUrl = `https://accounts.spotify.com/authorize?response_type=code&client_id=${process.env.VUE_APP_SPOTIFY_CLIENT_ID}&scope=${scopes.join('%20')}&redirect_uri=${encodeURIComponent(process.env.VUE_APP_REDIRECT_URI)}`
+        window.location.href = authUrl
+      } else {
+        try {
+          // Get access token using authorization code
+          const tokenResponse = await fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': 'Basic ' + btoa(`${process.env.VUE_APP_SPOTIFY_CLIENT_ID}:${process.env.VUE_APP_SPOTIFY_CLIENT_SECRET}`)
+            },
+            body: `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURIComponent(process.env.VUE_APP_REDIRECT_URI)}`
+          })
+          const tokenData = await tokenResponse.json()
+          spotifyApi.setAccessToken(tokenData.access_token)
+
+          // Spotify'dan belirli şarkıları çekme
+          const trackIds = ['3n3Ppam7vgaVa1iaRUc9Lp', '7ouMYWpwJ422jRcDASZB7P'] // Örnek şarkı ID'leri
+          const tracksResponse = await spotifyApi.getTracks(trackIds)
+          this.spotifyTracks = tracksResponse.body.tracks
+        } catch (error) {
+          console.error('Error fetching data from Spotify API:', error)
+        }
+      }
+    }
   },
   head() {
     const title = "Song Recommendations"
@@ -206,6 +256,38 @@ export default Vue.extend({
               "
               class="overflow-x-hidden"
               @click.native="selected = song"
+            />
+          </template>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <Title>Spotify Songs</Title>
+
+        <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+          <template v-if="$fetchState.pending === true">
+            <SkeletonLoader
+              v-for="item in 9"
+              :key="`skeleton-spotify-song-${item}`"
+              type="song"
+            />
+          </template>
+
+          <div
+            v-else-if="$fetchState.error"
+            class="text-black/50 dark:text-white/30 sm:col-span-2 md:col-span-3"
+          >
+            Something went wrong while fetching songs from Spotify.
+          </div>
+
+          <template v-else>
+            <CardSong
+              v-for="(track, index) in spotifyTracks"
+              :key="`spotify-song-${index}`"
+              :title="track.name"
+              :date="track.album.release_date"
+              :thumbnail="track.album.images[0]?.url || 'http://via.placeholder.com/75'"
+              class="overflow-x-hidden"
             />
           </template>
         </div>
