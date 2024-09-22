@@ -98,7 +98,7 @@ export default Vue.extend({
             title: "Daily Songs",
             description:
               "Fresh, cool and great song recommendations from me each day",
-            href: "/projects",
+            href: "/daily",
           },
           // {
           //   title: "Donate",
