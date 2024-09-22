@@ -94,6 +94,12 @@ export default Vue.extend({
               "My projects and contributions to the open-source community.",
             href: "/projects",
           },
+          {
+            title: "Daily Songs",
+            description:
+              "Fresh, cool and great song recommendations from me each day",
+            href: "/projects",
+          },
           // {
           //   title: "Donate",
           //   description:
