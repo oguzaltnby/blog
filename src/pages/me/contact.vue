@@ -33,9 +33,9 @@ export default Vue.extend({
       const social = this.$config.social
 
       const titles = {
-        github: "Follow me on GitHub!",
-        instagram: "Follow me on Instagram!",
-        reddit: "Follow me on Reddit!",
+        github: "@oguzaltnby",
+        instagram: "@oguzaltnby",
+        linkedin: "@oguzaltnby",
       }
 
       const array: Link[] = []
@@ -94,7 +94,7 @@ export default Vue.extend({
           <IconAt class="h-8 w-8" />
         </template>
 
-        Send me an email!
+        contact@oguzaltnby.com
       </Card>
     </div>
   </PageLayout>
