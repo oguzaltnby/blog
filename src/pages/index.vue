@@ -115,11 +115,12 @@ export default Vue.extend({
           items: [
             "TypeScript",
             "Javascript",
+            "Vue.js",
+            "Node.js",
             "Python",
             "PHP",
             "Dart",
-            //"Vue.js",
-            "Node.js",
+
             //"Sass",
           ],
         },

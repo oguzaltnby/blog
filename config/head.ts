@@ -35,6 +35,11 @@ const Head: NuxtOptionsHead = {
       href: "https://oguzaltnby.com/assets/icons/icon.ico",
     },
     {
+      rel: "icon",
+      type: "image/png",
+      href: "https://oguzaltnby.com/assets/icons/icon.png",
+    },
+    {
       rel: "search",
       type: "application/opensearchdescription+xml",
       title: "Oguzhan's Blog",
