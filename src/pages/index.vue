@@ -197,7 +197,7 @@ export default Vue.extend({
             >
               Hi, I am
               <span class="text-black/90 dark:text-white/90"
-                >Oğuzhan ALTUNBEY</span
+                >Oğuzhan</span
               >
             </h1>
 

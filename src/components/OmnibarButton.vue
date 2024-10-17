@@ -17,7 +17,7 @@ export default Vue.extend({
     }"
     icon="Menu"
     class="focus:outline-none"
-    rounded
+
     elevated
     @click.native="togglePalette"
   />
