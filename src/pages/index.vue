@@ -218,6 +218,7 @@ export default Vue.extend({
               class="inline-block"
             >
               <IconDev :brand="item" class="h-5 w-5" />
+              <span class="ml-2">{{ item }}</span>
             </Button>
 
             <Button
