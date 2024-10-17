@@ -218,7 +218,7 @@ export default Vue.extend({
               class="inline-flex items-center justify-center text-center px-6 py-2"
             >
             <div style="display: flex;">
-              <IconDev :brand="item" class="h-5 w-5" />
+              <IconDev :brand="item" class="h-5 w-5 pt-1" />
               <p class="ml-2">{{ item }}</p>
             </div>
             </Button>
