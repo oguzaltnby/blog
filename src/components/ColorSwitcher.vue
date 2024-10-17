@@ -25,8 +25,8 @@ export default Vue.extend({
 
 <template>
   <Button
-    rounded
-    elevated
+
+
     :icon="getSelectedTheme === 'light' ? 'Sun' : 'Moon'"
     @click.native="switchTheme"
   />
