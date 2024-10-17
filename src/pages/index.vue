@@ -218,7 +218,7 @@ export default Vue.extend({
               class="inline-block flex items-center justify-center text-center px-6 py-2"
             >
               <IconDev :brand="item" class="h-5 w-5" />
-              <span class="ml-2">{{ item }}</span>
+              <p class="ml-2">{{ item }}</p>
             </Button>
 
             <Button
