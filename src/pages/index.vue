@@ -115,6 +115,7 @@ export default Vue.extend({
           items: [
             "TypeScript",
             "Javascript",
+            "C#",
             "Vue.js",
             "Node.js",
             "Python",
@@ -212,7 +213,7 @@ export default Vue.extend({
             class="flex items-center justify-center md:justify-start gap-x-3 gap-y-2 flex-wrap"
           >
             <Button
-              v-for="item in ['TypeScript', 'Javascript', 'Python']"
+              v-for="item in ['TypeScript', 'Javascript', 'C#']"
               :key="item"
               class="inline-block"
             >
