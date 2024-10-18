@@ -65,7 +65,7 @@ export default Vue.extend({
           {
             title: "Repositories",
             description:
-            "Want to see and/or contribute to my code and public repositories?",
+              "Want to see and/or contribute to my code and public repositories?",
             href: "/me/repos",
           },
           {
@@ -187,43 +187,30 @@ export default Vue.extend({
 <template>
   <div class="space-y-24 mb-10">
     <header
-      class="rounded-md flex flex-col-reverse my-16 py-10 md:(flex-row items-center justify-between) justify-center"
-    >
+      class="rounded-md flex flex-col-reverse my-16 py-10 md:(flex-row items-center justify-between) justify-center">
       <div class="md:w-8/12">
         <div class="space-y-8">
           <div class="lg:space-y-4">
             <Status class="mt-4 flex justify-center md:justify-start" />
-            <h1
-              class="font-semibold text-center text-lg md:(text-xl text-left) text-black/50 dark:text-white/50"
-            >
+            <h1 class="font-semibold text-center text-lg md:(text-xl text-left) text-black/50 dark:text-white/50">
               Hi, I am
-              <span class="text-black/90 dark:text-white/90"
-                >Oğuzhan</span
-              >
+              <span class="text-black/90 dark:text-white/90">Oğuzhan</span>
             </h1>
 
             <h1
-              class="font-semibold text-center text-4xl md:(text-6xl text-left) text-black/90 leading-normal dark:text-white/90"
-            >
+              class="font-semibold text-center text-4xl md:(text-6xl text-left) text-black/90 leading-normal dark:text-white/90">
               Full-stack web developer
             </h1>
           </div>
 
-          <div
-            class="flex items-center justify-center md:justify-start gap-x-3 gap-y-2 flex-wrap"
-          >
-            <Button
-              v-for="item in ['TypeScript', 'Javascript', 'C#']"
-              :key="item"
-              class="inline-block"
-            >
+          <div class="flex items-center justify-center md:justify-start gap-x-3 gap-y-2 flex-wrap">
+            <Button v-for="item in ['TypeScript', 'Javascript', 'C#']" :key="item" class="inline-block" v-tippy="{
+              content: '{{ item }}',
+            }">
               <IconDev :brand="item" class="h-5 w-5" />
             </Button>
 
-            <Button
-              v-tippy="{ content: 'More', placement: 'bottom' }"
-              @click.native="scrollToSection('#technologies')"
-            >
+            <Button v-tippy="{ content: 'More', placement: 'bottom' }" @click.native="scrollToSection('#technologies')">
               <IconEllipsis class="h-5 w-5" />
             </Button>
           </div>
@@ -239,12 +226,7 @@ export default Vue.extend({
       <Title>Pages</Title>
 
       <div class="mt-4 grid gap-4 md:grid-cols-2">
-        <Card
-          v-for="(card, index) in cards.pages"
-          :key="`card-p-${index}`"
-          :title="card.title"
-          :href="card.href"
-        >
+        <Card v-for="(card, index) in cards.pages" :key="`card-p-${index}`" :title="card.title" :href="card.href">
           {{ card.description }}
         </Card>
       </div>
@@ -254,12 +236,7 @@ export default Vue.extend({
       <Title>Me</Title>
 
       <div class="mt-4 grid gap-4 md:grid-cols-2">
-        <Card
-          v-for="(card, index) in cards.me"
-          :key="`card-m-${index}`"
-          :title="card.title"
-          :href="card.href"
-        >
+        <Card v-for="(card, index) in cards.me" :key="`card-m-${index}`" :title="card.title" :href="card.href">
           {{ card.description }}
         </Card>
       </div>
@@ -269,52 +246,34 @@ export default Vue.extend({
       <div>
         <div class="flex items-center gap-4 justify-between">
           <Title>Experience</Title>
-          <button
-            type="button"
-            class="text-black/50 text-sm hover:underline dark:text-white/30"
-            @click="showExtra.jobs = !showExtra.jobs"
-          >
+          <button type="button" class="text-black/50 text-sm hover:underline dark:text-white/30"
+            @click="showExtra.jobs = !showExtra.jobs">
             {{ showExtra.jobs ? "show less" : "show more" }}
           </button>
         </div>
 
         <div class="mt-4 grid gap-2">
-          <CardExperience
-            v-for="(experience, index) in experiences.jobs"
-            v-show="experience.isHidden ? showExtra.jobs : true"
-            :key="`experience-job-${index}`"
-            :title="experience.title"
-            :url="experience.url"
-            :hidden-badge="experience.isHidden"
-            :date="experience.date"
-            :position="experience.position"
-          />
+          <CardExperience v-for="(experience, index) in experiences.jobs"
+            v-show="experience.isHidden ? showExtra.jobs : true" :key="`experience-job-${index}`"
+            :title="experience.title" :url="experience.url" :hidden-badge="experience.isHidden" :date="experience.date"
+            :position="experience.position" />
         </div>
       </div>
 
       <div>
         <div class="flex items-center gap-4 justify-between">
           <Title>Education</Title>
-          <button
-            type="button"
-            class="text-black/50 text-sm hover:underline dark:text-white/30"
-            @click="showExtra.education = !showExtra.education"
-          >
+          <button type="button" class="text-black/50 text-sm hover:underline dark:text-white/30"
+            @click="showExtra.education = !showExtra.education">
             {{ showExtra.education ? "show less" : "show more" }}
           </button>
         </div>
 
         <div class="mt-4 grid gap-2">
-          <CardExperience
-            v-for="(experience, index) in experiences.education"
-            v-show="experience.isHidden ? showExtra.education : true"
-            :key="`experience-education-${index}`"
-            :title="experience.title"
-            :url="experience.url"
-            :hidden-badge="experience.isHidden"
-            :date="experience.date"
-            :position="experience.position"
-          />
+          <CardExperience v-for="(experience, index) in experiences.education"
+            v-show="experience.isHidden ? showExtra.education : true" :key="`experience-education-${index}`"
+            :title="experience.title" :url="experience.url" :hidden-badge="experience.isHidden" :date="experience.date"
+            :position="experience.position" />
         </div>
       </div>
     </section>
@@ -325,19 +284,13 @@ export default Vue.extend({
       <div class="flex flex-col space-y-6 mt-8">
         <section v-for="category in skills" :key="category.title">
           <h5
-            class="text-sm uppercase text-black/50 pb-2 mb-4 border-b border-black/5 dark:(text-white/30 border-white/5)"
-          >
+            class="text-sm uppercase text-black/50 pb-2 mb-4 border-b border-black/5 dark:(text-white/30 border-white/5)">
             {{ category.title }}
           </h5>
 
-          <div
-            class="grid md:grid-cols-3 grid-cols-1 lg:grid-cols-4 gap-x-2 gap-y-2"
-          >
-            <CardSkill
-              v-for="(skill, index) in category.items"
-              :key="`skill-${index}`"
-              v-bind="typeof skill === 'object' ? skill : { title: skill }"
-            />
+          <div class="grid md:grid-cols-3 grid-cols-1 lg:grid-cols-4 gap-x-2 gap-y-2">
+            <CardSkill v-for="(skill, index) in category.items" :key="`skill-${index}`"
+              v-bind="typeof skill === 'object' ? skill : { title: skill }" />
           </div>
         </section>
       </div>
