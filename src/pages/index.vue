@@ -205,7 +205,7 @@ export default Vue.extend({
 
           <div class="flex items-center justify-center md:justify-start gap-x-3 gap-y-2 flex-wrap">
             <Button v-for="item in ['TypeScript', 'Javascript', 'C#']" :key="item" class="inline-block" v-tippy="{
-              content: '{{ item }}',
+              content: item, placement: 'bottom',
             }">
               <IconDev :brand="item" class="h-5 w-5" />
             </Button>
