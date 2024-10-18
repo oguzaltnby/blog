@@ -199,7 +199,7 @@ export default Vue.extend({
             </div>
 
             <div
-              class="sticky z-10 hidden float-right text-left -mr-14 top-4 md:block"
+              class="sticky z-10 hidden float-right text-left -mr-14 top-4 block"
             >
               <BlogReadingIndicator selector=".nuxt-content" />
             </div>
