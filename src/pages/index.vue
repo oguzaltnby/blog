@@ -215,12 +215,9 @@ export default Vue.extend({
             <Button
               v-for="item in ['TypeScript', 'Javascript', 'C#']"
               :key="item"
-              class="inline-flex items-center justify-center text-center px-6 pt-3"
+              class="inline-block"
             >
-            <div class="inline-flex items-center justify-center text-center">
               <IconDev :brand="item" class="h-5 w-5" />
-              <p class="ml-2">{{ item }}</p>
-            </div>
             </Button>
 
             <Button
