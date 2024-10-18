@@ -199,7 +199,7 @@ export default Vue.extend({
 
             <h1
               class="font-semibold text-center text-4xl md:(text-6xl text-left) text-black/90 leading-normal dark:text-white/90">
-              Full-stack web<br class="md:hidden" />developer
+              Full-stack web<br/>developer
             </h1>
           </div>
 
