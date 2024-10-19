@@ -1,183 +1,82 @@
 <script lang="ts">
 import Vue from "vue"
-
-// Netlify function return type
-interface LastFmUser {
-  name: string
-  registered: number
-  totalPlays: number
-  image: string
-  url: string
-}
-
-interface LastFmSong {
-  name: string
-  artist: string
-  image: string
-  url: string
-  date: number
-  plays?: number
-  nowPlaying: boolean
-}
-
-interface LastFmArtist {
-  name: string
-  plays: number
-  image: string
-  url: string
-}
-
-interface LastFmResponse {
-  user: LastFmUser
-  topTracks: LastFmSong[]
-  recentTracks: LastFmSong[]
-  topArtists: LastFmArtist[]
-}
+import axios from "axios"
 
 export default Vue.extend({
   data() {
     return {
-      lastFm: {} as LastFmResponse,
+      spotifyData: null, // En çok dinlenen şarkı bilgilerini tutacak
+      loading: true, // Yüklenme durumu
+      error: null, // Hata durumu
     }
   },
-  fetchOnServer: false,
-  async fetch() {
-    const url =
-      process.env.NODE_ENV === "production"
-        ? "https://oguzaltnby.com/.netlify/functions/getLastFmSongs"
-        : "http://localhost:9999/.netlify/functions/getLastFmSongs"
-
-    const { data: songs }: { data: LastFmResponse } = await this.$axios(url)
-
-    this.lastFm = songs
-  },
-  head() {
-    const title = "My Songs"
-    const description =
-      "Songs that I recently listened and the songs that I listened most as well as some more information from Last.fm, all of that information is on this page!"
-
-    return {
-      title,
-      meta: this.$prepareMeta({
-        title,
-        description,
-      }),
+  async mounted() {
+    // Spotify API'ye erişim için token al ve şarkıları getir
+    try {
+      const token = await this.getAccessToken()
+      await this.fetchTopTracks(token)
+    } catch (error) {
+      this.error = "Bir hata oluştu. Lütfen daha sonra tekrar deneyin."
+      console.error("Error fetching Spotify data:", error)
+    } finally {
+      this.loading = false
     }
+  },
+  methods: {
+    // Access Token'ı almak için
+    async getAccessToken() {
+      const clientId = "8e0b2aa6950640afa89f05a153246af1"
+      const clientSecret = "877c05b3a4484219ba26603fc1b84279"
+
+      const tokenResponse = await axios({
+        method: "post",
+        url: "https://accounts.spotify.com/api/token",
+        headers: {
+          Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        data: "grant_type=client_credentials",
+      })
+
+      return tokenResponse.data.access_token
+    },
+
+    // En çok dinlenen şarkıları almak için
+    async fetchTopTracks(token: string) {
+      const response = await axios({
+        method: "get",
+        url: "https://api.spotify.com/v1/me/top/tracks",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      this.spotifyData = response.data.items // En çok dinlenen şarkıları sakla
+    },
   },
 })
 </script>
 
 <template>
-  <PageLayout
-    title="Songs"
-    description="My latest activity on Last FM. Check out the Daily Songs page for a fresh new recommendation!"
-    class="space-y-12"
-  >
-    <LoadersSongs
-      v-if="$fetchState.pending === true || $fetchState.error !== null"
-    />
+  <div>
+    <h1>Spotify Top Tracks</h1>
 
-    <template v-else>
-      <section>
-        <Title class="mb-4">Details</Title>
+    <!-- Yüklenme durumunu göster -->
+    <div v-if="loading">Şarkılar yükleniyor...</div>
 
-        <div class="grid gap-x-0 gap-y-4 md:gap-x-12 md:grid-cols-2">
-          <!-- Profile -->
-          <div class="flex space-x-4 items-center justify-between">
-            <span>Profile</span>
+    <!-- Hata durumunu göster -->
+    <div v-else-if="error">{{ error }}</div>
 
-            <div class="flex space-x-2 items-center">
-              <SmartLink
-                href="https://last.fm/user/oguzaltnby"
-                class="flex-shrink-0"
-                blank
-                >@{{ lastFm.user.name }}</SmartLink
-              >
-
-              <SmartImage
-                :src="lastFm.user.image"
-                class="rounded-full h-6 w-6"
-              />
-            </div>
+    <!-- Şarkıları göster -->
+    <div v-else>
+      <ul v-if="spotifyData">
+        <li v-for="track in spotifyData" :key="track.id">
+          <div>
+            <img :src="track.album.images[0].url" alt="Album cover" width="50" />
+            <p>{{ track.name }} - {{ track.artists[0].name }}</p>
           </div>
-
-          <!-- Play count -->
-          <div class="flex space-x-4 items-center justify-between">
-            <span class="flex-shrink-0">Total Plays</span>
-
-            <div class="flex space-x-2 items-center">
-              <div class="truncate">{{ lastFm.user.totalPlays }}</div>
-              <IconFire filled class="h-6 text-red-700 w-6 dark:text-current" />
-            </div>
-          </div>
-
-          <!-- Registered -->
-          <div class="flex space-x-4 items-center justify-between">
-            <span class="flex-shrink-0">Account Age</span>
-
-            <div class="flex space-x-2 items-center">
-              <div class="truncate">
-                {{
-                  new Date().getFullYear() -
-                  new Date(lastFm.user.registered * 1000).getFullYear()
-                }}
-
-                year(s)
-              </div>
-
-              <IconCalendar class="h-6 w-6" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="top-songs">
-        <Title class="mb-4">Top Songs (last 7 days)</Title>
-
-        <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
-          <CardLastFm
-            v-for="song of lastFm.topTracks"
-            :key="song.name"
-            :name="song.name"
-            :artist="song.artist"
-            :image="song.image"
-            :now-playing="song.nowPlaying"
-            :plays="song.plays"
-            :url="song.url"
-          />
-        </div>
-      </section>
-
-      <section id="top-artists">
-        <Title class="mb-4">Top Artists (last 7 days)</Title>
-
-        <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
-          <CardLastFm
-            v-for="artist of lastFm.topArtists"
-            :key="artist.name"
-            :name="artist.name"
-            :plays="artist.plays"
-            :image="artist.image"
-            :url="artist.url"
-          />
-        </div>
-      </section>
-
-      <section id="recent">
-        <Title class="mb-4">Recent Songs</Title>
-
-        <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
-          <CardLastFm
-            v-for="song of lastFm.recentTracks"
-            :key="song.name"
-            :name="song.name"
-            :artist="song.artist"
-            :image="song.image"
-            :now-playing="song.nowPlaying"
-            :url="song.url"
-          />
-        </div>
-      </section>
-    </template>
-  </PageLayout>
+        </li>
+      </ul>
+    </div>
+  </div>
 </template>
