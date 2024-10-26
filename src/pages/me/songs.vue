@@ -163,17 +163,11 @@ export default Vue.extend({
             </div>
           </div>
           <div class="flex space-x-4 items-center justify-between">
-            <span class="flex-shrink-0">Account Age</span>
+            <span class="flex-shrink-0">Followers</span>
+            <span>{{ userProfile?.followers.total }}</span>
+            <IconUsers class="h-6 w-6" />
+          </div>
 
-            <div  class="flex space-x-2 items-center">
-              <div v-if="userProfile?.birthdate" class="truncate">
-                {{ calculateAge(userProfile.birthdate) }}
-
-                year(s)
-              </div>
-
-              <IconCalendar class="h-6 w-6" />
-            </div>
 
 
 
