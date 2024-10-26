@@ -30,8 +30,8 @@ export default Vue.extend({
   methods: {
     // Kullanıcıyı Spotify yetkilendirme sayfasına yönlendirme
     redirectToSpotify() {
-      const clientId = "YOUR_CLIENT_ID";
-      const redirectUri = "YOUR_REDIRECT_URI";
+      const clientId = "757572ca119c49fdac93aa5a8398985c";
+      const redirectUri = "https://oguzaltnby.com/callback";
       const scopes = "user-top-read";
       const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(
         redirectUri
