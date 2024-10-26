@@ -130,41 +130,43 @@ export default Vue.extend({
 </script>
 
 <template>
-  <PageLayout
-    title="My Spotify Songs"
-    description="My most listened songs from Spotify, displayed in a similar layout to Last.fm!"
-    class="space-y-12"
-  >
+  <PageLayout title="My Spotify Songs"
+    description="My most listened songs from Spotify, displayed in a similar layout to Last.fm!" class="space-y-12">
     <div v-if="loading" class="text-center py-4">Şarkılar yükleniyor...</div>
     <div v-else-if="error" class="text-center py-4 text-red-500">{{ error }}</div>
     <div v-else>
-      <section id="user-profile" class="mb-12">
-        <div class="flex items-center space-x-4">
-          <img
-            v-if="userProfile && userProfile.images.length"
-            :src="userProfile.images[0].url"
-            alt="User Profile Image"
-            class="w-16 h-16 rounded-full"
-          />
-          <div>
-            <h2 class="text-xl font-bold">{{ userProfile?.display_name }}</h2>
+      <section>
+        <Title class="mb-4">Details</Title>
+
+        <div class="grid gap-x-0 gap-y-4 md:gap-x-12 md:grid-cols-2">
+          <!-- Profile -->
+          <div class="flex space-x-4 items-center justify-between">
+            <span>Profile</span>
+
+            <div class="flex space-x-2 items-center">
+              <SmartLink href="https://last.fm/user/eggsywashere" class="flex-shrink-0" blank>@{{
+                userProfile?.display_name }}
+              </SmartLink>
+
+              <SmartImage v-if="userProfile && userProfile.images.length" :src="userProfile.images[0].url"
+                class="rounded-full h-6 w-6" />
+            </div>
           </div>
+
+
+
+
         </div>
       </section>
+
 
       <section id="top-songs">
         <Title class="mb-4">Top Songs (last 7 days)</Title>
 
         <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
-          <CardLastFm
-            v-for="track in spotifyData"
-            :name="track.name"
-            :key="track.id"
-            :artist="track.artists[0].name"
-            :image="track.album.images[0].url"
-            :url="'https://open.spotify.com/track/' + track.id"
-            class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow"
-          />
+          <CardLastFm v-for="track in spotifyData" :name="track.name" :key="track.id" :artist="track.artists[0].name"
+            :image="track.album.images[0].url" :url="'https://open.spotify.com/track/' + track.id"
+            class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow" />
         </div>
       </section>
 
@@ -172,14 +174,9 @@ export default Vue.extend({
         <Title class="mb-4">Top Artists (last 7 days)</Title>
 
         <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
-          <CardLastFm
-            v-for="artist in topArtists"
-            :name="artist.name"
-            :key="artist.id"
-            :image="artist.images[0].url"
+          <CardLastFm v-for="artist in topArtists" :name="artist.name" :key="artist.id" :image="artist.images[0].url"
             :url="'https://open.spotify.com/artist/' + artist.id"
-            class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow"
-          />
+            class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow" />
         </div>
       </section>
     </div>
