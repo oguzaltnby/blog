@@ -107,6 +107,7 @@ export default Vue.extend({
             :key="track.id"
             :artist="track.artists[0].name"
             :image="track.album.images[0].url"
+            :url="'https://open.spotify.com/track/' + track.id"
             class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow"
           />
 
