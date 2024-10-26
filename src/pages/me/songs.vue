@@ -2,7 +2,7 @@
 import Vue from "vue";
 import axios from "axios";
 
-// Spotify track ve kullanıcı bilgileri için interface tanımları
+// Spotify track, artist ve kullanıcı bilgileri için interface tanımları
 interface SpotifyTrack {
   name: string;
   artists: { name: string }[];
@@ -16,11 +16,17 @@ interface SpotifyArtist {
   id: string;
 }
 
+interface SpotifyUser {
+  display_name: string;
+  images: { url: string }[];
+}
+
 export default Vue.extend({
   data() {
     return {
       spotifyData: [] as SpotifyTrack[], // En çok dinlenen şarkı bilgilerini tutacak
       topArtists: [] as SpotifyArtist[], // En çok dinlenen sanatçı bilgilerini tutacak
+      userProfile: null as SpotifyUser | null, // Kullanıcı profil bilgilerini tutacak
       loading: true, // Yüklenme durumu
       error: null, // Hata durumu
     };
@@ -30,7 +36,11 @@ export default Vue.extend({
     if (code) {
       try {
         const token = await this.getAccessToken(code);
-        await Promise.all([this.fetchTopTracks(token), this.fetchTopArtists(token)]);
+        await Promise.all([
+          this.fetchTopTracks(token),
+          this.fetchTopArtists(token),
+          this.fetchUserProfile(token),
+        ]);
       } catch (error) {
         this.error = "Bir hata oluştu. Lütfen daha sonra tekrar deneyin.";
         console.error("Error fetching Spotify data:", error);
@@ -45,7 +55,7 @@ export default Vue.extend({
     redirectToSpotify() {
       const clientId = "757572ca119c49fdac93aa5a8398985c";
       const redirectUri = "https://oguzaltnby.com/me/songs";
-      const scopes = "user-top-read";
+      const scopes = "user-top-read user-read-private";
       const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(
         redirectUri
       )}&scope=${encodeURIComponent(scopes)}`;
@@ -103,6 +113,18 @@ export default Vue.extend({
 
       this.topArtists = response.data.items; // En çok dinlenen sanatçıları sakla
     },
+
+    async fetchUserProfile(token: string) {
+      const response = await axios({
+        method: "get",
+        url: "https://api.spotify.com/v1/me",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      this.userProfile = response.data; // Kullanıcı profil bilgilerini sakla
+    },
   },
 });
 </script>
@@ -116,6 +138,20 @@ export default Vue.extend({
     <div v-if="loading" class="text-center py-4">Şarkılar yükleniyor...</div>
     <div v-else-if="error" class="text-center py-4 text-red-500">{{ error }}</div>
     <div v-else>
+      <section id="user-profile" class="mb-12">
+        <div class="flex items-center space-x-4">
+          <img
+            v-if="userProfile && userProfile.images.length"
+            :src="userProfile.images[0].url"
+            alt="User Profile Image"
+            class="w-16 h-16 rounded-full"
+          />
+          <div>
+            <h2 class="text-xl font-bold">{{ userProfile?.display_name }}</h2>
+          </div>
+        </div>
+      </section>
+
       <section id="top-songs">
         <Title class="mb-4">Top Songs (last 7 days)</Title>
 
