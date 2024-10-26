@@ -140,8 +140,8 @@ export default Vue.extend({
 </script>
 
 <template>
-  <PageLayout title="My Spotify Songs"
-    description="My most listened songs from Spotify, displayed in a similar layout to Last.fm!" class="space-y-12">
+  <PageLayout title="Songs"
+    description="My most listened songs from Spotify" class="space-y-12">
     <div v-if="loading" class="text-center py-4">Şarkılar yükleniyor...</div>
     <div v-else-if="error" class="text-center py-4 text-red-500">{{ error }}</div>
     <div v-else>
