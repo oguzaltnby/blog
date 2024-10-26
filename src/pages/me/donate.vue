@@ -23,9 +23,9 @@ export default Vue.extend({
   fetchOnServer: false,
 
   head() {
-    const title = "Donate"
+    const title = "Payment"
     const description =
-      "Like my projects? You can donate to me to boost my performance and help me create more, better projects in the future!"
+      "You can make your payments to me through the following banks"
 
     return {
       title,
@@ -49,9 +49,9 @@ export default Vue.extend({
 
 <template>
   <PageLayout
-    title="Donate"
+    title="Payment"
     :description="[
-      `P.S. Use 'Schwefel' as the name of your transactions.`,
+      `P.S. Use 'Oğuzhan ALTUNBEY' as the name of your transactions.`,
     ]"
     class="space-y-12"
   >

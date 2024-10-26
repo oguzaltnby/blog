@@ -95,17 +95,11 @@ export default Vue.extend({
             href: "/projects",
           },
           {
-            title: "Daily Songs",
+            title: "Payment",
             description:
-              "Fresh, cool and great song recommendations from me each day",
-            href: "/daily",
+              "do you have money bro? i don't.",
+            href: "/payment",
           },
-          // {
-          //   title: "Donate",
-          //   description:
-          //     "do you have money bro? i don't.",
-          //   href: "/me/donate",
-          // },
 
         ],
       },
@@ -199,7 +193,7 @@ export default Vue.extend({
 
             <h1
               class="font-semibold text-center text-4xl md:(text-6xl text-left) text-black/90 leading-normal dark:text-white/90">
-              Full-stack web<br/>developer
+              Full-stack web<br />developer
             </h1>
           </div>
 

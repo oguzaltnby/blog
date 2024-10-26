@@ -102,10 +102,10 @@ export default Vue.extend({
         },
         {
           section: "Me",
-          text: "Donate",
+          text: "Payment",
           icon: "IconDollar",
           action: () => {
-            this.$router.push("/me/donate")
+            this.$router.push("/payment")
           },
         },
 
