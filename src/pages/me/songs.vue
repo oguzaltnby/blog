@@ -1,6 +1,6 @@
 <script lang="ts">
-import Vue from "vue";
-import axios from "axios";
+import Vue from "vue"
+import axios from "axios"
 
 export default Vue.extend({
   data() {
@@ -8,9 +8,10 @@ export default Vue.extend({
       spotifyData: null, // En çok dinlenen şarkı bilgilerini tutacak
       loading: true, // Yüklenme durumu
       error: null, // Hata durumu
-    };
+    }
   },
   async mounted() {
+    // Spotify oturumu açma sürecini başlat
     const code = this.getCodeFromRedirect();
     if (code) {
       try {
@@ -27,24 +28,27 @@ export default Vue.extend({
     }
   },
   methods: {
+    // Kullanıcıyı Spotify yetkilendirme sayfasına yönlendirme
     redirectToSpotify() {
-      const clientId = "YOUR_CLIENT_ID";
+      const clientId = "757572ca119c49fdac93aa5a8398985c";
       const redirectUri = "https://oguzaltnby.com/me/songs";
       const scopes = "user-top-read";
-      const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(
+      const authUrl = https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(
         redirectUri
-      )}&scope=${encodeURIComponent(scopes)}`;
+      )}&scope=${encodeURIComponent(scopes)};
       window.location.href = authUrl;
     },
 
+    // Yetkilendirme sonrası URL'den yetki kodunu almak
     getCodeFromRedirect() {
       const params = new URLSearchParams(window.location.search);
       return params.get("code");
     },
 
+    // Yetki kodunu kullanarak erişim token'ı almak
     async getAccessToken(code: string) {
-      const clientId = "YOUR_CLIENT_ID";
-      const clientSecret = "YOUR_CLIENT_SECRET";
+      const clientId = "757572ca119c49fdac93aa5a8398985c";
+      const clientSecret = "1a887fadb2a942f985ca9136064e882e";
       const redirectUri = "https://oguzaltnby.com/me/songs";
 
       const tokenResponse = await axios({
@@ -65,12 +69,13 @@ export default Vue.extend({
       return tokenResponse.data.access_token;
     },
 
+    // En çok dinlenen şarkıları almak için
     async fetchTopTracks(token: string) {
       const response = await axios({
         method: "get",
         url: "https://api.spotify.com/v1/me/top/tracks",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: Bearer ${token},
         },
       });
 
