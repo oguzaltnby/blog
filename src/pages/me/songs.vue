@@ -78,7 +78,7 @@ export default Vue.extend({
     },
 
     // Kullanıcı profili bilgilerini al
-    async fetchUserProfile(token: string) {
+    async fetchUserProfile(this: Vue & { user: SpotifyUser }, token: string) {
       const response = await axios.get("https://api.spotify.com/v1/me", {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -89,7 +89,7 @@ export default Vue.extend({
     },
 
     // En çok dinlenen şarkıları al
-    async fetchTopTracks(token: string) {
+    async fetchTopTracks(this: Vue & { topTracks: SpotifyTrack[] }, token: string) {
       const response = await axios.get("https://api.spotify.com/v1/me/top/tracks", {
         headers: {
           Authorization: `Bearer ${token}`,
