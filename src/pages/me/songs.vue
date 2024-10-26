@@ -1,30 +1,38 @@
 <script lang="ts">
-import Vue from "vue"
-import axios from "axios"
+import Vue from "vue";
+import axios from "axios";
+
+// Spotify API için gerekli tipler
+interface SpotifyUser {
+  display_name: string;
+  followers: {
+    total: number;
+  };
+  images: { url: string }[];
+}
 
 interface SpotifyTrack {
   name: string;
   artists: { name: string }[];
   album: { images: { url: string }[] };
-}
-
-interface SpotifyResponse {
-  items: SpotifyTrack[];
+  id: string;
 }
 
 export default Vue.extend({
   data() {
     return {
-      spotifyData: [] as SpotifyTrack[],
+      user: {} as SpotifyUser,
+      topTracks: [] as SpotifyTrack[],
       loading: true,
       error: null,
-    }
+    };
   },
   async mounted() {
     const code = this.getCodeFromRedirect();
     if (code) {
       try {
         const token = await this.getAccessToken(code);
+        await this.fetchUserProfile(token);
         await this.fetchTopTracks(token);
       } catch (error) {
         this.error = "Bir hata oluştu. Lütfen daha sonra tekrar deneyin.";
@@ -37,52 +45,58 @@ export default Vue.extend({
     }
   },
   methods: {
+    // Spotify'a yönlendirme
     redirectToSpotify() {
       const clientId = "757572ca119c49fdac93aa5a8398985c";
       const redirectUri = "https://oguzaltnby.com/me/songs";
-      const scopes = "user-top-read";
+      const scopes = "user-top-read user-read-private";
       const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scopes)}`;
       window.location.href = authUrl;
     },
 
+    // URL'den kodu al
     getCodeFromRedirect() {
       const params = new URLSearchParams(window.location.search);
       return params.get("code");
     },
 
+    // Erişim token'ını al
     async getAccessToken(code: string) {
       const clientId = "757572ca119c49fdac93aa5a8398985c";
       const clientSecret = "1a887fadb2a942f985ca9136064e882e";
       const redirectUri = "https://oguzaltnby.com/me/songs";
 
-      const tokenResponse = await axios({
-        method: "post",
-        url: "https://accounts.spotify.com/api/token",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        data: new URLSearchParams({
-          grant_type: "authorization_code",
-          code: code,
-          redirect_uri: redirectUri,
-          client_id: clientId,
-          client_secret: clientSecret,
-        }),
-      });
+      const tokenResponse = await axios.post("https://accounts.spotify.com/api/token", new URLSearchParams({
+        grant_type: "authorization_code",
+        code,
+        redirect_uri: redirectUri,
+        client_id: clientId,
+        client_secret: clientSecret,
+      }));
 
       return tokenResponse.data.access_token;
     },
 
-    async fetchTopTracks(token: string) {
-      const response = await axios({
-        method: "get",
-        url: "https://api.spotify.com/v1/me/top/tracks",
+    // Kullanıcı profili bilgilerini al
+    async fetchUserProfile(token: string) {
+      const response = await axios.get("https://api.spotify.com/v1/me", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      this.spotifyData = response.data.items;
+      this.user = response.data; // Kullanıcı bilgilerini kaydet
+    },
+
+    // En çok dinlenen şarkıları al
+    async fetchTopTracks(token: string) {
+      const response = await axios.get("https://api.spotify.com/v1/me/top/tracks", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      this.topTracks = response.data.items; // En çok dinlenen şarkıları sakla
     },
   },
 });
@@ -90,30 +104,51 @@ export default Vue.extend({
 
 <template>
   <PageLayout
-    title="Spotify Top Tracks"
-    description="En çok dinlenen şarkılarım burada!"
+    title="My Spotify Songs"
+    description="My latest activity on Spotify. Check out my top tracks!"
     class="space-y-12"
   >
     <LoadersSongs v-if="loading" />
-
-    <template v-else>
+    <div v-else>
       <section>
-        <Title class="mb-4">Top Tracks (Last 7 Days)</Title>
-
-        <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
-          <div
-            v-for="track in spotifyData"
-            :key="track.name"
-            class="flex items-center space-x-4 border rounded-lg p-4 bg-gray-100"
-          >
-            <img :src="track.album.images[0].url" alt="Album cover" class="h-16 w-16 rounded-lg" />
-            <div>
-              <p class="font-semibold">{{ track.name }}</p>
-              <p class="text-gray-500">{{ track.artists[0].name }}</p>
+        <Title class="mb-4">Profile</Title>
+        <div class="grid gap-x-0 gap-y-4 md:gap-x-12 md:grid-cols-2">
+          <div class="flex space-x-4 items-center justify-between">
+            <span>Name</span>
+            <div class="flex space-x-2 items-center">
+              <SmartLink
+                :href="user.external_urls?.spotify"
+                class="flex-shrink-0"
+                blank
+                >@{{ user.display_name }}</SmartLink
+              >
+              <SmartImage
+                :src="user.images[0]?.url"
+                class="rounded-full h-8 w-8"
+              />
             </div>
+          </div>
+
+          <div class="flex space-x-4 items-center justify-between">
+            <span>Followers</span>
+            <div class="truncate">{{ user.followers?.total }}</div>
           </div>
         </div>
       </section>
-    </template>
+
+      <section id="top-songs">
+        <Title class="mb-4">Top Songs</Title>
+        <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
+          <CardLastFm
+            v-for="track in topTracks"
+            :key="track.id"
+            :name="track.name"
+            :artist="track.artists[0].name"
+            :image="track.album.images[0].url"
+            :url="`https://open.spotify.com/track/${track.id}`"
+          />
+        </div>
+      </section>
+    </div>
   </PageLayout>
 </template>
