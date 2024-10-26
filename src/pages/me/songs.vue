@@ -93,7 +93,7 @@ export default Vue.extend({
     async fetchTopTracks(token: string) {
       const response = await axios({
         method: "get",
-        url: "https://api.spotify.com/v1/me/top/tracks",
+        url: "https://api.spotify.com/v1/me/top/tracks?limit=8&time_range=short_term",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -105,7 +105,7 @@ export default Vue.extend({
     async fetchTopArtists(token: string) {
       const response = await axios({
         method: "get",
-        url: "https://api.spotify.com/v1/me/top/artists",
+        url: "https://api.spotify.com/v1/me/top/artists?limit=8&time_range=short_term",
         headers: {
           Authorization: `Bearer ${token}`,
         },
