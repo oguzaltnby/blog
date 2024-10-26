@@ -2,7 +2,6 @@
 import Vue from "vue";
 import axios from "axios";
 
-// Spotify API için gerekli tipler
 interface SpotifyUser {
   display_name: string;
   followers: {
@@ -23,7 +22,7 @@ export default Vue.extend({
     return {
       user: {} as SpotifyUser,
       topTracks: [] as SpotifyTrack[],
-      topArtists: [] as SpotifyTrack[], // Top artists için ekledim
+      topArtists: [] as SpotifyTrack[],
       loading: true,
       error: null,
     };
@@ -35,7 +34,7 @@ export default Vue.extend({
         const token = await this.getAccessToken(code);
         await this.fetchUserProfile(token);
         await this.fetchTopTracks(token);
-        await this.fetchTopArtists(token); // Top artists verilerini al
+        await this.fetchTopArtists(token);
       } catch (error) {
         this.error = "Bir hata oluştu. Lütfen daha sonra tekrar deneyin.";
         console.error("Error fetching Spotify data:", error);
@@ -48,8 +47,8 @@ export default Vue.extend({
   },
   methods: {
     redirectToSpotify() {
-      const clientId = "757572ca119c49fdac93aa5a8398985c"; // Doğru client ID
-      const redirectUri = "https://oguzaltnby.com/me/songs"; // Doğru redirect URI
+      const clientId = "757572ca119c49fdac93aa5a8398985c"; // Doğru Client ID
+      const redirectUri = "https://oguzaltnby.com/me/songs"; // Doğru Redirect URI
       const scopes = "user-top-read user-read-private";
       const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scopes)}`;
       window.location.href = authUrl;
@@ -61,9 +60,9 @@ export default Vue.extend({
     },
 
     async getAccessToken(code: string) {
-      const clientId = "757572ca119c49fdac93aa5a8398985c"; // Doğru client ID
-      const clientSecret = "1a887fadb2a942f985ca9136064e882e"; // Doğru client secret
-      const redirectUri = "https://oguzaltnby.com/me/songs"; // Doğru redirect URI
+      const clientId = "757572ca119c49fdac93aa5a8398985c";
+      const clientSecret = "1a887fadb2a942f985ca9136064e882e";
+      const redirectUri = "https://oguzaltnby.com/me/songs";
 
       const tokenResponse = await axios.post("https://accounts.spotify.com/api/token", new URLSearchParams({
         grant_type: "authorization_code",
@@ -96,14 +95,14 @@ export default Vue.extend({
       this.topTracks = response.data.items;
     },
 
-    async fetchTopArtists(token: string) { // Top artists için fonksiyon
+    async fetchTopArtists(token: string) {
       const response = await axios.get("https://api.spotify.com/v1/me/top/artists", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      this.topArtists = response.data.items; // En çok dinlenen sanatçıları sakla
+      this.topArtists = response.data.items;
     },
   },
 });
@@ -127,8 +126,7 @@ export default Vue.extend({
                 :href="user.external_urls?.spotify"
                 class="flex-shrink-0"
                 blank
-                >@{{ user.display_name }}</SmartLink
-              >
+              >@{{ user.display_name }}</SmartLink>
               <SmartImage
                 :src="user.images[0]?.url"
                 class="rounded-full h-8 w-8"
