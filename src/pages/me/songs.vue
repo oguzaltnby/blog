@@ -101,74 +101,18 @@ export default Vue.extend({
         <Title class="mb-4">Top Songs (last 7 days)</Title>
 
         <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
-          <div
+          <CardLastFm
             v-for="track in spotifyData"
+            :name="track.name"
             :key="track.id"
+            :artist="track.artists[0].name"
+            :image="track.album.images[0].url"
             class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow"
-          >
-            <img
-              :src="track.album.images[0].url"
-              alt="Album cover"
-              class="rounded-lg w-16 h-16 mr-4"
-            />
-            <div>
-              <p class="font-semibold">{{ track.name }}</p>
-              <p class="text-sm text-gray-500">{{ track.artists[0].name }}</p>
-            </div>
-          </div>
+          />
+
         </div>
       </section>
     </div>
   </PageLayout>
 </template>
 
-<style scoped>
-.spotify-page {
-  padding: 20px;
-  max-width: 800px;
-  margin: auto;
-}
-
-.loading-message,
-.error-message {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #666;
-}
-
-.section-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.track-card {
-  display: flex;
-  align-items: center;
-  border: 1px solid #eaeaea;
-  padding: 10px;
-  border-radius: 8px;
-  transition: box-shadow 0.3s;
-}
-
-.track-card:hover {
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.album-cover {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-right: 15px;
-}
-
-.track-name {
-  font-size: 1.1rem;
-}
-
-.track-artist {
-  font-size: 0.9rem;
-  color: #888;
-}
-</style>
