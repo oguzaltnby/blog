@@ -183,7 +183,7 @@ export default Vue.extend({
         <Title class="mb-4">Top Songs (last 7 days)</Title>
 
         <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
-          <CardLastFm v-for="track in spotifyData" :name="track.name" :key="track.id" :artist="track.artists[0].name"
+          <CardLastFm v-for="track in spotifyData.slice(0, 8)" :name="track.name" :key="track.id" :artist="track.artists[0].name"
             :image="track.album.images[0].url" :url="'https://open.spotify.com/track/' + track.id"
             class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow" />
         </div>
@@ -193,7 +193,7 @@ export default Vue.extend({
         <Title class="mb-4">Top Artists (last 7 days)</Title>
 
         <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
-          <CardLastFm v-for="artist in topArtists" :name="artist.name" :key="artist.id" :image="artist.images[0].url"
+          <CardLastFm v-for="artist in topArtists.slice(0, 8)" :name="artist.name" :key="artist.id" :image="artist.images[0].url"
             :url="'https://open.spotify.com/artist/' + artist.id"
             class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow" />
         </div>
