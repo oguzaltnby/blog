@@ -111,6 +111,7 @@ export default Vue.extend({
             "Javascript",
             "C#",
             "Vue.js",
+            "React.js",
             "Node.js",
             "Python",
             "PHP",
@@ -198,7 +199,7 @@ export default Vue.extend({
           </div>
 
           <div class="flex items-center justify-center md:justify-start gap-x-3 gap-y-2 flex-wrap">
-            <Button v-for="item in ['TypeScript', 'Vue.js', 'C#']" :key="item" class="inline-block" v-tippy="{
+            <Button v-for="item in ['TypeScript', 'Vue.js', 'React.js']" :key="item" class="inline-block" v-tippy="{
               content: item, placement: 'bottom',
             }">
               <IconDev :brand="item" class="h-5 w-5" />
