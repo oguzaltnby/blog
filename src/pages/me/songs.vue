@@ -11,34 +11,62 @@ export default Vue.extend({
     }
   },
   async mounted() {
-    // Spotify API'ye erişim için token al ve şarkıları getir
-    try {
-      const token = await this.getAccessToken()
-      await this.fetchTopTracks(token)
-    } catch (error) {
-      this.error = "Bir hata oluştu. Lütfen daha sonra tekrar deneyin."
-      console.error("Error fetching Spotify data:", error)
-    } finally {
-      this.loading = false
+    // Spotify oturumu açma sürecini başlat
+    const code = this.getCodeFromRedirect();
+    if (code) {
+      try {
+        const token = await this.getAccessToken(code);
+        await this.fetchTopTracks(token);
+      } catch (error) {
+        this.error = "Bir hata oluştu. Lütfen daha sonra tekrar deneyin.";
+        console.error("Error fetching Spotify data:", error);
+      } finally {
+        this.loading = false;
+      }
+    } else {
+      this.redirectToSpotify();
     }
   },
   methods: {
-    // Access Token'ı almak için
-    async getAccessToken() {
-      const clientId = "8e0b2aa6950640afa89f05a153246af1"
-      const clientSecret = "877c05b3a4484219ba26603fc1b84279"
+    // Kullanıcıyı Spotify yetkilendirme sayfasına yönlendirme
+    redirectToSpotify() {
+      const clientId = "YOUR_CLIENT_ID";
+      const redirectUri = "YOUR_REDIRECT_URI";
+      const scopes = "user-top-read";
+      const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(
+        redirectUri
+      )}&scope=${encodeURIComponent(scopes)}`;
+      window.location.href = authUrl;
+    },
+
+    // Yetkilendirme sonrası URL'den yetki kodunu almak
+    getCodeFromRedirect() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("code");
+    },
+
+    // Yetki kodunu kullanarak erişim token'ı almak
+    async getAccessToken(code: string) {
+      const clientId = "757572ca119c49fdac93aa5a8398985c";
+      const clientSecret = "1a887fadb2a942f985ca9136064e882e";
+      const redirectUri = "https://oguzaltnby.com/callback";
 
       const tokenResponse = await axios({
         method: "post",
         url: "https://accounts.spotify.com/api/token",
         headers: {
-          Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        data: "grant_type=client_credentials",
-      })
+        data: new URLSearchParams({
+          grant_type: "authorization_code",
+          code: code,
+          redirect_uri: redirectUri,
+          client_id: clientId,
+          client_secret: clientSecret,
+        }),
+      });
 
-      return tokenResponse.data.access_token
+      return tokenResponse.data.access_token;
     },
 
     // En çok dinlenen şarkıları almak için
@@ -49,12 +77,12 @@ export default Vue.extend({
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
+      });
 
-      this.spotifyData = response.data.items // En çok dinlenen şarkıları sakla
+      this.spotifyData = response.data.items; // En çok dinlenen şarkıları sakla
     },
   },
-})
+});
 </script>
 
 <template>
