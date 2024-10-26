@@ -11,39 +11,13 @@ export default Vue.extend({
       sponsors: [] as ISponsor[],
       accounts: [
         {
-          image: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Garanti_Bank_logo.png",
+          image: "/assets/icons/garanti.png",
           name: "Garanti",
           iban: "TR12 0006 2001 1510 0006 8787 43",
           revealed: false,
         },
+
       ],
-      banks: [
-        {
-          name: "Ziraat Bankası",
-          image: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Ziraat_Bank_logo.png",
-          transferUrl: "https://www.ziraatbank.com.tr/en/personal-banking/transactions/money-transfer"
-        },
-        {
-          name: "İş Bankası",
-          image: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Isbank_logo.png",
-          transferUrl: "https://www.isbank.com.tr/en/money-transfer"
-        },
-        {
-          name: "Akbank",
-          image: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Akbank_logo.png",
-          transferUrl: "https://www.akbank.com/en-us/individual/Pages/money-transfer.aspx"
-        },
-        {
-          name: "Yapı Kredi",
-          image: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Yapi_Kredi_logo.png",
-          transferUrl: "https://www.yapikredi.com.tr/en/personal-banking/transactions/money-transfer"
-        },
-        {
-          name: "DenizBank",
-          image: "https://upload.wikimedia.org/wikipedia/commons/4/4a/DenizBank_logo.png",
-          transferUrl: "https://www.denizbank.com/en/personal-banking/transactions/money-transfer"
-        }
-      ]
     }
   },
   fetchOnServer: false,
@@ -76,9 +50,65 @@ export default Vue.extend({
 <template>
   <PageLayout
     title="Payment"
-    :description="[ `P.S. Use 'Oğuzhan ALTUNBEY' as the name of your transactions.` ]"
+    :description="[
+      `P.S. Use 'Oğuzhan ALTUNBEY' as the name of your transactions.`,
+    ]"
     class="space-y-12"
   >
+    <!-- <section class="space-y-4">
+      <Title>Support Me On</Title>
+
+      <div class="flex flex-wrap gap-x-4 gap-y-2">
+        <Button  blank>
+          <template #icon>
+            <IconBrand brand="github" class="h-5 w-5" />
+          </template>
+
+          GitHub Sponsors
+        </Button>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <Title :padding="false">Sponsors</Title>
+
+      <div>
+        <transition name="fade" mode="out-in">
+          <SkeletonLoader
+            v-if="$fetchState.pending"
+            type="spinner"
+            class="w-full py-4"
+          />
+
+          <p v-else-if="$fetchState.error !== null">An error occured.</p>
+          <p
+            v-else-if="
+              !$fetchState.pending &&
+              !$fetchState.error &&
+              sponsors.length === 0
+            "
+          >
+            No sponsors yet :(
+          </p>
+
+          <div v-else class="grid grid-cols-2 lg:grid-cols-4 gap-2">
+            <CardSponsor
+              v-for="(item, index) in getSortedSponsors.monthly"
+              :key="`sponsor-monthly-${index}`"
+              :sponsor="item.sponsor"
+              monthly
+            />
+
+            <CardSponsor
+              v-for="(item, index) in getSortedSponsors.oneTime"
+              :key="`sponsor-oneTime-${index}`"
+              :sponsor="item.sponsor"
+            />
+          </div>
+        </transition>
+      </div>
+    </section> -->
+
     <section class="space-y-4">
       <Title>Bank Accounts</Title>
 
@@ -100,43 +130,14 @@ export default Vue.extend({
 
               <span
                 class="text-black/30 dark:text-white/30"
-                :class="!account.revealed && 'hover:underline cursor-pointer select-none'"
+                :class="
+                  !account.revealed &&
+                  'hover:underline cursor-pointer select-none'
+                "
                 @click="account.revealed = true"
               >
                 {{ account.revealed ? account.iban : "Click to Reveal" }}
               </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="space-y-4">
-      <Title>Transfer from Your Bank</Title>
-
-      <div class="grid gap-4">
-        <div
-          v-for="(bank, index) in banks"
-          :key="`bank-${index}`"
-          class="flex h-full space-x-4 items-center rounded-lg card-base"
-        >
-          <div class="rounded-lg">
-            <img :src="bank.image" class="rounded-lg h-12 w-12" />
-          </div>
-
-          <div class="rounded-tr rounded-br flex h-full">
-            <div>
-              <h3 class="font-medium text-lg">
-                {{ bank.name }}
-              </h3>
-
-              <a
-                :href="bank.transferUrl"
-                target="_blank"
-                class="text-blue-500 hover:underline ml-2"
-              >
-                Transfer
-              </a>
             </div>
           </div>
         </div>
