@@ -98,7 +98,7 @@ export default Vue.extend({
             title: "Payment",
             description:
               "do you have money bro? i don't.",
-            href: "/payment",
+            href: "/me/payment",
           },
 
         ],

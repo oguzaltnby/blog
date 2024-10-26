@@ -105,7 +105,7 @@ export default Vue.extend({
           text: "Payment",
           icon: "IconDollar",
           action: () => {
-            this.$router.push("/payment")
+            this.$router.push("/me/payment")
           },
         },
 
