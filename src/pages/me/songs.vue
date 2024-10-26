@@ -125,6 +125,16 @@ export default Vue.extend({
 
       this.userProfile = response.data; // Kullanıcı profil bilgilerini sakla
     },
+    calculateAge(birthdate: string) {
+      const birthDate = new Date(birthdate);
+      const today = new Date();
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const monthDifference = today.getMonth() - birthDate.getMonth();
+      if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      return age;
+    },
   },
 });
 </script>
@@ -135,7 +145,7 @@ export default Vue.extend({
     <div v-if="loading" class="text-center py-4">Şarkılar yükleniyor...</div>
     <div v-else-if="error" class="text-center py-4 text-red-500">{{ error }}</div>
     <div v-else>
-      <section>
+      <section class="mb-4">
         <Title class="mb-4">Details</Title>
 
         <div class="grid gap-x-0 gap-y-4 md:gap-x-12 md:grid-cols-2">
@@ -152,6 +162,18 @@ export default Vue.extend({
                 class="rounded-full h-6 w-6" />
             </div>
           </div>
+          <div class="flex space-x-4 items-center justify-between">
+            <span class="flex-shrink-0">Account Age</span>
+
+            <div  class="flex space-x-2 items-center">
+              <div v-if="userProfile?.birthdate" class="truncate">
+                {{ calculateAge(userProfile.birthdate) }}
+
+                year(s)
+              </div>
+
+              <IconCalendar class="h-6 w-6" />
+            </div>
 
 
 
