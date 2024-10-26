@@ -154,7 +154,7 @@ export default Vue.extend({
             <span>Profile</span>
 
             <div class="flex space-x-2 items-center">
-              <SmartLink href="https://last.fm/user/eggsywashere" class="flex-shrink-0" blank>@{{
+              <SmartLink href="" class="flex-shrink-0" blank>@{{
                 userProfile?.display_name }}
               </SmartLink>
 
@@ -163,9 +163,12 @@ export default Vue.extend({
             </div>
           </div>
           <div class="flex space-x-4 items-center justify-between">
-            <span class="flex-shrink-0">Followers</span>
-            <span>{{ userProfile?.followers.total }}</span>
-            <IconUsers class="h-6 w-6" />
+            <span>Followers</span>
+            <div class="flex space-x-2 items-center">
+              <span class="flex-shrink-0">{{ userProfile?.followers.total }}</span>
+              <IconUser class="h-6 w-6" />
+            </div>
+
           </div>
 
 
