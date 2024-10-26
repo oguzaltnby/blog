@@ -145,7 +145,7 @@ export default Vue.extend({
     <div v-if="loading" class="text-center py-4">Şarkılar yükleniyor...</div>
     <div v-else-if="error" class="text-center py-4 text-red-500">{{ error }}</div>
     <div v-else>
-      <section class="mb-4">
+      <section class="mb-12">
         <Title class="mb-4">Details</Title>
 
         <div class="grid gap-x-0 gap-y-4 md:gap-x-12 md:grid-cols-2">
