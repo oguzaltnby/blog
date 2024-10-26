@@ -154,7 +154,7 @@ export default Vue.extend({
             <span>Profile</span>
 
             <div class="flex space-x-2 items-center">
-              <SmartLink href="" class="flex-shrink-0" blank>@{{
+              <SmartLink href="https://open.spotify.com/user/312wvb5u6ucb63mxsuugcdrutvbq" class="flex-shrink-0" blank>@{{
                 userProfile?.display_name }}
               </SmartLink>
 
