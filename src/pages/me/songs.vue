@@ -18,10 +18,6 @@ interface SpotifyTrack {
   id: string;
 }
 
-interface SpotifyResponse {
-  items: SpotifyTrack[];
-}
-
 export default Vue.extend({
   data() {
     return {
@@ -52,8 +48,8 @@ export default Vue.extend({
   },
   methods: {
     redirectToSpotify() {
-      const clientId = "757572ca119c49fdac93aa5a8398985c";
-      const redirectUri = "https://oguzaltnby.com/me/songs";
+      const clientId = "757572ca119c49fdac93aa5a8398985c"; // Doğru client ID
+      const redirectUri = "https://oguzaltnby.com/me/songs"; // Doğru redirect URI
       const scopes = "user-top-read user-read-private";
       const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scopes)}`;
       window.location.href = authUrl;
@@ -65,9 +61,9 @@ export default Vue.extend({
     },
 
     async getAccessToken(code: string) {
-      const clientId = "757572ca119c49fdac93aa5a8398985c";
-      const clientSecret = "1a887fadb2a942f985ca9136064e882e";
-      const redirectUri = "https://oguzaltnby.com/me/songs";
+      const clientId = "757572ca119c49fdac93aa5a8398985c"; // Doğru client ID
+      const clientSecret = "1a887fadb2a942f985ca9136064e882e"; // Doğru client secret
+      const redirectUri = "https://oguzaltnby.com/me/songs"; // Doğru redirect URI
 
       const tokenResponse = await axios.post("https://accounts.spotify.com/api/token", new URLSearchParams({
         grant_type: "authorization_code",
