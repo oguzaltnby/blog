@@ -10,10 +10,17 @@ interface SpotifyTrack {
   id: string;
 }
 
+interface SpotifyArtist {
+  name: string;
+  images: { url: string }[];
+  id: string;
+}
+
 export default Vue.extend({
   data() {
     return {
       spotifyData: [] as SpotifyTrack[], // En çok dinlenen şarkı bilgilerini tutacak
+      topArtists: [] as SpotifyArtist[], // En çok dinlenen sanatçı bilgilerini tutacak
       loading: true, // Yüklenme durumu
       error: null, // Hata durumu
     };
@@ -23,7 +30,7 @@ export default Vue.extend({
     if (code) {
       try {
         const token = await this.getAccessToken(code);
-        await this.fetchTopTracks(token);
+        await Promise.all([this.fetchTopTracks(token), this.fetchTopArtists(token)]);
       } catch (error) {
         this.error = "Bir hata oluştu. Lütfen daha sonra tekrar deneyin.";
         console.error("Error fetching Spotify data:", error);
@@ -84,6 +91,18 @@ export default Vue.extend({
 
       this.spotifyData = response.data.items; // En çok dinlenen şarkıları sakla
     },
+
+    async fetchTopArtists(token: string) {
+      const response = await axios({
+        method: "get",
+        url: "https://api.spotify.com/v1/me/top/artists",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      this.topArtists = response.data.items; // En çok dinlenen sanatçıları sakla
+    },
   },
 });
 </script>
@@ -110,10 +129,23 @@ export default Vue.extend({
             :url="'https://open.spotify.com/track/' + track.id"
             class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow"
           />
+        </div>
+      </section>
 
+      <section id="top-artists" class="mt-12">
+        <Title class="mb-4">Top Artists (last 7 days)</Title>
+
+        <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
+          <CardLastFm
+            v-for="artist in topArtists"
+            :name="artist.name"
+            :key="artist.id"
+            :image="artist.images[0].url"
+            :url="'https://open.spotify.com/artist/' + artist.id"
+            class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          />
         </div>
       </section>
     </div>
   </PageLayout>
 </template>
-
