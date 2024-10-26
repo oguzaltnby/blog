@@ -98,12 +98,12 @@ export default Vue.extend({
       </Card>
       <Card
         title="EduMail"
-        :href="pageLoaded ? `mailto:${$config.social.edumail}` : false"
+        :href="pageLoaded ? `mailto:oguzhanaltunbey24@istanbularel.edu.tr` : false"
         icon="IconAt"
         :utm="false"
       >
         <template #icon>
-          <IconEdu class="h-8 w-8" />
+          <IconEducation class="h-8 w-8" />
         </template>
 
         oguzhanaltunbey24@istanbularel.edu.tr
