@@ -166,7 +166,7 @@ export default Vue.extend({
             <span>Followers</span>
             <div class="flex space-x-2 items-center">
               <span class="flex-shrink-0">{{ userProfile?.followers.total }}</span>
-              <IconUser class="h-6 w-6" />
+              <IconFire class="h-6 w-6" />
             </div>
 
           </div>
