@@ -18,11 +18,16 @@ interface SpotifyTrack {
   id: string;
 }
 
+interface SpotifyResponse {
+  items: SpotifyTrack[];
+}
+
 export default Vue.extend({
   data() {
     return {
       user: {} as SpotifyUser,
       topTracks: [] as SpotifyTrack[],
+      topArtists: [] as SpotifyTrack[], // Top artists için ekledim
       loading: true,
       error: null,
     };
@@ -34,6 +39,7 @@ export default Vue.extend({
         const token = await this.getAccessToken(code);
         await this.fetchUserProfile(token);
         await this.fetchTopTracks(token);
+        await this.fetchTopArtists(token); // Top artists verilerini al
       } catch (error) {
         this.error = "Bir hata oluştu. Lütfen daha sonra tekrar deneyin.";
         console.error("Error fetching Spotify data:", error);
@@ -45,7 +51,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    // Spotify'a yönlendirme
     redirectToSpotify() {
       const clientId = "757572ca119c49fdac93aa5a8398985c";
       const redirectUri = "https://oguzaltnby.com/me/songs";
@@ -54,13 +59,11 @@ export default Vue.extend({
       window.location.href = authUrl;
     },
 
-    // URL'den kodu al
     getCodeFromRedirect() {
       const params = new URLSearchParams(window.location.search);
       return params.get("code");
     },
 
-    // Erişim token'ını al
     async getAccessToken(code: string) {
       const clientId = "757572ca119c49fdac93aa5a8398985c";
       const clientSecret = "1a887fadb2a942f985ca9136064e882e";
@@ -77,26 +80,34 @@ export default Vue.extend({
       return tokenResponse.data.access_token;
     },
 
-    // Kullanıcı profili bilgilerini al
-    async fetchUserProfile(this: Vue & { user: SpotifyUser }, token: string) {
+    async fetchUserProfile(token: string) {
       const response = await axios.get("https://api.spotify.com/v1/me", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      this.user = response.data; // Kullanıcı bilgilerini kaydet
+      this.user = response.data;
     },
 
-    // En çok dinlenen şarkıları al
-    async fetchTopTracks(this: Vue & { topTracks: SpotifyTrack[] }, token: string) {
+    async fetchTopTracks(token: string) {
       const response = await axios.get("https://api.spotify.com/v1/me/top/tracks", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      this.topTracks = response.data.items; // En çok dinlenen şarkıları sakla
+      this.topTracks = response.data.items;
+    },
+
+    async fetchTopArtists(token: string) { // Top artists için fonksiyon
+      const response = await axios.get("https://api.spotify.com/v1/me/top/artists", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      this.topArtists = response.data.items; // En çok dinlenen sanatçıları sakla
     },
   },
 });
@@ -105,7 +116,7 @@ export default Vue.extend({
 <template>
   <PageLayout
     title="My Spotify Songs"
-    description="My latest activity on Spotify. Check out my top tracks!"
+    description="My latest activity on Spotify. Check out my top tracks and artists!"
     class="space-y-12"
   >
     <LoadersSongs v-if="loading" />
@@ -146,6 +157,19 @@ export default Vue.extend({
             :artist="track.artists[0].name"
             :image="track.album.images[0].url"
             :url="`https://open.spotify.com/track/${track.id}`"
+          />
+        </div>
+      </section>
+
+      <section id="top-artists">
+        <Title class="mb-4">Top Artists</Title>
+        <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
+          <CardLastFm
+            v-for="artist in topArtists"
+            :key="artist.id"
+            :name="artist.name"
+            :image="artist.images[0].url"
+            :url="`https://open.spotify.com/artist/${artist.id}`"
           />
         </div>
       </section>
