@@ -154,6 +154,12 @@ export default Vue.extend({
               iconPack: "IconBrand",
             },
             {
+              title: "Postman"
+            },
+            {
+              title: "MySQL",
+            },
+            {
               title: "Discord"
             },
             {
