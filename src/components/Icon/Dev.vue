@@ -327,25 +327,11 @@
   </svg>
 
   <!--Angular-->
-  <svg v-else-if="isSame('Angular')" version="1.1" id="katman_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-    y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-    <style type="text/css">
-      .st0 {
-        fill: #C3002F;
-      }
-
-      .st1 {
-        fill: #DD0031;
-      }
-    </style>
-    <g>
-      <path id="a" class="st0"
-        d="M256,65v42l111,249h-42l-22-55h-47v146l151-84l27-235L256,65z M256,188v78h33L256,188z" />
-    </g>
-    <g transform="matrix(-1 0 0 1 512 0)">
-      <path id="a_1_" class="st1"
-        d="M256,65v42L145,356h42l22-55h47v146l-151-84L78,128L256,65z M256,188v78h-33L256,188z" />
-    </g>
+  <svg v-else-if="isSame('Angular')" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <path d="m16 2-13.034 4.648 1.988 17.234 11.046 6.118 11.046-6.118 1.988-17.234z" fill="#dd0031" />
+    <path d="m16 2v3.108-.014 14.182 10.724l11.046-6.118 1.988-17.234z" fill="#c3002f" />
+    <path d="m16 5.094-8.148 18.27h3.038l1.638-4.088h6.916l1.638 4.088h3.038zm2.38 11.662h-4.76l2.38-5.726z"
+      fill="#fff" />
   </svg>
 
 
