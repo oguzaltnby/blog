@@ -121,6 +121,13 @@ export default Vue.extend({
           ],
         },
         {
+          title: "Frameworks",
+          items: [
+            "Nuxt",
+            "Angular",
+          ],
+        },
+        {
           title: "Apps",
           items: [
             {
