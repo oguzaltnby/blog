@@ -171,6 +171,13 @@ export default Vue.extend({
             },
           ],
         },
+        {
+          title: "Operating Systems",
+          items: [
+            "KaliLinux",
+            "Windows",
+          ],
+        },
       ],
     }
   },
