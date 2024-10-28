@@ -165,7 +165,11 @@ export default Vue.extend({
 </script>
 
 <template>
-  <PageLayout title="Songs" description="My most listened songs from Spotify" class="space-y-12">
+  <PageLayout
+    title="Songs"
+    description="My most listened songs from Spotify"
+    class="space-y-12"
+  >
     <div v-if="loading" class="text-center py-4">Şarkılar yükleniyor...</div>
     <div v-else-if="error" class="text-center py-4 text-red-500">{{ error }}</div>
     <div v-else>
@@ -178,9 +182,8 @@ export default Vue.extend({
             <span>Profile</span>
 
             <div class="flex space-x-2 items-center">
-              <SmartLink href="https://open.spotify.com/user/312wvb5u6ucb63mxsuugcdrutvbq" class="flex-shrink-0" blank>
-                @{{
-                  userProfile?.display_name }}
+              <SmartLink href="https://open.spotify.com/user/312wvb5u6ucb63mxsuugcdrutvbq" class="flex-shrink-0" blank>@{{
+                userProfile?.display_name }}
               </SmartLink>
 
               <SmartImage v-if="userProfile && userProfile.images.length" :src="userProfile.images[0].url"
@@ -200,33 +203,39 @@ export default Vue.extend({
       <section id="current-playing" class="mb-12">
         <Title class="mb-4">Currently Playing</Title>
         <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
-          <div>
-            <CardLastFm v-if="currentlyPlaying" :name="currentlyPlaying?.name" :key="currentlyPlaying?.id"
-            :artist="currentlyPlaying.artists[0].name" :image="currentlyPlaying?.album.images[0].url"
-            :url="'https://open.spotify.com/track/' + currentlyPlaying?.id"
-            class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
+          <div class="relative flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
+            <CardLastFm
+              v-if="currentlyPlaying"
+              :name="currentlyPlaying?.name"
+              :key="currentlyPlaying?.id"
+              :artist="currentlyPlaying.artists[0].name"
+              :image="currentlyPlaying?.album.images[0].url"
+              :url="'https://open.spotify.com/track/' + currentlyPlaying?.id"
+              class="flex-grow"
+            />
             <!-- Sol tarafa eklenen oynatma animasyonu -->
-
-          </CardLastFm>
-          <div class="playing-bars left-aligned">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
+            <div class="playing-bars absolute right-4">
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+            </div>
           </div>
-          </div>
-
         </div>
       </section>
-
 
       <section id="top-songs">
         <Title class="mb-4">Top Songs (last 7 days)</Title>
 
         <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
-          <CardLastFm v-for="track in spotifyData.slice(0, 8)" :name="track.name" :key="track.id"
-            :artist="track.artists[0].name" :image="track.album.images[0].url"
+          <CardLastFm
+            v-for="track in spotifyData.slice(0, 8)"
+            :name="track.name"
+            :key="track.id"
+            :artist="track.artists[0].name"
+            :image="track.album.images[0].url"
             :url="'https://open.spotify.com/track/' + track.id"
-            class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow" />
+            class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          />
         </div>
       </section>
 
@@ -234,9 +243,14 @@ export default Vue.extend({
         <Title class="mb-4">Top Artists (last 7 days)</Title>
 
         <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
-          <CardLastFm v-for="artist in topArtists.slice(0, 8)" :name="artist.name" :key="artist.id"
-            :image="artist.images[0].url" :url="'https://open.spotify.com/artist/' + artist.id"
-            class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow" />
+          <CardLastFm
+            v-for="artist in topArtists.slice(0, 8)"
+            :name="artist.name"
+            :key="artist.id"
+            :image="artist.images[0].url"
+            :url="'https://open.spotify.com/artist/' + artist.id"
+            class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          />
         </div>
       </section>
     </div>
@@ -244,16 +258,11 @@ export default Vue.extend({
 </template>
 
 <style scoped>
-.left-aligned {
-  margin-left: 12px;
-  /* Sol tarafa hizalamak için biraz boşluk bırakıyoruz */
-}
-
 .playing-bars {
   display: flex;
   align-items: center;
-  position: absolute;
-  padding-right: 30px;
+  justify-content: center;
+  height: 100%;
 }
 
 .bar {
@@ -273,12 +282,9 @@ export default Vue.extend({
 }
 
 @keyframes bounce {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: scaleY(1);
   }
-
   50% {
     transform: scaleY(1.5);
   }
