@@ -206,7 +206,7 @@ export default Vue.extend({
             class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
             <!-- Sol tarafa eklenen oynatma animasyonu -->
             <div class="playing-bars left-aligned">
-              <div class="bar"></div>
+              <div class="bar">a</div>
               <div class="bar"></div>
               <div class="bar"></div>
             </div>
