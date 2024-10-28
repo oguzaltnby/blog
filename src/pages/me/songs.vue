@@ -205,12 +205,13 @@ export default Vue.extend({
             :url="'https://open.spotify.com/track/' + currentlyPlaying?.id"
             class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
             <!-- Sol tarafa eklenen oynatma animasyonu -->
-            <div class="playing-bars left-aligned">
-              <div class="bar">a</div>
-              <div class="bar"></div>
-              <div class="bar"></div>
-            </div>
+
           </CardLastFm>
+          <div class="playing-bars left-aligned">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
         </div>
       </section>
 
