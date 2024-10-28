@@ -197,14 +197,6 @@ export default Vue.extend({
               <IconFire class="h-6 w-6" />
             </div>
           </div>
-          <div class="flex space-x-4 items-center justify-between">
-            <span>Currently Playing</span>
-            <div class="flex space-x-2 items-center">
-              <span class="flex-shrink-0">{{ currentlyPlaying?.name }}</span>
-              <SmartImage v-if="currentlyPlaying && currentlyPlaying.album.images.length" :src="currentlyPlaying.album.images[0].url"
-                class="rounded-full h-6 w-6" />
-            </div>
-          </div>
         </div>
       </section>
 
@@ -213,7 +205,7 @@ export default Vue.extend({
 
         <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
           <CardLastFm
-            v-for="artist in currentlyPlaying"
+            v-if="currentlyPlaying"
             :name="currentlyPlaying?.name"
             :key="currentlyPlaying?.id"
             :image="currentlyPlaying?.album.images[0].url"
