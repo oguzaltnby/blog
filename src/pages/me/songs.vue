@@ -42,6 +42,7 @@ export default Vue.extend({
       error: null, // Hata durumu
       intervalId: null as number | null, // Zamanlayıcı ID'si
       fetchIntervalId: null as number | null, // API sorgulama zamanlayıcı ID'si
+      isPlaying: false, // Şarkının çalıp çalmadığını takip eder
     };
   },
   async mounted() {
@@ -158,6 +159,12 @@ export default Vue.extend({
       if (response.data && response.data.item) {
         this.currentlyPlaying = response.data.item; // Şu anda dinlenen şarkıyı sakla
         this.progressMs = response.data.progress_ms; // Şu anda dinlenen şarkının ilerleme süresini sakla
+        this.isPlaying = !response.data.is_playing; // Şarkının çalıp çalmadığını sakla
+        if (this.isPlaying) {
+          this.startProgressTimer();
+        } else {
+          this.stopProgressTimer();
+        }
       }
     },
 
@@ -234,7 +241,7 @@ export default Vue.extend({
         </div>
       </section>
 
-      <section id="current-playing" class="mb-12">
+      <section v-if="currentlyPlaying" id="current-playing" class="mb-12">
         <Title class="mb-4">Currently Playing</Title>
         <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
           <div class="relative flex items-center">
