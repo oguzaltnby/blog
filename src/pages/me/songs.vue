@@ -199,22 +199,21 @@ export default Vue.extend({
 
       <section id="current-playing" class="mb-12">
         <Title class="mb-4">Currently Playing</Title>
-
         <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
           <CardLastFm v-if="currentlyPlaying" :name="currentlyPlaying?.name" :key="currentlyPlaying?.id"
             :artist="currentlyPlaying.artists[0].name" :image="currentlyPlaying?.album.images[0].url"
             :url="'https://open.spotify.com/track/' + currentlyPlaying?.id"
             class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
-
-            <div class="playing-bars">
+            <!-- Sol tarafa eklenen oynatma animasyonu -->
+            <div class="playing-bars left-aligned">
               <div class="bar"></div>
               <div class="bar"></div>
               <div class="bar"></div>
             </div>
-
           </CardLastFm>
         </div>
       </section>
+
 
       <section id="top-songs">
         <Title class="mb-4">Top Songs (last 7 days)</Title>
@@ -241,11 +240,14 @@ export default Vue.extend({
 </template>
 
 <style scoped>
+.left-aligned {
+  margin-left: 12px;
+  /* Sol tarafa hizalamak için biraz boşluk bırakıyoruz */
+}
+
 .playing-bars {
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 100%;
 }
 
 .bar {
