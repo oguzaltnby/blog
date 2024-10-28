@@ -177,8 +177,8 @@ export default Vue.extend({
     },
 
     startFetchTimer(token: string) {
-      this.fetchIntervalId = window.setInterval(() => {
-        this.fetchCurrentlyPlaying(token);
+      this.fetchIntervalId = window.setInterval(async () => {
+        await this.fetchCurrentlyPlaying(token);
       }, 5000); // Her 5 saniyede bir API'yi sorgula
     },
 
