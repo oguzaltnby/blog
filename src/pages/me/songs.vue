@@ -207,23 +207,13 @@ export default Vue.extend({
             <!-- Sol tarafa eklenen oynatma animasyonu -->
 
           </CardLastFm>
-          <section id="current-playing" class="mb-12">
-            <Title class="mb-4">Currently Playing</Title>
 
-            <div class="relative grid gap-x-4 gap-y-2 md:grid-cols-2">
-              <CardLastFm v-if="currentlyPlaying" :name="currentlyPlaying?.name" :key="currentlyPlaying?.id"
-                :artist="currentlyPlaying.artists[0].name" :image="currentlyPlaying?.album.images[0].url"
-                :url="'https://open.spotify.com/track/' + currentlyPlaying?.id"
-                class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow" />
+          <div class="playing-bars absolute right-4 top-1/2 transform -translate-y-1/2">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
 
-              <!-- Animasyonu sağa yerleştirmek için dışarıda konumlandırıyoruz -->
-              <div class="playing-bars absolute right-4 top-1/2 transform -translate-y-1/2">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-              </div>
-            </div>
-          </section>
 
         </div>
       </section>
@@ -276,12 +266,14 @@ export default Vue.extend({
 }
 
 @keyframes bounce {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scaleY(1);
   }
+
   50% {
     transform: scaleY(1.5);
   }
 }
-
 </style>
