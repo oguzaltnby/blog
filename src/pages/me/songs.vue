@@ -1,8 +1,11 @@
 <script lang="ts">
-import Vue from "vue";
-import axios from "axios";
+import Vue from "vue"
+import axios from "axios"
 
-// Spotify track, artist ve kullanıcı bilgileri için interface tanımları
+/* Interfaces */
+import type { SponsorLinks } from "~/@types/runtimeConfig"
+import type { ISponsor } from "@/types/Response/Sponsors"
+
 interface SpotifyTrack {
   name: string;
   artists: { name: string }[];
@@ -14,11 +17,16 @@ interface SpotifyArtist {
   name: string;
   images: { url: string }[];
   id: string;
+  genres: string[];
 }
 
 interface SpotifyUser {
   display_name: string;
   images: { url: string }[];
+  birthdate?: string;
+  email?: string;
+  country?: string;
+  followers: { total: number };
 }
 
 export default Vue.extend({
@@ -27,6 +35,7 @@ export default Vue.extend({
       spotifyData: [] as SpotifyTrack[], // En çok dinlenen şarkı bilgilerini tutacak
       topArtists: [] as SpotifyArtist[], // En çok dinlenen sanatçı bilgilerini tutacak
       userProfile: null as SpotifyUser | null, // Kullanıcı profil bilgilerini tutacak
+      currentlyPlaying: null as SpotifyTrack | null, // Şu anda dinlenen şarkı bilgilerini tutacak
       loading: true, // Yüklenme durumu
       error: null, // Hata durumu
     };
@@ -40,6 +49,7 @@ export default Vue.extend({
           this.fetchTopTracks(token),
           this.fetchTopArtists(token),
           this.fetchUserProfile(token),
+          this.fetchCurrentlyPlaying(token),
         ]);
       } catch (error) {
         this.error = "Bir hata oluştu. Lütfen daha sonra tekrar deneyin.";
@@ -55,7 +65,7 @@ export default Vue.extend({
     redirectToSpotify() {
       const clientId = "757572ca119c49fdac93aa5a8398985c";
       const redirectUri = "https://oguzaltnby.com/me/songs";
-      const scopes = "user-top-read user-read-private";
+      const scopes = "user-top-read user-read-private user-read-currently-playing";
       const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(
         redirectUri
       )}&scope=${encodeURIComponent(scopes)}`;
@@ -93,7 +103,7 @@ export default Vue.extend({
     async fetchTopTracks(token: string) {
       const response = await axios({
         method: "get",
-        url: "https://api.spotify.com/v1/me/top/tracks?limit=8&time_range=short_term",
+        url: "https://api.spotify.com/v1/me/top/tracks?limit=8&time_range=long_term",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -105,7 +115,7 @@ export default Vue.extend({
     async fetchTopArtists(token: string) {
       const response = await axios({
         method: "get",
-        url: "https://api.spotify.com/v1/me/top/artists?limit=8&time_range=short_term",
+        url: "https://api.spotify.com/v1/me/top/artists?limit=8&time_range=long_term",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -125,6 +135,21 @@ export default Vue.extend({
 
       this.userProfile = response.data; // Kullanıcı profil bilgilerini sakla
     },
+
+    async fetchCurrentlyPlaying(token: string) {
+      const response = await axios({
+        method: "get",
+        url: "https://api.spotify.com/v1/me/player/currently-playing",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.data && response.data.item) {
+        this.currentlyPlaying = response.data.item; // Şu anda dinlenen şarkıyı sakla
+      }
+    },
+
     calculateAge(birthdate: string) {
       const birthDate = new Date(birthdate);
       const today = new Date();
@@ -140,8 +165,11 @@ export default Vue.extend({
 </script>
 
 <template>
-  <PageLayout title="Songs"
-    description="My most listened songs from Spotify" class="space-y-12">
+  <PageLayout
+    title="Songs"
+    description="My most listened songs from Spotify"
+    class="space-y-12"
+  >
     <div v-if="loading" class="text-center py-4">Şarkılar yükleniyor...</div>
     <div v-else-if="error" class="text-center py-4 text-red-500">{{ error }}</div>
     <div v-else>
@@ -168,24 +196,31 @@ export default Vue.extend({
               <span class="flex-shrink-0">{{ userProfile?.followers.total }}</span>
               <IconFire class="h-6 w-6" />
             </div>
-
           </div>
-
-
-
-
-
+          <div class="flex space-x-4 items-center justify-between">
+            <span>Currently Playing</span>
+            <div class="flex space-x-2 items-center">
+              <span class="flex-shrink-0">{{ currentlyPlaying?.name }}</span>
+              <SmartImage v-if="currentlyPlaying && currentlyPlaying.album.images.length" :src="currentlyPlaying.album.images[0].url"
+                class="rounded-full h-6 w-6" />
+            </div>
+          </div>
         </div>
       </section>
-
 
       <section id="top-songs">
         <Title class="mb-4">Top Songs (last 7 days)</Title>
 
         <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
-          <CardLastFm v-for="track in spotifyData.slice(0, 8)" :name="track.name" :key="track.id" :artist="track.artists[0].name"
-            :image="track.album.images[0].url" :url="'https://open.spotify.com/track/' + track.id"
-            class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow" />
+          <CardLastFm
+            v-for="track in spotifyData.slice(0, 8)"
+            :name="track.name"
+            :key="track.id"
+            :artist="track.artists[0].name"
+            :image="track.album.images[0].url"
+            :url="'https://open.spotify.com/track/' + track.id"
+            class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          />
         </div>
       </section>
 
@@ -193,9 +228,14 @@ export default Vue.extend({
         <Title class="mb-4">Top Artists (last 7 days)</Title>
 
         <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
-          <CardLastFm v-for="artist in topArtists.slice(0, 8)" :name="artist.name" :key="artist.id" :image="artist.images[0].url"
+          <CardLastFm
+            v-for="artist in topArtists.slice(0, 8)"
+            :name="artist.name"
+            :key="artist.id"
+            :image="artist.images[0].url"
             :url="'https://open.spotify.com/artist/' + artist.id"
-            class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow" />
+            class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          />
         </div>
       </section>
     </div>
