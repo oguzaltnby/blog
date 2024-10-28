@@ -96,18 +96,6 @@ export default Vue.extend({
 
         contact@oguzaltnby.com
       </Card>
-      <Card
-        title="EduMail"
-        :href="pageLoaded ? `mailto:oguzhanaltunbey24@istanbularel.edu.tr` : false"
-        icon="IconAt"
-        :utm="false"
-      >
-        <template #icon>
-          <IconEducation class="h-8 w-8" />
-        </template>
-
-        oguzhanaltunbey24@istanbularel.edu.tr
-      </Card>
     </div>
   </PageLayout>
 </template>
