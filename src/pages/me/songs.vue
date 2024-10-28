@@ -11,6 +11,7 @@ interface SpotifyTrack {
   artists: { name: string }[];
   album: { images: { url: string }[] };
   id: string;
+  duration_ms: number;
 }
 
 interface SpotifyArtist {
@@ -36,6 +37,7 @@ export default Vue.extend({
       topArtists: [] as SpotifyArtist[], // En çok dinlenen sanatçı bilgilerini tutacak
       userProfile: null as SpotifyUser | null, // Kullanıcı profil bilgilerini tutacak
       currentlyPlaying: null as SpotifyTrack | null, // Şu anda dinlenen şarkı bilgilerini tutacak
+      progressMs: 0, // Şu anda dinlenen şarkının ilerleme süresi
       loading: true, // Yüklenme durumu
       error: null, // Hata durumu
     };
@@ -147,18 +149,14 @@ export default Vue.extend({
 
       if (response.data && response.data.item) {
         this.currentlyPlaying = response.data.item; // Şu anda dinlenen şarkıyı sakla
+        this.progressMs = response.data.progress_ms; // Şu anda dinlenen şarkının ilerleme süresini sakla
       }
     },
 
-    calculateAge(birthdate: string) {
-      const birthDate = new Date(birthdate);
-      const today = new Date();
-      let age = today.getFullYear() - birthDate.getFullYear();
-      const monthDifference = today.getMonth() - birthDate.getMonth();
-      if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-      }
-      return age;
+    formatTime(ms: number) {
+      const minutes = Math.floor(ms / 60000);
+      const seconds = ((ms % 60000) / 1000).toFixed(0);
+      return `${minutes}:${seconds.padStart(2, '0')}`;
     },
   },
 });
@@ -200,7 +198,7 @@ export default Vue.extend({
         </div>
       </section>
 
-      <section v-if="currentlyPlaying" id="current-playing" class="mb-12">
+      <section id="current-playing" class="mb-12">
         <Title class="mb-4">Currently Playing</Title>
         <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
           <div class="relative flex items-center">
@@ -213,11 +211,15 @@ export default Vue.extend({
               :url="'https://open.spotify.com/track/' + currentlyPlaying?.id"
               class="flex-grow"
             />
-            <!-- Sol tarafa eklenen oynatma animasyonu -->
+            <!-- Sağ tarafa eklenen oynatma animasyonu -->
             <div class="playing-bars absolute right-4">
               <div class="bar"></div>
               <div class="bar"></div>
               <div class="bar"></div>
+            </div>
+            <!-- Şarkının ilerleme süresi -->
+            <div class="absolute right-16 text-sm text-gray-500">
+              {{ formatTime(progressMs) }} / {{ formatTime(currentlyPlaying?.duration_ms) }}
             </div>
           </div>
         </div>
