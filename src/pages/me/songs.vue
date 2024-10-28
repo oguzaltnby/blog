@@ -173,6 +173,33 @@ export default Vue.extend({
     <div v-if="loading" class="text-center py-4">Şarkılar yükleniyor...</div>
     <div v-else-if="error" class="text-center py-4 text-red-500">{{ error }}</div>
     <div v-else>
+      <section class="mb-12">
+        <Title class="mb-4">Details</Title>
+
+        <div class="grid gap-x-0 gap-y-4 md:gap-x-12 md:grid-cols-2">
+          <!-- Profile -->
+          <div class="flex space-x-4 items-center justify-between">
+            <span>Profile</span>
+
+            <div class="flex space-x-2 items-center">
+              <SmartLink href="https://open.spotify.com/user/312wvb5u6ucb63mxsuugcdrutvbq" class="flex-shrink-0" blank>@{{
+                userProfile?.display_name }}
+              </SmartLink>
+
+              <SmartImage v-if="userProfile && userProfile.images.length" :src="userProfile.images[0].url"
+                class="rounded-full h-6 w-6" />
+            </div>
+          </div>
+          <div class="flex space-x-4 items-center justify-between">
+            <span>Followers</span>
+            <div class="flex space-x-2 items-center">
+              <span class="flex-shrink-0">{{ userProfile?.followers.total }}</span>
+              <IconFire class="h-6 w-6" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="current-playing" class="mb-12">
         <Title class="mb-4">Currently Playing</Title>
 
