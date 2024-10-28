@@ -40,6 +40,7 @@ export default Vue.extend({
       progressMs: 0, // Şu anda dinlenen şarkının ilerleme süresi
       loading: true, // Yüklenme durumu
       error: null, // Hata durumu
+      intervalId: null as number | null, // Zamanlayıcı ID'si
     };
   },
   async mounted() {
@@ -53,6 +54,7 @@ export default Vue.extend({
           this.fetchUserProfile(token),
           this.fetchCurrentlyPlaying(token),
         ]);
+        this.startProgressTimer();
       } catch (error) {
         this.error = "Bir hata oluştu. Lütfen daha sonra tekrar deneyin.";
         console.error("Error fetching Spotify data:", error);
@@ -62,6 +64,9 @@ export default Vue.extend({
     } else {
       this.redirectToSpotify();
     }
+  },
+  beforeDestroy() {
+    this.stopProgressTimer();
   },
   methods: {
     redirectToSpotify() {
@@ -150,6 +155,21 @@ export default Vue.extend({
       if (response.data && response.data.item) {
         this.currentlyPlaying = response.data.item; // Şu anda dinlenen şarkıyı sakla
         this.progressMs = response.data.progress_ms; // Şu anda dinlenen şarkının ilerleme süresini sakla
+      }
+    },
+
+    startProgressTimer() {
+      this.intervalId = window.setInterval(() => {
+        if (this.currentlyPlaying && this.progressMs < this.currentlyPlaying.duration_ms) {
+          this.progressMs += 1000;
+        }
+      }, 1000);
+    },
+
+    stopProgressTimer() {
+      if (this.intervalId) {
+        clearInterval(this.intervalId);
+        this.intervalId = null;
       }
     },
 
