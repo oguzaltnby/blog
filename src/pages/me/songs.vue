@@ -207,11 +207,24 @@ export default Vue.extend({
             <!-- Sol tarafa eklenen oynatma animasyonu -->
 
           </CardLastFm>
-          <div class="playing-bars left-aligned">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-          </div>
+          <section id="current-playing" class="mb-12">
+            <Title class="mb-4">Currently Playing</Title>
+
+            <div class="relative grid gap-x-4 gap-y-2 md:grid-cols-2">
+              <CardLastFm v-if="currentlyPlaying" :name="currentlyPlaying?.name" :key="currentlyPlaying?.id"
+                :artist="currentlyPlaying.artists[0].name" :image="currentlyPlaying?.album.images[0].url"
+                :url="'https://open.spotify.com/track/' + currentlyPlaying?.id"
+                class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow" />
+
+              <!-- Animasyonu sağa yerleştirmek için dışarıda konumlandırıyoruz -->
+              <div class="playing-bars absolute right-4 top-1/2 transform -translate-y-1/2">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+              </div>
+            </div>
+          </section>
+
         </div>
       </section>
 
@@ -241,11 +254,6 @@ export default Vue.extend({
 </template>
 
 <style scoped>
-.left-aligned {
-  margin-left: 12px;
-  /* Sol tarafa hizalamak için biraz boşluk bırakıyoruz */
-}
-
 .playing-bars {
   display: flex;
   align-items: center;
@@ -268,14 +276,12 @@ export default Vue.extend({
 }
 
 @keyframes bounce {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: scaleY(1);
   }
-
   50% {
     transform: scaleY(1.5);
   }
 }
+
 </style>
