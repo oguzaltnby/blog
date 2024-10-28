@@ -208,6 +208,7 @@ export default Vue.extend({
             v-if="currentlyPlaying"
             :name="currentlyPlaying?.name"
             :key="currentlyPlaying?.id"
+            :artist="currentlyPlaying.artists[0].name"
             :image="currentlyPlaying?.album.images[0].url"
             :url="'https://open.spotify.com/artist/' + currentlyPlaying?.id"
             class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow"
