@@ -200,7 +200,8 @@ export default Vue.extend({
       <section id="current-playing" class="mb-12">
         <Title class="mb-4">Currently Playing</Title>
         <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
-          <CardLastFm v-if="currentlyPlaying" :name="currentlyPlaying?.name" :key="currentlyPlaying?.id"
+          <div>
+            <CardLastFm v-if="currentlyPlaying" :name="currentlyPlaying?.name" :key="currentlyPlaying?.id"
             :artist="currentlyPlaying.artists[0].name" :image="currentlyPlaying?.album.images[0].url"
             :url="'https://open.spotify.com/track/' + currentlyPlaying?.id"
             class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
@@ -212,6 +213,8 @@ export default Vue.extend({
             <div class="bar"></div>
             <div class="bar"></div>
           </div>
+          </div>
+
         </div>
       </section>
 
