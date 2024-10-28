@@ -41,6 +41,7 @@ export default Vue.extend({
       loading: true, // Yüklenme durumu
       error: null, // Hata durumu
       intervalId: null as number | null, // Zamanlayıcı ID'si
+      fetchIntervalId: null as number | null, // API sorgulama zamanlayıcı ID'si
     };
   },
   async mounted() {
@@ -55,6 +56,7 @@ export default Vue.extend({
           this.fetchCurrentlyPlaying(token),
         ]);
         this.startProgressTimer();
+        this.startFetchTimer(token);
       } catch (error) {
         this.error = "Bir hata oluştu. Lütfen daha sonra tekrar deneyin.";
         console.error("Error fetching Spotify data:", error);
@@ -67,6 +69,7 @@ export default Vue.extend({
   },
   beforeDestroy() {
     this.stopProgressTimer();
+    this.stopFetchTimer();
   },
   methods: {
     redirectToSpotify() {
@@ -170,6 +173,19 @@ export default Vue.extend({
       if (this.intervalId) {
         clearInterval(this.intervalId);
         this.intervalId = null;
+      }
+    },
+
+    startFetchTimer(token: string) {
+      this.fetchIntervalId = window.setInterval(() => {
+        this.fetchCurrentlyPlaying(token);
+      }, 5000); // Her 5 saniyede bir API'yi sorgula
+    },
+
+    stopFetchTimer() {
+      if (this.fetchIntervalId) {
+        clearInterval(this.fetchIntervalId);
+        this.fetchIntervalId = null;
       }
     },
 
