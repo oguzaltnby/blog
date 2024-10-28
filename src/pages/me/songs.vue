@@ -203,7 +203,7 @@ export default Vue.extend({
       <section v-if="currentlyPlaying" id="current-playing" class="mb-12">
         <Title class="mb-4">Currently Playing</Title>
         <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
-          <div class="relative flex items-center rounded-lg ">
+          <div class="relative flex items-center">
             <CardLastFm
               v-if="currentlyPlaying"
               :name="currentlyPlaying?.name"
