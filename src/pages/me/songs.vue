@@ -197,7 +197,7 @@ export default Vue.extend({
         </div>
       </section>
 
-      <section v-if="currentlyPlaying" id="current-playing" class="mb-12">
+      <section id="current-playing" class="mb-12">
         <Title class="mb-4">Currently Playing</Title>
         <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
           <CardLastFm v-if="currentlyPlaying" :name="currentlyPlaying?.name" :key="currentlyPlaying?.id"
@@ -207,14 +207,11 @@ export default Vue.extend({
             <!-- Sol tarafa eklenen oynatma animasyonu -->
 
           </CardLastFm>
-
-          <div class="playing-bars absolute right-4 top-1/2 transform -translate-y-1/2">
+          <div class="playing-bars left-aligned">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
           </div>
-
-
         </div>
       </section>
 
@@ -244,9 +241,16 @@ export default Vue.extend({
 </template>
 
 <style scoped>
+.left-aligned {
+  margin-left: 12px;
+  /* Sol tarafa hizalamak için biraz boşluk bırakıyoruz */
+}
+
 .playing-bars {
   display: flex;
   align-items: center;
+  position: absolute;
+  padding-right: 30px;
 }
 
 .bar {
