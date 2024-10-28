@@ -208,6 +208,21 @@ export default Vue.extend({
         </div>
       </section>
 
+      <section id="current-playing" class="mt-12">
+        <Title class="mb-4">Currently Playing</Title>
+
+        <div class="grid gap-x-4 gap-y-2 md:grid-cols-2">
+          <CardLastFm
+            v-for="artist in currentlyPlaying"
+            :name="currentlyPlaying?.name"
+            :key="currentlyPlaying?.id"
+            :image="currentlyPlaying?.album.images[0].url"
+            :url="'https://open.spotify.com/artist/' + currentlyPlaying?.id"
+            class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          />
+        </div>
+      </section>
+
       <section id="top-songs">
         <Title class="mb-4">Top Songs (last 7 days)</Title>
 
