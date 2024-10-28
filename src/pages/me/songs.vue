@@ -173,33 +173,6 @@ export default Vue.extend({
     <div v-if="loading" class="text-center py-4">Şarkılar yükleniyor...</div>
     <div v-else-if="error" class="text-center py-4 text-red-500">{{ error }}</div>
     <div v-else>
-      <section class="mb-12">
-        <Title class="mb-4">Details</Title>
-
-        <div class="grid gap-x-0 gap-y-4 md:gap-x-12 md:grid-cols-2">
-          <!-- Profile -->
-          <div class="flex space-x-4 items-center justify-between">
-            <span>Profile</span>
-
-            <div class="flex space-x-2 items-center">
-              <SmartLink href="https://open.spotify.com/user/312wvb5u6ucb63mxsuugcdrutvbq" class="flex-shrink-0" blank>@{{
-                userProfile?.display_name }}
-              </SmartLink>
-
-              <SmartImage v-if="userProfile && userProfile.images.length" :src="userProfile.images[0].url"
-                class="rounded-full h-6 w-6" />
-            </div>
-          </div>
-          <div class="flex space-x-4 items-center justify-between">
-            <span>Followers</span>
-            <div class="flex space-x-2 items-center">
-              <span class="flex-shrink-0">{{ userProfile?.followers.total }}</span>
-              <IconFire class="h-6 w-6" />
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section id="current-playing" class="mb-12">
         <Title class="mb-4">Currently Playing</Title>
 
@@ -210,9 +183,17 @@ export default Vue.extend({
             :key="currentlyPlaying?.id"
             :artist="currentlyPlaying.artists[0].name"
             :image="currentlyPlaying?.album.images[0].url"
-            :url="'https://open.spotify.com/artist/' + currentlyPlaying?.id"
+            :url="'https://open.spotify.com/track/' + currentlyPlaying?.id"
             class="flex items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow"
-          />
+          >
+            <template #right>
+              <div class="playing-bars">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+              </div>
+            </template>
+          </CardLastFm>
         </div>
       </section>
 
@@ -249,3 +230,37 @@ export default Vue.extend({
     </div>
   </PageLayout>
 </template>
+
+<style scoped>
+.playing-bars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.bar {
+  width: 4px;
+  height: 10px;
+  background-color: #1db954;
+  margin: 0 2px;
+  animation: bounce 1s infinite;
+}
+
+.bar:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.bar:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.5);
+  }
+}
+</style>
