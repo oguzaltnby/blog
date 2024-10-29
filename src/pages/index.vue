@@ -85,7 +85,7 @@ export default Vue.extend({
           {
             title: "Blog",
             description:
-              "sleep tight. i'm under your bed!",
+              "My thoughts, experiences, and learnings in the form of blog posts.",
             href: "/blog",
           },
           {
