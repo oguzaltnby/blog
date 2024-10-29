@@ -4,7 +4,7 @@ description: Bu makale, Budizm'in derin felsefesi içinde Nirvana kavramını ve
 tags:
   - felsefe
   - budizm
-createdAt: 2024-10-29T22:28:39.798Z
+createdAt: 2024-10-29T15:28:39.798Z
 ---
 
 <img style="border-radius: 10px; width: 100%;" src="https://meditation.london/wp-content/uploads/2019/12/Buddha-3-with-offerings-and-background.jpg"></img>
