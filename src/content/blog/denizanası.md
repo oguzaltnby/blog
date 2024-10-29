@@ -1,5 +1,5 @@
 ---
-title: Turritopsis dohrnii asdasdasd
+title: Turritopsis dohrnii
 description: Turritopsis dohrnii'lerin ne oldukları, nasıl ölümsüz oldukları hakkında.
 tags:
   - science
