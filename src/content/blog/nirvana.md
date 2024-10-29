@@ -1,6 +1,6 @@
 ---
 title: Budist Felsefede Nirvana: Aydınlanma Yolunda Acının Sonu ve Ruhsal Özgürlük Arayışı
-description: 
+description: Bu makale, Budizm'in derin felsefesi içinde Nirvana kavramını ve onun aydınlanma yolundaki rolünü incelemektedir. Nirvana’nın acıdan kurtuluş, zihinsel özgürlük ve Samsara döngüsünden çıkış anlamını ele alan çalışma, bu nihai hedefe ulaşmak için Budist öğretilerde önerilen pratikleri ve ahlaki disiplini detaylandırmaktadır. Ayrıca, Nirvana’nın bireyin ruhsal dönüşüm sürecindeki anlamı ve insan doğasıyla ilgili evrensel mesajları da kapsamlı bir şekilde ele alınmıştır.
 tags:
   - felsefe
   - budizm
