@@ -1,5 +1,5 @@
 # blog
-<h1 align="center">schwefel.netlify.app</h1>
+<h1 align="center">oguzaltnby.com</h1>
 
 
 

@@ -32,13 +32,13 @@ export default Vue.extend({
       meta: this.$prepareMeta({
         title,
         description,
-        keywords: "donate",
-        url: "https://schwefel.tech/me/donate",
+        keywords: "payment",
+        url: "https://oguzaltnby.com/me/payment",
       }),
       link: [
         {
           rel: "canonical",
-          href: "https://schwefel.tech/me/donate",
+          href: "https://oguzaltnby.com/me/payment",
         },
       ],
     }

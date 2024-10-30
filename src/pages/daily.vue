@@ -86,7 +86,7 @@ export default Vue.extend({
     const title = "Song Recommendations"
     const description =
       "Looking for someone else's song recommendations? Here it is! I built a system just for you: Fresh, new songs every day!"
-    const image = "https://schwefel.tech/assets/meta/images/daily.jpg"
+    const image = "https://oguzaltnby.com/assets/meta/images/daily.jpg"
 
     return {
       title,
@@ -95,12 +95,12 @@ export default Vue.extend({
         description,
         image,
         keywords: "daily, song, recommendation",
-        url: "https://schwefel.tech/daily",
+        url: "https://oguzaltnby.com/daily",
       }),
       link: [
         {
           rel: "canonical",
-          href: "https://schwefel.tech/daily",
+          href: "https://oguzaltnby.com/daily",
         },
       ],
     }

@@ -13,9 +13,9 @@ export default Vue.extend({
   fetchOnServer: false,
   async fetch() {
     const filter = [
-      "schwefel",
+      "oguzhan",
       "DBM",
-      "schwefel.netlify.app",
+      "oguzaltnby.com",
       "bu-saatte-cekilir-mi",
     ]
 

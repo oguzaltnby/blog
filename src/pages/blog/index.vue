@@ -26,9 +26,9 @@ export default Vue.extend({
     this.posts = posts
   },
   head() {
-    const title = "Schwefel's Blog"
+    const title = "Oguzhan's Blog"
     const description =
-      "Schwefel's cv"
+      "Oguzhan's cv"
 
     return {
       title: "Blog",
