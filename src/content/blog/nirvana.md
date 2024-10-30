@@ -3,7 +3,7 @@ title: Budist Felsefede Nirvana; Aydınlanma Yolunda Acının Sonu ve Ruhsal Öz
 
 tags:
   - philosophy
-createdAt: 2024-03-10T13:32:52.449Z
+createdAt: 2024-10-30T21:20:00.449Z
 ---
 
 <img style="border-radius: 10px; width: 100%;" src="https://meditation.london/wp-content/uploads/2019/12/Buddha-3-with-offerings-and-background.jpg"></img>
