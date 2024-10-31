@@ -80,37 +80,3 @@ export default Vue.extend({
     </section>
   </div>
 </template>
-
-<style scoped>
-.playing-bars {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.bar {
-  width: 4px;
-  height: 10px;
-  background-color: #1db954;
-  margin: 0 2px;
-  animation: bounce 1s infinite;
-}
-
-.bar:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.bar:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: scaleY(1);
-  }
-  50% {
-    transform: scaleY(1.5);
-  }
-}
-</style>
