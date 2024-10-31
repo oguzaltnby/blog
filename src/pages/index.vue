@@ -208,8 +208,8 @@ export default Vue.extend({
           <div class="lg:space-y-4">
             <Status class="mt-4 flex justify-center md:justify-start" />
             <h1 class="font-semibold text-center text-lg md:(text-xl text-left) text-black/50 dark:text-white/50">
-              Hi, I am
-              <span class="text-black/90 dark:text-white/90">Oğuzhan</span>
+              Oğuzhan
+              <span class="text-black/90 dark:text-white/90">ALTUNBEY</span>
             </h1>
 
             <h1
@@ -232,8 +232,8 @@ export default Vue.extend({
         </div>
       </div>
 
-      <div class="rounded-full mx-auto mb-4 md:mb-0">
-        <img src="/assets/icons/memoji.png" class="rounded-full h-50 w-50" />
+      <div class="rounded-lg mx-auto mb-4 md:mb-0">
+        <img src="/assets/icons/memoji.png" class="rounded-lg h-50 w-50" />
       </div>
     </header>
 
