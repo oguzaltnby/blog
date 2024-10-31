@@ -5,8 +5,8 @@
     </div>
     <div v-else class="grid gap-4 md:grid-cols-2">
       <SmartLink
-        v-for="(repo, index) in repos"
-        :key="`repo-${index}`"
+        v-for="repo in repos"
+        :key="repo.id"
         :href="repo.html_url"
         blank
       >
@@ -16,7 +16,7 @@
           :stars="repo.stargazers_count"
           :description="repo.description"
           :license="repo.license && repo.license.spdx_id"
-          :top="index === 0"
+          :top="repo.id === repos[0].id"
           class="h-full"
         />
       </SmartLink>
