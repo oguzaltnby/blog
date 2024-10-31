@@ -40,6 +40,7 @@ export default Vue.extend({
       try {
         const response = await fetch('https://api.github.com/repos/<kullanici_adi>/site/commits');
         const data = await response.json();
+        console.log(data); // API'den gelen verileri kontrol et
         this.commits = data;
       } catch (error) {
         console.error('Commit kayıtları alınamadı:', error);
