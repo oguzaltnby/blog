@@ -1,14 +1,13 @@
 <template>
-  <div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-4 text-black/90 dark:text-white/90">Commit Kayıtları</h1>
-
-      <div class="rounded-lg card-base mb-2 p-4" v-for="commit in commits" :key="commit.sha" >
-        <p class="text-black/50 dark:text-white/30">{{ commit.commit.message }}</p>
-        <p class="text-black/50 dark:text-white/30">Yazar: {{ commit.commit.author.name }}</p>
-        <p class="text-black/50 dark:text-white/30">Tarih: {{ new Date(commit.commit.author.date).toLocaleString() }}</p>
-      </div>
-
-  </div>
+  <PageLayout title="Latest Updates" :description="[
+    `Here you can find the latest updates and commits made to the repository.`,
+  ]" class="space-y-12">
+    <div class="rounded-lg card-base mb-2 p-4" v-for="commit in commits" :key="commit.sha">
+      <p class="text-black/50 dark:text-white/30">{{ commit.commit.message }}</p>
+      <p class="text-black/50 dark:text-white/30">Yazar: {{ commit.commit.author.name }}</p>
+      <p class="text-black/50 dark:text-white/30">Tarih: {{ new Date(commit.commit.author.date).toLocaleString() }}</p>
+    </div>
+  </PageLayout>
 </template>
 
 <script lang="ts">
