@@ -207,7 +207,7 @@ export default Vue.extend({
         <div class="space-y-8">
           <div class="lg:space-y-4">
             <Status class="mt-4 flex justify-center md:justify-start" />
-            <h1 class="font-semibold text-center text-lg md:(text-xl text-left) text-black/50 dark:text-white/50  mt-4 md:mt-0">
+            <h1 class="font-semibold text-center text-lg md:(text-xl text-left) text-black/50 dark:text-white/50  mt-3 md:mt-0">
               Oğuzhan
               <span class="text-black/90 dark:text-white/90">ALTUNBEY</span>
             </h1>
