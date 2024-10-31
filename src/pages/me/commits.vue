@@ -1,13 +1,13 @@
 <template>
   <div class="container mx-auto p-4">
     <h1 class="text-2xl font-bold mb-4">Commit Kayıtları</h1>
-    <ul>
-      <li v-for="commit in commits" :key="commit.sha" class="mb-2 p-4 border rounded shadow">
+
+      <div class="rounded-lg card-base mb-2 p-4" v-for="commit in commits" :key="commit.sha" >
         <p class="text-lg font-semibold">{{ commit.commit.message }}</p>
         <p class="text-sm text-gray-600">Yazar: {{ commit.commit.author.name }}</p>
         <p class="text-sm text-gray-600">Tarih: {{ new Date(commit.commit.author.date).toLocaleString() }}</p>
-      </li>
-    </ul>
+      </div>
+
   </div>
 </template>
 
