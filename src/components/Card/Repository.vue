@@ -1,89 +1,99 @@
-<template>
-  <PageLayout title="Repositories" description="My public projects on GitHub.">
-    <div v-if="$fetchState.pending === true" class="grid gap-4 md:grid-cols-2">
-      <SkeletonLoader v-for="i in 9" :key="`skeleton-${i}`" type="repository" />
-    </div>
-    <div v-else class="grid gap-4 md:grid-cols-2">
-      <SmartLink
-        v-for="repo in repos"
-        :key="repo.id"
-        :href="repo.html_url"
-        blank
-      >
-        <CardRepository
-          :name="repo.name"
-          :language="repo.language"
-          :stars="repo.stargazers_count"
-          :description="repo.description"
-          :license="repo.license && repo.license.spdx_id"
-          :top="repo.id === repos[0].id"
-          class="h-full"
-        />
-      </SmartLink>
-    </div>
-    <div class="mt-8">
-      <h2 class="text-xl font-bold">Commit History for "site" Repository</h2>
-      <ul>
-        <li v-for="commit in siteCommits" :key="commit.sha">
-          {{ commit.commit.message }} - {{ commit.commit.author.name }}
-        </li>
-      </ul>
-    </div>
-  </PageLayout>
-</template>
-
 <script lang="ts">
 import Vue from "vue"
-// Import type
-import type { Repository, Commit } from "~/src/types/Response/GitHub"
 
 export default Vue.extend({
-  data() {
-    return {
-      repos: [] as Repository[],
-      siteCommits: [] as Commit[],
-    }
-  },
-  fetchOnServer: false,
-  async fetch() {
-    const filter = [
-      "oguzhan",
-      "DBM",
-      "oguzaltnby.com",
-      "bu-saatte-cekilir-mi",
-    ]
-    const repos: Repository[] = (
-      await this.$axios.get(
-        "https://api.github.com/users/oguzaltnby/repos?per_page=100"
-      )
-    ).data
-    this.repos = repos
-      ?.filter((repo) => repo.fork === false && !filter.includes(repo.name))
-      ?.sort((a, b) => b?.stargazers_count - a?.stargazers_count)
-
-    // Fetch commit history for the "site" repository
-    await this.fetchSiteCommits()
-  },
-  methods: {
-    async fetchSiteCommits() {
-      const commits: Commit[] = (
-        await this.$axios.get(
-          "https://api.github.com/repos/oguzaltnby/site/commits"
-        )
-      ).data
-      this.siteCommits = commits
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+    language: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    stars: {
+      type: [String, Number],
+      required: true,
+    },
+    top: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    license: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    description: {
+      type: String,
+      required: true,
     },
   },
-  head() {
-    const title = "GitHub Repositories"
-    const description = "My public projects hosted on GitHub."
-    return {
-      title,
-      meta: this.$prepareMeta({
-        title,
-        description,
-      }),
-    }
+  computed: {
+    /**
+     * Returns proper name for the language icon.
+     * @returns {string}
+     */
+    getLanguageIcon(): string {
+      const icons = {
+        Vue: "Vue.js",
+      }
+
+      // @ts-ignore-next-line
+      return icons[this.language] || this.language
+    },
   },
 })
 </script>
+
+<template>
+  <div class="rounded-lg card-base">
+    <div class="space-y-2">
+      <div :class="top && 'flex justify-between space-x-2'">
+        <h3
+          class="text-black/90 dark:text-white/90 items-center truncate space-x-1"
+        >
+          <span class="text-black/50 dark:text-white/30">oguzaltnby/</span
+          ><span>{{ name }}</span>
+        </h3>
+
+        <IconStar
+          v-if="top === true"
+          class="h-6 text-yellow-600 w-6"
+          title="Top repository"
+          filled
+        />
+      </div>
+
+      <p class="text-black/50 dark:text-white/30 line-clamp-2">
+        {{ description }}
+      </p>
+    </div>
+
+    <div class="mt-4">
+      <div
+        class="flex items-center justify-between text-black/50 dark:text-white/30"
+      >
+        <span>Stars:</span>
+        <span>{{ stars }}</span>
+      </div>
+
+      <div
+        class="flex items-center justify-between text-black/50 dark:text-white/30"
+      >
+        <span>Language:</span>
+        <IconDev :brand="getLanguageIcon" class="h-5 w-5" />
+      </div>
+
+      <div
+        v-if="license"
+        class="flex items-center justify-between text-black/50 dark:text-white/30"
+      >
+        <span>License:</span>
+        <span>{{ license }}</span>
+      </div>
+    </div>
+  </div>
+</template>
