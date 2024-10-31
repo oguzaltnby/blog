@@ -213,7 +213,7 @@ export default Vue.extend({
             </h1>
 
             <h1
-              class="font-semibold text-center text-4xl md:(text-6xl text-left) text-black/90 leading-normal dark:text-white/90">
+              class="font-semibold text-center text-4xl md:(text-6xl text-left) text-black/90 leading-normal dark:text-white/90 mt-4 md:mt-0">
               Full-stack web<br />developer
             </h1>
           </div>
