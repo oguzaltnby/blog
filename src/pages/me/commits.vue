@@ -38,7 +38,7 @@ export default Vue.extend({
   methods: {
     async fetchCommits() {
       try {
-        const response = await fetch('https://api.github.com/repos/<kullanici_adi>/site/commits');
+        const response = await fetch('https://api.github.com/repos/oguzaltnby/site/commits');
         const data = await response.json();
         console.log(data); // API'den gelen verileri kontrol et
         this.commits = data;
