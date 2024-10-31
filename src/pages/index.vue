@@ -100,6 +100,12 @@ export default Vue.extend({
               "You can make your payments to me through the following banks",
             href: "/me/payment",
           },
+          {
+            title: "Commits",
+            description:
+              "My latest commits and contributions to the open-source community.",
+              href: "/me/commits",
+          }
 
         ],
       },
