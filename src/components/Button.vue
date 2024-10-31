@@ -49,7 +49,7 @@ export default Vue.extend({
   <SmartLink
     :href="!disabled && href"
     :blank="blank"
-    class="cursor-pointer justify-center px-5 py-2 card-base flex items-center space-x-2"
+    class="cursor-pointer justify-center px-5 py-2 rounded-lg card-base flex items-center space-x-2"
     :class="{
       'w-max': !block,
       'rounded-full': rounded,
