@@ -4,8 +4,8 @@
   ]" class="space-y-12">
     <div class="rounded-lg card-base mb-2 p-4" v-for="commit in commits" :key="commit.sha">
       <p class="text-black/50 dark:text-white/30">{{ commit.commit.message }}</p>
-      <p class="text-black/50 dark:text-white/30">Yazar: {{ commit.commit.author.name }}</p>
-      <p class="text-black/50 dark:text-white/30">Tarih: {{ new Date(commit.commit.author.date).toLocaleString() }}</p>
+      <p class="text-black/50 dark:text-white/30">by {{ commit.commit.author.name }}</p>
+      <p class="text-black/50 dark:text-white/30">{{ new Date(commit.commit.author.date).toLocaleString() }}</p>
     </div>
   </PageLayout>
 </template>
