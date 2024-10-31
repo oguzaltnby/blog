@@ -1,4 +1,3 @@
-
 <template>
   <div class="container mx-auto p-4">
     <h1 class="text-2xl font-bold mb-4">Commit Kayıtları</h1>
@@ -12,11 +11,25 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from "vue";
+
+interface Commit {
+  sha: string;
+  commit: {
+    message: string;
+    author: {
+      name: string;
+      date: string;
+    };
+  };
+}
+
+export default Vue.extend({
   data() {
     return {
-      commits: []
+      commits: [] as Commit[],
+      pageLoaded: false,
     };
   },
   created() {
@@ -32,8 +45,11 @@ export default {
         console.error('Commit kayıtları alınamadı:', error);
       }
     }
+  },
+  mounted() {
+    this.pageLoaded = true;
   }
-};
+});
 </script>
 
 <style scoped>
