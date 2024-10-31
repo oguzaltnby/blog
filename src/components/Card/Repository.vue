@@ -3,93 +3,114 @@ import Vue from "vue"
 import axios from "axios"
 
 export default Vue.extend({
-  props: {
-    name: String,
-    description: String,
-    stars: Number,
-    language: String,
-    top: Boolean,
-  },
   data() {
     return {
-      commits: [] as any[], // Commit bilgilerini tutacak
+      siteCommits: [] as any[], // Site repository'sinin commit bilgilerini tutacak
+      otherRepositories: [
+        {
+          name: "repository1",
+          description: "Description for repository1",
+          stars: 10,
+          language: "JavaScript",
+        },
+        {
+          name: "repository2",
+          description: "Description for repository2",
+          stars: 20,
+          language: "TypeScript",
+        },
+        // Diğer repository'ler burada
+      ],
     }
   },
   async mounted() {
-    await this.fetchCommits()
+    await this.fetchSiteCommits()
   },
   methods: {
-    async fetchCommits() {
+    async fetchSiteCommits() {
       try {
         const response = await axios.get(
-          `https://api.github.com/repos/oguzaltnby/${this.name}/commits`
+          `https://api.github.com/repos/oguzaltnby/site/commits`
         )
-        this.commits = response.data
+        this.siteCommits = response.data
       } catch (error) {
-        console.error("Error fetching commits:", error)
+        console.error("Error fetching site commits:", error)
       }
-    },
-    getLanguageIcon() {
-      // @ts-ignore-next-line
-      return icons[this.language] || this.language
     },
   },
 })
 </script>
 
 <template>
-  <div class="rounded-lg card-base">
-    <div class="space-y-2">
-      <div :class="top && 'flex justify-between space-x-2'">
-        <h3
-          class="text-black/90 dark:text-white/90 items-center truncate space-x-1"
-        >
-          <span class="text-black/50 dark:text-white/30">oguzaltnby/</span
-          ><span>{{ name }}</span>
-        </h3>
-
-        <IconStar
-          v-if="top === true"
-          class="h-6 text-yellow-600 w-6"
-          title="Top repository"
-          filled
-        />
+  <div class="space-y-24 mb-10">
+    <section id="site-repository" class="mb-12">
+      <Title>This Site Commits</Title>
+      <div class="rounded-lg card-base p-4">
+        <h3 class="text-black/90 dark:text-white/90 text-xl mb-4">oguzaltnby/site</h3>
+        <ul class="space-y-2">
+          <li v-for="commit in siteCommits" :key="commit.sha" class="text-black/50 dark:text-white/30">
+            <a :href="commit.html_url" target="_blank" class="hover:underline">
+              {{ commit.commit.message }}
+            </a>
+            <div class="text-xs">
+              <span>by {{ commit.commit.author.name }}</span> -
+              <span>{{ new Date(commit.commit.author.date).toLocaleString() }}</span>
+            </div>
+          </li>
+        </ul>
       </div>
+    </section>
 
-      <p class="text-black/50 dark:text-white/30 line-clamp-2">
-        {{ description }}
-      </p>
-    </div>
-
-    <div class="mt-4">
-      <div
-        class="flex items-center justify-between text-black/50 dark:text-white/30"
-      >
-        <span>Stars:</span>
-        <span>{{ stars }}</span>
-      </div>
-
-      <div
-        class="flex items-center justify-between text-black/50 dark:text-white/30"
-      >
-        <span>Language:</span>
-        <IconDev :brand="getLanguageIcon" class="h-5 w-5" />
-      </div>
-    </div>
-
-    <div class="mt-4">
-      <h4 class="text-black/90 dark:text-white/90">Recent Commits</h4>
-      <ul class="space-y-2">
-        <li v-for="commit in commits" :key="commit.sha" class="text-black/50 dark:text-white/30">
-          <a :href="commit.html_url" target="_blank" class="hover:underline">
-            {{ commit.commit.message }}
-          </a>
-          <div class="text-xs">
-            <span>by {{ commit.commit.author.name }}</span> -
-            <span>{{ new Date(commit.commit.author.date).toLocaleString() }}</span>
+    <section id="other-repositories" class="mb-12">
+      <Title>Other Repositories</Title>
+      <div class="grid gap-4 md:grid-cols-2">
+        <div v-for="repo in otherRepositories" :key="repo.name" class="rounded-lg card-base p-4">
+          <h3 class="text-black/90 dark:text-white/90 text-xl mb-2">{{ repo.name }}</h3>
+          <p class="text-black/50 dark:text-white/30 mb-2">{{ repo.description }}</p>
+          <div class="flex items-center justify-between text-black/50 dark:text-white/30">
+            <span>Stars:</span>
+            <span>{{ repo.stars }}</span>
           </div>
-        </li>
-      </ul>
-    </div>
+          <div class="flex items-center justify-between text-black/50 dark:text-white/30">
+            <span>Language:</span>
+            <IconDev :brand="repo.language" class="h-5 w-5" />
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
+
+<style scoped>
+.playing-bars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.bar {
+  width: 4px;
+  height: 10px;
+  background-color: #1db954;
+  margin: 0 2px;
+  animation: bounce 1s infinite;
+}
+
+.bar:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.bar:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.5);
+  }
+}
+</style>
