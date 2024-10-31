@@ -44,8 +44,8 @@ export default Vue.extend({
 <template>
   <div class="space-y-24 mb-10">
     <section id="site-repository" class="mb-12">
-      <Title>This Site Commits</Title>
-      <div class="rounded-lg card-base p-4">
+      <Title class="mb-4">This Site Repository</Title>
+      <div class="rounded-lg card-base p-4 w-full">
         <h3 class="text-black/90 dark:text-white/90 text-xl mb-4">oguzaltnby/site</h3>
         <ul class="space-y-2">
           <li v-for="commit in siteCommits" :key="commit.sha" class="text-black/50 dark:text-white/30">
@@ -62,7 +62,7 @@ export default Vue.extend({
     </section>
 
     <section id="other-repositories" class="mb-12">
-      <Title>Other Repositories</Title>
+      <Title class="mb-4">Other Repositories</Title>
       <div class="grid gap-4 md:grid-cols-2">
         <div v-for="repo in otherRepositories" :key="repo.name" class="rounded-lg card-base p-4">
           <h3 class="text-black/90 dark:text-white/90 text-xl mb-2">{{ repo.name }}</h3>
