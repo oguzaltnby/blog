@@ -165,7 +165,7 @@ export default Vue.extend({
     <Footer />
 
     <!-- Command Palette -->
-    <CommandMenu :actions="menuActions" :theme="$colorMode.value" class="bg-white dark:bg-gray-700 text-black dark:text-white">
+    <CommandMenu :actions="menuActions" :theme="$colorMode.value" class="bg-white dark:bg-neutral-900 text-black dark:text-white">
       <template v-slot:icon="{ icon }">
         <component :is="icon.split(':')[0]" :brand="icon.split(':')[1]" class="w-4 h-4" />
       </template>
