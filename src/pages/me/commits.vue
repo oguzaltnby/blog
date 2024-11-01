@@ -2,22 +2,21 @@
   <PageLayout title="Latest Updates" :description="[
     `Here you can find the latest updates and commits made to the repository.`,
   ]" class="space-y-6">
-    <div class="grid gap-1" v-for="commit in commits" :key="commit.sha">
-      <div class="flex h-full space-x-4 items-center rounded-lg card-base">
-        <div class="rounded-lg  h-12 w-12">
-          <img :src="iconSrc" class="rounded-lg h-12 w-12 object-cover" />
+    <div class="space-y-4" v-for="commit in commits" :key="commit.sha">
+      <div class="flex items-start space-x-4 p-4 border rounded-lg bg-white dark:bg-gray-800 shadow-sm">
+        <div class="flex-shrink-0">
+          <img :src="iconSrc" class="rounded-full h-12 w-12 object-cover" />
         </div>
-
-        <div class="rounded-tr rounded-br flex h-full">
-          <div class="rounded-lg" >
-            <p class="text-black/50 dark:text-white/30">{{ commit.commit.message }}</p>
-            <p class="text-black/50 dark:text-white/30">by {{ commit.commit.author.name }}</p>
-            <p class="text-black/50 dark:text-white/30">{{ new Date(commit.commit.author.date).toLocaleString() }}</p>
-          </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-gray-900 dark:text-white">
+            {{ commit.commit.message }}
+          </p>
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            by {{ commit.commit.author.name }} on {{ new Date(commit.commit.author.date).toLocaleString() }}
+          </p>
         </div>
       </div>
     </div>
-
   </PageLayout>
 </template>
 
