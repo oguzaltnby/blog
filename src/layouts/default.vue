@@ -153,7 +153,7 @@ export default Vue.extend({
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+  <div class="min-h-screen bg-gray-50 dark:bg-neutral-900">
     <Navbar class="pt-10" />
 
     <!-- Nuxt component -->
