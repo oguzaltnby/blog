@@ -4,7 +4,7 @@
   ]" class="space-y-6">
     <div class="grid gap-1" v-for="commit in commits" :key="commit.sha">
       <div class="flex h-full space-x-4 items-center rounded-lg card-base">
-        <div class="rounded-lg">
+        <div class="rounded-lg  h-12 w-12">
           <img :src="iconSrc" class="rounded-lg h-12 w-12" />
         </div>
 
