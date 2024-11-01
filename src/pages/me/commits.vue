@@ -11,7 +11,7 @@
         />
       </div>
       <!-- Commit Details -->
-      <div class="flex-grow rounded-lg card-base p-4 flex flex-col space-y-2">
+      <div class="rounded-lg card-base p-4 flex flex-col space-y-2">
         <p class="text-black/50 dark:text-white/30">{{ commit.commit.message }}</p>
         <p class="text-black/50 dark:text-white/30">by {{ commit.commit.author.name }}</p>
         <p class="text-black/50 dark:text-white/30">{{ new Date(commit.commit.author.date).toLocaleString() }}</p>
