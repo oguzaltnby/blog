@@ -121,7 +121,6 @@ export default Vue.extend({
             "Node.js",
             "Python",
             "PHP",
-            "Dart",
 
             //"Sass",
           ],
@@ -140,10 +139,6 @@ export default Vue.extend({
               title: "VS Code",
               iconPack: "IconBrand",
             },
-            {
-              title: "Figma",
-            },
-
             {
               title: "Illustrator",
             },
@@ -175,13 +170,6 @@ export default Vue.extend({
               title: "Netlify",
               iconPack: "IconBrand",
             },
-          ],
-        },
-        {
-          title: "Operating Systems",
-          items: [
-            "KaliLinux",
-            "Windows",
           ],
         },
       ],
