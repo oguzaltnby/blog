@@ -98,13 +98,13 @@ export default Vue.extend({
             title: "Payment",
             description:
               "You can make your payments to me through the following banks",
-            href: "/me/payment",
+            href: "/payment",
           },
           {
             title: "Commits",
             description:
               "My latest commits and contributions to the open-source community.",
-              href: "/me/commits",
+              href: "/commits",
           }
 
         ],
