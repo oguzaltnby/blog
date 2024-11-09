@@ -63,6 +63,11 @@ interface Commit {
 }
 
 export default Vue.extend({
+  head() {
+    return {
+      title: "Commits",
+    }
+  },
   data() {
     return {
       commits: [] as Commit[],
