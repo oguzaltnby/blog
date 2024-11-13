@@ -16,6 +16,12 @@ export default Vue.extend({
           iban: "TR12 0006 2001 1510 0006 8787 43",
           revealed: false,
         },
+        {
+          image: "/assets/icons/binance.png",
+          name: "Binance",
+          iban: "956635175",
+          revealed: false,
+        },
 
       ],
     }
