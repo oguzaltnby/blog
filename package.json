@@ -65,7 +65,8 @@
     "vue-disqus": "^4.0.1",
     "vue-server-renderer": "2.7.16",
     "vue-template-compiler": "^2.7.16",
-    "vue-tippy": "^4.16.1"
+    "vue-tippy": "^4.16.1",
+    "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
