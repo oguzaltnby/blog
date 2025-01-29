@@ -1,0 +1,8 @@
+[build]
+  functions = "netlify/functions"
+  publish = "dist"
+  node_version = "18.x"  # Node.js sürümünü güncelleyin
+
+[dev]
+  command = "npm run serve"
+  port = 8888
