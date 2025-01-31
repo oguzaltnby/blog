@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 exports.handler = async function(event, context) {
-  const filePath = path.join(__dirname, '../../files/example.txt'); // Dosya yolunu belirtin
+  const filePath = path.resolve(__dirname, '../../files/example.txt'); // Dosya yolunu belirtin
   try {
     const data = fs.readFileSync(filePath);
     return {
