@@ -106,6 +106,12 @@ export default Vue.extend({
               "My latest commits and contributions to the open-source community.",
               href: "/commits",
           }
+          {
+            title: "FileViewer",
+            description:
+              "My latest commits and contributions to the open-source community.",
+              href: "/fileviewer",
+          }
 
         ],
       },
