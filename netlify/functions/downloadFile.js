@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 exports.handler = async function(event, context) {
-  const filePath = path.join(process.cwd(), 'static/files/example.txt'); // Update the file path as needed
+  // __dirname fonksiyon dosyanızın bulunduğu dizini verir.
+  const filePath = path.join(__dirname, 'files', 'example.txt');
   try {
     const data = fs.readFileSync(filePath);
     return {
@@ -17,7 +18,7 @@ exports.handler = async function(event, context) {
   } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Dosya indirilemedi' }),
+      body: JSON.stringify({ error: 'Dosya indirilemedi', detay: error.message }),
     };
   }
 };
