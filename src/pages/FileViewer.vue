@@ -13,20 +13,24 @@
       handle=".handle"
     >
       <div
-        class="flex flex-row items-center gap-4 mb-4 handle"
+        class="flex flex-row items-center gap-4 mb-4 handle bg-white dark:bg-gray-800 p-4 rounded-lg shadow"
         v-for="file in files"
         :key="file"
       >
-        <!-- Dosya İkonu Uzantıya Göre Belirleniyor -->
-        <div class="rounded-lg h-12 w-12 flex items-center justify-center bg-gray-100 dark:bg-gray-800">
-          <component :is="getFileIcon(file)" class="h-8 w-8 text-gray-700 dark:text-gray-300" />
+        <!-- Dosya İkonu -->
+        <div class="rounded-lg h-12 w-12 flex items-center justify-center">
+          <img
+            :src="getFileIcon(file)"
+            class="h-10 w-10 object-contain"
+            alt="Dosya İkonu"
+          />
         </div>
         <!-- Dosya Detayları ve İndirme Bağlantısı -->
-        <div class="rounded-lg card-base p-4 flex flex-col space-y-2">
+        <div class="flex flex-col space-y-2">
           <p class="text-black/50 dark:text-white/30">{{ file }}</p>
           <a
             :href="`/.netlify/functions/downloadFile?filename=${file}`"
-            class="text-blue-600 hover:underline"
+            class="text-blue-600 dark:text-blue-400 hover:underline"
             download
           >
             İndir
@@ -40,16 +44,10 @@
 <script lang="ts">
 import Vue from "vue";
 import draggable from "vuedraggable";
-import { DocumentTextIcon, VideoCameraIcon, MusicNoteIcon, PhotoIcon, FileIcon } from "@heroicons/vue/solid";
 
 export default Vue.extend({
   components: {
     draggable,
-    DocumentTextIcon,
-    VideoCameraIcon,
-    MusicNoteIcon,
-    PhotoIcon,
-    FileIcon
   },
   head() {
     return {
@@ -68,7 +66,6 @@ export default Vue.extend({
   methods: {
     async fetchFiles() {
       try {
-        // Netlify Functions'dan dosya listesini alıyoruz.
         const res = await fetch('/.netlify/functions/listFiles');
         const data = await res.json();
         this.files = data.files;
@@ -80,19 +77,27 @@ export default Vue.extend({
       // İsteğe bağlı: Drag işlemi bittiğinde yapılacaklar
     },
     getFileIcon(filename: string) {
-      const ext = filename.split('.').pop()?.toLowerCase();
-      if (!ext) return FileIcon;
-
-      const iconMap: Record<string, any> = {
-        'pdf': DocumentTextIcon,
-        'doc': DocumentTextIcon, 'docx': DocumentTextIcon,
-        'txt': DocumentTextIcon,
-        'jpg': PhotoIcon, 'jpeg': PhotoIcon, 'png': PhotoIcon, 'gif': PhotoIcon, 'svg': PhotoIcon,
-        'mp4': VideoCameraIcon, 'avi': VideoCameraIcon, 'mov': VideoCameraIcon,
-        'mp3': MusicNoteIcon, 'wav': MusicNoteIcon, 'flac': MusicNoteIcon
+      const extension = filename.split('.').pop()?.toLowerCase() || "default";
+      const icons: Record<string, string> = {
+        pdf: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-pdf/file-pdf-original.svg",
+        doc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-word/file-word-original.svg",
+        docx: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-word/file-word-original.svg",
+        xls: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-excel/file-excel-original.svg",
+        xlsx: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-excel/file-excel-original.svg",
+        ppt: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-powerpoint/file-powerpoint-original.svg",
+        pptx: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-powerpoint/file-powerpoint-original.svg",
+        jpg: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-image/file-image-original.svg",
+        jpeg: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-image/file-image-original.svg",
+        png: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-image/file-image-original.svg",
+        gif: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-image/file-image-original.svg",
+        txt: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-text/file-text-original.svg",
+        zip: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-zip/file-zip-original.svg",
+        rar: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-zip/file-zip-original.svg",
+        mp3: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-audio/file-audio-original.svg",
+        mp4: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-video/file-video-original.svg",
+        default: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file/file-original.svg",
       };
-
-      return iconMap[ext] || FileIcon;
+      return icons[extension] || icons.default;
     }
   },
   mounted() {
