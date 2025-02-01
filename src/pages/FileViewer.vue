@@ -17,13 +17,9 @@
         v-for="file in files"
         :key="file"
       >
-        <!-- Dosya İkonu -->
-        <div class="rounded-lg h-12 w-12 flex items-center justify-center bg-gray-200 dark:bg-gray-700">
-          <img
-            :src="getFileIcon(file)"
-            class="h-10 w-10 object-contain"
-            alt="Dosya İkonu"
-          />
+        <!-- Dosya İkonu Uzantıya Göre Belirleniyor -->
+        <div class="rounded-lg h-12 w-12 flex items-center justify-center bg-gray-100 dark:bg-gray-800">
+          <component :is="getFileIcon(file)" class="h-8 w-8 text-gray-700 dark:text-gray-300" />
         </div>
         <!-- Dosya Detayları ve İndirme Bağlantısı -->
         <div class="rounded-lg card-base p-4 flex flex-col space-y-2">
@@ -44,15 +40,21 @@
 <script lang="ts">
 import Vue from "vue";
 import draggable from "vuedraggable";
+import { DocumentTextIcon, VideoCameraIcon, MusicNoteIcon, PhotoIcon, FileIcon } from "@heroicons/vue/solid";
 
 export default Vue.extend({
   components: {
     draggable,
+    DocumentTextIcon,
+    VideoCameraIcon,
+    MusicNoteIcon,
+    PhotoIcon,
+    FileIcon
   },
   head() {
     return {
       title: "Dosya Listesi"
-    };
+    }
   },
   data() {
     return {
@@ -66,6 +68,7 @@ export default Vue.extend({
   methods: {
     async fetchFiles() {
       try {
+        // Netlify Functions'dan dosya listesini alıyoruz.
         const res = await fetch('/.netlify/functions/listFiles');
         const data = await res.json();
         this.files = data.files;
@@ -73,30 +76,24 @@ export default Vue.extend({
         console.error('Dosya listesi alınamadı:', error);
       }
     },
-    getFileIcon(file: string): string {
-      const extension = file.split('.').pop()?.toLowerCase();
-      const icons: { [key: string]: string } = {
-        pdf: "https://cdn-icons-png.flaticon.com/512/337/337946.png",
-        doc: "https://cdn-icons-png.flaticon.com/512/337/337932.png",
-        docx: "https://cdn-icons-png.flaticon.com/512/337/337932.png",
-        xls: "https://cdn-icons-png.flaticon.com/512/732/732220.png",
-        xlsx: "https://cdn-icons-png.flaticon.com/512/732/732220.png",
-        jpg: "https://cdn-icons-png.flaticon.com/512/136/136524.png",
-        jpeg: "https://cdn-icons-png.flaticon.com/512/136/136524.png",
-        png: "https://cdn-icons-png.flaticon.com/512/136/136524.png",
-        gif: "https://cdn-icons-png.flaticon.com/512/136/136530.png",
-        zip: "https://cdn-icons-png.flaticon.com/512/135/135716.png",
-        rar: "https://cdn-icons-png.flaticon.com/512/135/135715.png",
-        mp3: "https://cdn-icons-png.flaticon.com/512/2305/2305935.png",
-        mp4: "https://cdn-icons-png.flaticon.com/512/2305/2305939.png",
-        txt: "https://cdn-icons-png.flaticon.com/512/482/482459.png",
-        default: "https://cdn-icons-png.flaticon.com/512/833/833524.png"
-      };
-      return icons[extension || "default"];
-    },
     onDragEnd(event: any) {
       // İsteğe bağlı: Drag işlemi bittiğinde yapılacaklar
     },
+    getFileIcon(filename: string) {
+      const ext = filename.split('.').pop()?.toLowerCase();
+      if (!ext) return FileIcon;
+
+      const iconMap: Record<string, any> = {
+        'pdf': DocumentTextIcon,
+        'doc': DocumentTextIcon, 'docx': DocumentTextIcon,
+        'txt': DocumentTextIcon,
+        'jpg': PhotoIcon, 'jpeg': PhotoIcon, 'png': PhotoIcon, 'gif': PhotoIcon, 'svg': PhotoIcon,
+        'mp4': VideoCameraIcon, 'avi': VideoCameraIcon, 'mov': VideoCameraIcon,
+        'mp3': MusicNoteIcon, 'wav': MusicNoteIcon, 'flac': MusicNoteIcon
+      };
+
+      return iconMap[ext] || FileIcon;
+    }
   },
   mounted() {
     this.pageLoaded = true;
