@@ -13,24 +13,24 @@
       handle=".handle"
     >
       <div
-        class="flex flex-row items-center gap-4 mb-4 handle bg-white dark:bg-gray-800 p-4 rounded-lg shadow"
+        class="flex flex-row items-center gap-4 mb-4 handle bg-gray-100 dark:bg-gray-900 p-4 rounded-xl shadow-lg border border-gray-300 dark:border-gray-700"
         v-for="file in files"
         :key="file"
       >
         <!-- Dosya İkonu -->
-        <div class="rounded-lg h-12 w-12 flex items-center justify-center">
+        <div class="rounded-xl h-14 w-14 flex items-center justify-center bg-gray-200 dark:bg-gray-800 p-2">
           <img
             :src="getFileIcon(file)"
-            class="h-10 w-10 object-contain"
+            class="h-12 w-12 object-contain"
             alt="Dosya İkonu"
           />
         </div>
         <!-- Dosya Detayları ve İndirme Bağlantısı -->
         <div class="flex flex-col space-y-2">
-          <p class="text-black/50 dark:text-white/30">{{ file }}</p>
+          <p class="text-gray-700 dark:text-gray-300 font-medium">{{ file }}</p>
           <a
             :href="`/.netlify/functions/downloadFile?filename=${file}`"
-            class="text-blue-600 dark:text-blue-400 hover:underline"
+            class="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
             download
           >
             İndir
@@ -52,7 +52,7 @@ export default Vue.extend({
   head() {
     return {
       title: "Dosya Listesi"
-    }
+    };
   },
   data() {
     return {
@@ -79,23 +79,23 @@ export default Vue.extend({
     getFileIcon(filename: string) {
       const extension = filename.split('.').pop()?.toLowerCase() || "default";
       const icons: Record<string, string> = {
-        pdf: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-pdf/file-pdf-original.svg",
-        doc: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-word/file-word-original.svg",
-        docx: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-word/file-word-original.svg",
-        xls: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-excel/file-excel-original.svg",
-        xlsx: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-excel/file-excel-original.svg",
-        ppt: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-powerpoint/file-powerpoint-original.svg",
-        pptx: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-powerpoint/file-powerpoint-original.svg",
-        jpg: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-image/file-image-original.svg",
-        jpeg: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-image/file-image-original.svg",
-        png: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-image/file-image-original.svg",
-        gif: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-image/file-image-original.svg",
-        txt: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-text/file-text-original.svg",
-        zip: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-zip/file-zip-original.svg",
-        rar: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-zip/file-zip-original.svg",
-        mp3: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-audio/file-audio-original.svg",
-        mp4: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file-video/file-video-original.svg",
-        default: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/file/file-original.svg",
+        pdf: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/file-text.svg",
+        doc: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/file-text.svg",
+        docx: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/file-text.svg",
+        xls: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/file-spreadsheet.svg",
+        xlsx: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/file-spreadsheet.svg",
+        ppt: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/file-presentation.svg",
+        pptx: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/file-presentation.svg",
+        jpg: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/image.svg",
+        jpeg: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/image.svg",
+        png: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/image.svg",
+        gif: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/image.svg",
+        txt: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/file-text.svg",
+        zip: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/file-archive.svg",
+        rar: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/file-archive.svg",
+        mp3: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/file-music.svg",
+        mp4: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/file-video.svg",
+        default: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/file.svg",
       };
       return icons[extension] || icons.default;
     }
