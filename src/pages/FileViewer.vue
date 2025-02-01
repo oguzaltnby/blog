@@ -17,7 +17,7 @@
     >
       <div v-for="file in files" :key="file" class="handle">
         <!-- Row şeklinde tasarlanmış kart -->
-        <div class="rounded-lg card-base p-2 flex flex-row items-center h-12">
+        <div class="rounded-lg card-base p-2 flex flex-row items-center h-14">
           <!-- İkon Bölümü -->
           <div class="rounded-lg  p-2 flex items-center justify-center mr-4">
             <img
