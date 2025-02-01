@@ -4,21 +4,20 @@
     :description="['Buradan dosyaları görüntüleyip indirebilirsiniz.']"
     class="space-y-6"
   >
-    <!-- draggable bileşeninin container'ı grid layout olarak ayarlandı -->
+    <!-- Grid düzeni referans kodunuzdaki gibi -->
     <draggable
       v-model="files"
       group="files"
       tag="div"
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+      class="grid md:grid-cols-3 grid-cols-1 lg:grid-cols-4 gap-x-2 gap-y-2"
       @end="onDragEnd"
       :animation="200"
       ghost-class="ghost"
       handle=".handle"
     >
       <div v-for="file in files" :key="file" class="handle">
-        <!-- Kart boyutları ve dizilimi örnek görseldeki gibi ayarlandı -->
         <div class="rounded-lg card-base p-4 flex flex-col justify-center items-center h-48">
-          <!-- İkon bölümü (arka plan, padding ve yuvarlatılmış köşeler ile) -->
+          <!-- İkon Bölümü -->
           <div class="rounded-lg bg-gray-200 dark:bg-gray-800 p-2 flex items-center justify-center mb-4">
             <img
               :src="getFileIcon(file)"
@@ -26,10 +25,11 @@
               alt="Dosya İkonu"
             />
           </div>
-          <!-- Dosya adı ve İndir linki (ortalanmış) -->
+          <!-- Dosya Adı -->
           <p class="text-gray-700 dark:text-gray-300 font-medium mb-2 text-center">
             {{ file }}
           </p>
+          <!-- İndir Linki -->
           <a
             :href="`/.netlify/functions/downloadFile?filename=${file}`"
             class="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
