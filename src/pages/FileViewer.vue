@@ -4,42 +4,39 @@
     :description="['Buradan dosyaları görüntüleyip indirebilirsiniz.']"
     class="space-y-6"
   >
+    <!-- draggable bileşeninin container'ı grid layout olarak ayarlandı -->
     <draggable
       v-model="files"
       group="files"
+      tag="div"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
       @end="onDragEnd"
       :animation="200"
       ghost-class="ghost"
       handle=".handle"
     >
-      <div
-        class="mb-4 handle"
-        v-for="file in files"
-        :key="file"
-      >
-        <!-- Kart içinde hem ikon hem de dosya bilgileri yer alacak -->
-        <div class="rounded-lg card-base p-4 flex items-center gap-4">
-          <!-- İkon -->
-          <div class="rounded-lg h-12 w-12 flex-shrink-0 bg-gray-200 dark:bg-gray-800 p-2 flex items-center justify-center">
+      <div v-for="file in files" :key="file" class="handle">
+        <!-- Kart boyutları ve dizilimi örnek görseldeki gibi ayarlandı -->
+        <div class="rounded-lg card-base p-4 flex flex-col justify-center items-center h-48">
+          <!-- İkon bölümü (arka plan, padding ve yuvarlatılmış köşeler ile) -->
+          <div class="rounded-lg bg-gray-200 dark:bg-gray-800 p-2 flex items-center justify-center mb-4">
             <img
               :src="getFileIcon(file)"
-              class="h-8 w-8 object-contain"
+              class="h-12 w-12 object-contain"
               alt="Dosya İkonu"
             />
           </div>
-          <!-- Dosya Bilgileri -->
-          <div class="flex flex-col flex-1">
-            <p class="text-gray-700 dark:text-gray-300 font-medium">
-              {{ file }}
-            </p>
-            <a
-              :href="`/.netlify/functions/downloadFile?filename=${file}`"
-              class="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
-              download
-            >
-              İndir
-            </a>
-          </div>
+          <!-- Dosya adı ve İndir linki (ortalanmış) -->
+          <p class="text-gray-700 dark:text-gray-300 font-medium mb-2 text-center">
+            {{ file }}
+          </p>
+          <a
+            :href="`/.netlify/functions/downloadFile?filename=${file}`"
+            class="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
+            download
+          >
+            İndir
+          </a>
         </div>
       </div>
     </draggable>
@@ -79,7 +76,7 @@ export default Vue.extend({
       }
     },
     onDragEnd(event: any) {
-      // İsteğe bağlı: Drag işlemi bittiğinde yapılacaklar
+      // Drag işlemi tamamlandığında yapılacaklar (gerekirse)
     },
     getFileIcon(filename: string) {
       const extension = filename.split('.').pop()?.toLowerCase() || "default";
