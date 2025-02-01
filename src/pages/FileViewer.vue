@@ -13,30 +13,33 @@
       handle=".handle"
     >
       <div
-        class="flex flex-row items-center gap-4 mb-4 handle"
+        class="mb-4 handle"
         v-for="file in files"
         :key="file"
       >
-        <!-- Dosya İkonu -->
-        <div class="rounded-lg h-12 w-12 flex-shrink-0">
-          <img
-            :src="getFileIcon(file)"
-            class="rounded-lg h-12 w-12 object-contain"
-            alt="Dosya İkonu"
-          />
-        </div>
-        <!-- Dosya Detayları ve İndirme Bağlantısı (Commit tasarımına uyarlanmış kart görünümü) -->
-        <div class="rounded-lg card-base p-4 flex flex-col space-y-2 flex-1">
-          <p class="text-gray-700 dark:text-gray-300 font-medium">
-            {{ file }}
-          </p>
-          <a
-            :href="`/.netlify/functions/downloadFile?filename=${file}`"
-            class="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
-            download
-          >
-            İndir
-          </a>
+        <!-- Kart içinde hem ikon hem de dosya bilgileri yer alacak -->
+        <div class="rounded-lg card-base p-4 flex items-center gap-4">
+          <!-- İkon -->
+          <div class="rounded-lg h-12 w-12 flex-shrink-0 bg-gray-200 dark:bg-gray-800 p-2 flex items-center justify-center">
+            <img
+              :src="getFileIcon(file)"
+              class="h-8 w-8 object-contain"
+              alt="Dosya İkonu"
+            />
+          </div>
+          <!-- Dosya Bilgileri -->
+          <div class="flex flex-col flex-1">
+            <p class="text-gray-700 dark:text-gray-300 font-medium">
+              {{ file }}
+            </p>
+            <a
+              :href="`/.netlify/functions/downloadFile?filename=${file}`"
+              class="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
+              download
+            >
+              İndir
+            </a>
+          </div>
         </div>
       </div>
     </draggable>
