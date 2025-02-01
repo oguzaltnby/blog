@@ -13,21 +13,23 @@
       handle=".handle"
     >
       <div
-        class="flex flex-row items-center gap-4 mb-4 handle bg-gray-100 dark:bg-gray-900 p-4 rounded-xl shadow-lg border border-gray-300 dark:border-gray-700"
+        class="flex flex-row items-center gap-4 mb-4 handle"
         v-for="file in files"
         :key="file"
       >
         <!-- Dosya İkonu -->
-        <div class="rounded-xl h-14 w-14 flex items-center justify-center bg-gray-200 dark:bg-gray-800 p-2">
+        <div class="rounded-lg h-12 w-12 flex-shrink-0">
           <img
             :src="getFileIcon(file)"
-            class="h-12 w-12 object-contain"
+            class="rounded-lg h-12 w-12 object-contain"
             alt="Dosya İkonu"
           />
         </div>
-        <!-- Dosya Detayları ve İndirme Bağlantısı -->
-        <div class="flex flex-col space-y-2">
-          <p class="text-gray-700 dark:text-gray-300 font-medium">{{ file }}</p>
+        <!-- Dosya Detayları ve İndirme Bağlantısı (Commit tasarımına uyarlanmış kart görünümü) -->
+        <div class="rounded-lg card-base p-4 flex flex-col space-y-2 flex-1">
+          <p class="text-gray-700 dark:text-gray-300 font-medium">
+            {{ file }}
+          </p>
           <a
             :href="`/.netlify/functions/downloadFile?filename=${file}`"
             class="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
@@ -51,7 +53,7 @@ export default Vue.extend({
   },
   head() {
     return {
-      title: "Dosya Listesi"
+      title: "Dosya Listesi",
     };
   },
   data() {
