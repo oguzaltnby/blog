@@ -2,41 +2,43 @@
   <PageLayout
     title="Dosya Listesi"
     :description="['Buradan dosyaları görüntüleyip indirebilirsiniz.']"
-    class="space-y-6"
+    class="space-y-4"
   >
-    <!-- Grid düzeni referans kodunuzdaki gibi -->
+    <!-- Tek kolon, row şeklinde dizilim -->
     <draggable
       v-model="files"
       group="files"
       tag="div"
-      class="grid md:grid-cols-3 grid-cols-1 lg:grid-cols-4 gap-x-2 gap-y-2"
+      class="grid grid-cols-1 gap-y-2"
       @end="onDragEnd"
       :animation="200"
       ghost-class="ghost"
       handle=".handle"
     >
       <div v-for="file in files" :key="file" class="handle">
-        <div class="rounded-lg card-base p-4 flex flex-col justify-center items-center h-48">
+        <!-- Row kart: küçük, ince ve uzun -->
+        <div class="rounded-lg card-base p-2 flex flex-row items-center h-16">
           <!-- İkon Bölümü -->
-          <div class="rounded-lg bg-gray-200 dark:bg-gray-800 p-2 flex items-center justify-center mb-4">
+          <div class="rounded-lg bg-gray-200 dark:bg-gray-800 p-2 flex items-center justify-center mr-4">
             <img
               :src="getFileIcon(file)"
-              class="h-12 w-12 object-contain"
+              class="h-8 w-8 object-contain"
               alt="Dosya İkonu"
             />
           </div>
-          <!-- Dosya Adı -->
-          <p class="text-gray-700 dark:text-gray-300 font-medium mb-2 text-center">
-            {{ file }}
-          </p>
-          <!-- İndir Linki -->
-          <a
-            :href="`/.netlify/functions/downloadFile?filename=${file}`"
-            class="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
-            download
-          >
-            İndir
-          </a>
+          <!-- Dosya Bilgileri (satır şeklinde) -->
+          <div class="flex flex-row items-center justify-between w-full">
+            <p class="text-gray-700 dark:text-gray-300 text-sm font-medium truncate">
+              {{ file }}
+            </p>
+            <a
+              :href="`/.netlify/functions/downloadFile?filename=${file}`"
+              class="text-blue-600 dark:text-blue-400 hover:underline text-xs font-semibold ml-4 whitespace-nowrap"
+              download
+            >
+              İndir
+            </a>
+          </div>
         </div>
       </div>
     </draggable>
