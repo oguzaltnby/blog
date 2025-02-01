@@ -35,7 +35,35 @@ export default Vue.extend({
 });
 </script>
 
+<style scoped><template>
+  <div>
+    <h1>Downloadable Files</h1>
+    <ul>
+      <li v-for="file in files" :key="file.name">
+        <a :href="`/.netlify/functions/downloadFile?file=${file.name}`" download>{{ file.name }}</a>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
+  data() {
+    return {
+      files: [
+        { name: 'example.txt' },
+        // Add more files as needed
+      ],
+    };
+  },
+});
+</script>
+
 <style scoped>
+/* Add your styles here */
+</style>
 pre {
   background-color: #f5f5f5;
   padding: 10px;

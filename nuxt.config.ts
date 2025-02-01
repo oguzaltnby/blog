@@ -63,4 +63,9 @@ const Config: NuxtConfig = {
   feed,
 }
 
-export default Config
+export default {
+  // Other configurations...
+  static: {
+    prefix: false,
+  },
+};
