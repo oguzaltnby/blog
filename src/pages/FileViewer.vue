@@ -31,7 +31,7 @@
             <p class="text-gray-700 dark:text-gray-300 text-sm font-medium truncate">
               {{ file }}
             </p>
-            <!-- Eğer dosya şifre korumalıysa farklı bir işleyiş uygulanacak -->
+            <!-- Eğer dosya şifre korumalıysa custom modal tetiklenir -->
             <template v-if="!requiresPassword(file)">
               <a
                 :href="`/.netlify/functions/downloadFile?filename=${file}`"
@@ -44,7 +44,7 @@
             <template v-else>
               <a
                 href="#"
-                @click.prevent="handleProtectedDownload(file)"
+                @click.prevent="openPasswordModal(file)"
                 class="text-blue-600 dark:text-blue-400 hover:underline text-xs font-semibold ml-4 whitespace-nowrap"
               >
                 İndir
@@ -54,6 +54,36 @@
         </div>
       </div>
     </draggable>
+
+    <!-- Custom Şifre Modalı -->
+    <div
+      v-if="showPasswordModal"
+      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+    >
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg max-w-sm w-full">
+        <h3 class="text-lg font-medium mb-4">Şifre Giriniz</h3>
+        <input
+          type="password"
+          v-model="enteredPassword"
+          class="border p-2 mb-4 w-full rounded"
+          placeholder="Şifre"
+        />
+        <div class="flex justify-end space-x-4">
+          <button
+            @click="submitPassword"
+            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          >
+            Gönder
+          </button>
+          <button
+            @click="closePasswordModal"
+            class="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400"
+          >
+            İptal
+          </button>
+        </div>
+      </div>
+    </div>
   </PageLayout>
 </template>
 
@@ -74,8 +104,11 @@ export default Vue.extend({
     return {
       files: [] as string[],
       pageLoaded: false,
-      // Şifre korumalı dosyalar için varsayılan şifre
+      // Şifre korumalı dosyalar için varsayılan şifre (gereksinime göre değiştirebilirsiniz)
       protectedPassword: "secret",
+      showPasswordModal: false,
+      currentProtectedFile: "",
+      enteredPassword: "",
     };
   },
   created() {
@@ -84,18 +117,18 @@ export default Vue.extend({
   methods: {
     async fetchFiles() {
       try {
-        const res = await fetch('/.netlify/functions/listFiles');
+        const res = await fetch("/.netlify/functions/listFiles");
         const data = await res.json();
         this.files = data.files;
       } catch (error) {
-        console.error('Dosya listesi alınamadı:', error);
+        console.error("Dosya listesi alınamadı:", error);
       }
     },
     onDragEnd(event: any) {
       // Drag işlemi tamamlandığında yapılacaklar (gerektiğinde)
     },
     getFileIcon(filename: string) {
-      const extension = filename.split('.').pop()?.toLowerCase() || "default";
+      const extension = filename.split(".").pop()?.toLowerCase() || "default";
       const icons: Record<string, string> = {
         pdf: "https://img.icons8.com/?size=100&id=zGrV8SMoAvHE&format=png&color=000000",
         doc: "https://img.icons8.com/?size=100&id=pGHcje298xSl&format=png&color=000000",
@@ -121,21 +154,33 @@ export default Vue.extend({
     requiresPassword(file: string): boolean {
       return file.includes("!");
     },
-    // Şifre korumalı dosya indirme işlemi
-    handleProtectedDownload(file: string) {
-      const userPassword = window.prompt('Bu dosya şifre ile korunuyor. Lütfen şifreyi giriniz:');
-      if (userPassword === this.protectedPassword) {
-        // Doğru şifre girildiyse, indirme işlemini başlatırız.
-        // Örneğin, aşağıdaki gibi sayfa yönlendirmesi yapabiliriz:
-        window.location.href = `/.netlify/functions/downloadFile?filename=${file}&password=${encodeURIComponent(userPassword)}`;
+    // Şifre modalını açar ve hangi dosya için şifre gerektiğini belirler
+    openPasswordModal(file: string) {
+      this.currentProtectedFile = file;
+      this.enteredPassword = "";
+      this.showPasswordModal = true;
+    },
+    closePasswordModal() {
+      this.showPasswordModal = false;
+      this.currentProtectedFile = "";
+      this.enteredPassword = "";
+    },
+    // Girilen şifreyi kontrol eder ve doğruysa dosya indirmeyi başlatır
+    submitPassword() {
+      if (this.enteredPassword === this.protectedPassword) {
+        // Doğru şifre: dosya indirme URL'sine yönlendiriyoruz.
+        window.location.href = `/.netlify/functions/downloadFile?filename=${this.currentProtectedFile}&password=${encodeURIComponent(
+          this.enteredPassword
+        )}`;
+        this.closePasswordModal();
       } else {
-        alert('Hatalı şifre!');
+        alert("Hatalı şifre!");
       }
-    }
+    },
   },
   mounted() {
     this.pageLoaded = true;
-  }
+  },
 });
 </script>
 
