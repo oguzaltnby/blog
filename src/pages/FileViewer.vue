@@ -19,7 +19,7 @@
         <!-- Row şeklinde tasarlanmış kart -->
         <div class="rounded-lg card-base p-2 flex flex-row items-center h-14">
           <!-- İkon Bölümü -->
-          <div class="rounded-lg  p-2 flex items-center justify-center mr-4">
+          <div class="rounded-lg p-2 flex items-center justify-center mr-4">
             <img
               :src="getFileIcon(file)"
               class="h-8 w-8 object-contain"
@@ -31,13 +31,25 @@
             <p class="text-gray-700 dark:text-gray-300 text-sm font-medium truncate">
               {{ file }}
             </p>
-            <a
-              :href="`/.netlify/functions/downloadFile?filename=${file}`"
-              class="text-blue-600 dark:text-blue-400 hover:underline text-xs font-semibold ml-4 whitespace-nowrap"
-              download
-            >
-              İndir
-            </a>
+            <!-- Eğer dosya şifre korumalıysa farklı bir işleyiş uygulanacak -->
+            <template v-if="!requiresPassword(file)">
+              <a
+                :href="`/.netlify/functions/downloadFile?filename=${file}`"
+                class="text-blue-600 dark:text-blue-400 hover:underline text-xs font-semibold ml-4 whitespace-nowrap"
+                download
+              >
+                İndir
+              </a>
+            </template>
+            <template v-else>
+              <a
+                href="#"
+                @click.prevent="handleProtectedDownload(file)"
+                class="text-blue-600 dark:text-blue-400 hover:underline text-xs font-semibold ml-4 whitespace-nowrap"
+              >
+                İndir
+              </a>
+            </template>
           </div>
         </div>
       </div>
@@ -62,6 +74,8 @@ export default Vue.extend({
     return {
       files: [] as string[],
       pageLoaded: false,
+      // Şifre korumalı dosyalar için varsayılan şifre
+      protectedPassword: "secret",
     };
   },
   created() {
@@ -78,7 +92,7 @@ export default Vue.extend({
       }
     },
     onDragEnd(event: any) {
-      // Drag işlemi tamamlandığında yapılacaklar (gerekirse)
+      // Drag işlemi tamamlandığında yapılacaklar (gerektiğinde)
     },
     getFileIcon(filename: string) {
       const extension = filename.split('.').pop()?.toLowerCase() || "default";
@@ -102,6 +116,21 @@ export default Vue.extend({
         default: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/file.svg",
       };
       return icons[extension] || icons.default;
+    },
+    // Dosya adında ünlem işareti varsa şifre gerektir
+    requiresPassword(file: string): boolean {
+      return file.includes("!");
+    },
+    // Şifre korumalı dosya indirme işlemi
+    handleProtectedDownload(file: string) {
+      const userPassword = window.prompt('Bu dosya şifre ile korunuyor. Lütfen şifreyi giriniz:');
+      if (userPassword === this.protectedPassword) {
+        // Doğru şifre girildiyse, indirme işlemini başlatırız.
+        // Örneğin, aşağıdaki gibi sayfa yönlendirmesi yapabiliriz:
+        window.location.href = `/.netlify/functions/downloadFile?filename=${file}&password=${encodeURIComponent(userPassword)}`;
+      } else {
+        alert('Hatalı şifre!');
+      }
     }
   },
   mounted() {
