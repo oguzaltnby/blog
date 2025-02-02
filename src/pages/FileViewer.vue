@@ -83,7 +83,7 @@ export default Vue.extend({
     getFileIcon(filename: string) {
       const extension = filename.split('.').pop()?.toLowerCase() || "default";
       const icons: Record<string, string> = {
-        pdf: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/file-text.svg",
+        pdf: "https://img.icons8.com/?size=100&id=zGrV8SMoAvHE&format=png&color=000000",
         doc: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/file-text.svg",
         docx: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/file-text.svg",
         xls: "https://cdn.jsdelivr.net/gh/lucide-icons/lucide/icons/file-spreadsheet.svg",
